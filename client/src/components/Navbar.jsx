@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ChevronDown, Menu } from 'lucide-react';
-import usa from '../../assets/usa.png';
-import sweden from '../../assets/sweden.svg';
-import logo from '../../assets/logo.png';
+import usa from '../assets/usa.png';
+import sweden from '../assets/sweden.svg';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   return (

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { Share2, Heart, Star, User, ChevronLeft } from 'lucide-react';
+import { Share2, Heart, Star, User, ChevronLeft,ChevronRight } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
-
+import man from '../assets/man.png';
 import aboutus from '../assets/aboutus.png';
 import explorebg from '../assets/explorebg.png';
 import sigiriya from '../assets/sigiriya.png';
@@ -12,7 +12,7 @@ import customize from '../assets/customize.png';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [_dragOffset, setDragOffset] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
 
@@ -78,6 +78,29 @@ const Home = () => {
   const uniformStayLocation = 'Kandy, Sri Lanka';
   const uniformStayRating = '4.5';
 
+  const destinations = [
+    {
+      id: 1,
+      title: 'Nine Arch',
+      image: 'https://images.unsplash.com/photo-1588615407008-05244585c5a0?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 2,
+      title: 'Thalpe',
+      image: 'https://images.unsplash.com/photo-1590494490333-3e11749e7bd6?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 3,
+      title: 'Nine Arch',
+      image: 'https://images.unsplash.com/photo-1555541097-90fb3370e28e?q=80&w=400&auto=format&fit=crop'
+    },
+    {
+      id: 4,
+      title: 'Thalpe',
+      image: 'https://images.unsplash.com/photo-1624383419363-22de0a969dfd?q=80&w=400&auto=format&fit=crop'
+    },
+  ];
+
   const testimonials = [
     {
       id: 1,
@@ -114,19 +137,19 @@ const Home = () => {
     setCurrentSlide((s) => (s + 1) % testimonials.length);
   };
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerDown = (e) => {
     isDraggingRef.current = true;
     startXRef.current = e.clientX;
     try { e.currentTarget.setPointerCapture?.(e.pointerId); } catch (err) {}
   };
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerMove = (e) => {
     if (!isDraggingRef.current) return;
     const dx = e.clientX - startXRef.current;
     setDragOffset(dx);
   };
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerUp = (e) => {
     if (!isDraggingRef.current) return;
     isDraggingRef.current = false;
     const dx = e.clientX - startXRef.current;
@@ -137,7 +160,7 @@ const Home = () => {
     else if (dx > threshold) prevTestimonial();
   };
 
-  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerCancel = (e) => {
     isDraggingRef.current = false;
     setDragOffset(0);
     try { e.currentTarget.releasePointerCapture?.(e.pointerId); } catch (err) {}

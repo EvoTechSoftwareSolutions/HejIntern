@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #01888E;
+  --color-primary-light: #B0DADC;
+  --color-secondary: #E6F3F4;
+  --color-dark: #003032;
+  --color-accent: #FFCC00;
+  
+  --font-sans: "Inter", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-kaisei: "Kaisei Decol", serif;
+  --font-alex: "Alex Brush", cursive;
+  --font-petemoss: "Petemoss", cursive;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-white text-dark;
+  }
+}
