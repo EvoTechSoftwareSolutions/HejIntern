@@ -3,5 +3,5 @@ node_modules
 dist
 build
 
-server/node_modules
+
 server/.env
