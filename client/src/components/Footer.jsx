@@ -6,7 +6,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import logo from "../../assets/footerlogo.png"; 
+import logo from "../assets/footerlogo.png"; 
 
 const Footer = () => {
   return (
