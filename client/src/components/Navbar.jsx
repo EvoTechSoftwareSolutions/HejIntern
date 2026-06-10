@@ -20,8 +20,8 @@ const Navbar = () => {
           <div className="h-4 w-px bg-dark/30 mx-1"></div>
 
           <div className="flex items-center gap-2">
-            <img src={usa} alt="USA" className="w-4 h-4 object-cover rounded-full cursor-pointer hover:opacity-80 transition-opacity shadow-sm" />
-            <img src={sweden} alt="Sweden" className="w-4 h-4 object-cover rounded-full cursor-pointer hover:opacity-80 transition-opacity shadow-sm" />
+            <Link to="/"><img src={usa} alt="USA" className="w-4 h-4 object-cover rounded-full cursor-pointer hover:opacity-80 transition-opacity shadow-sm" /></Link>
+            <Link to="/sv"><img src={sweden} alt="Sweden" className="w-4 h-4 object-cover rounded-full cursor-pointer hover:opacity-80 transition-opacity shadow-sm" /></Link>
           </div>
 
         </div>

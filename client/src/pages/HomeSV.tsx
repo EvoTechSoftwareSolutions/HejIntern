@@ -12,19 +12,19 @@ import customize from '../assets/customize.png';
 
 const renderThemeIcon = (id: number, isActive: boolean) => {
   switch (id) {
-    case 1: // Dive into history and traditions
+    case 1: // Dive into history and traditions / Dyk ner i historia och traditioner
       return (
         <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
           <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
         </svg>
       );
-    case 5: // Rejuvenate your soul
+    case 5: // Rejuvenate your soul / Återupplev din själ
       return (
         <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
           <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
         </svg>
       );
-    case 2: // Unwind by turquoise waters
+    case 2: // Unwind by turquoise waters / Koppla av vid turkosa vatten
       return (
         <svg viewBox="0 0 100 80" className="w-10 h-10 text-[#003032]" fill="currentColor">
           {/* Head */}
@@ -40,7 +40,7 @@ const renderThemeIcon = (id: number, isActive: boolean) => {
           <path d="M10 68 Q20 62 30 68 Q40 74 50 68 Q60 62 70 68 Q80 74 90 68" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/>
         </svg>
       );
-    case 3: // Witness nature in its purest form
+    case 3: // Witness nature in its purest form / Upplev naturen i sin renaste form
       return (
         <svg viewBox="0 0 100 90" className="w-10 h-10 text-[#003032]" fill="currentColor">
           {/* Person: head */}
@@ -58,20 +58,20 @@ const renderThemeIcon = (id: number, isActive: boolean) => {
           <circle cx="61" cy="32" r="22" />
         </svg>
       );
-    case 4: // Get your adrenaline rush!
+    case 4: // Get your adrenaline rush! / Få adrenalinkicken!
       return (
         <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
           <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 6.7 1.4z"/>
           <path d="M2 10h3M3 14h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       );
-    case 6: // Indulge in exclusivity
+    case 6: // Indulge in exclusivity / Skäm bort dig i exklusivitet
       return (
         <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
           <path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/>
         </svg>
       );
-    case 7: // Amazing experiences at great value!
+    case 7: // Amazing experiences at great value! / Fantastiska upplevelser till bra pris!
       return (
         <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor" fillRule="evenodd" clipRule="evenodd">
           <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7zm11.23 8.35L12 20l-4.73-4.65c-.32-.32-.52-.76-.52-1.25 0-1 .8-1.8 1.8-1.8.61 0 1.15.3 1.48.77l1.97 1.95 1.97-1.95c.33-.47.87-.77 1.48-.77 1 0 1.8.8 1.8 1.8 0 .49-.2 1.03-.52 1.25z" />
@@ -82,7 +82,7 @@ const renderThemeIcon = (id: number, isActive: boolean) => {
   }
 };
 
-const Home = () => {
+const HomeSV = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
   const [activeTheme, setActiveTheme] = useState(1);
@@ -91,13 +91,13 @@ const Home = () => {
   const startXRef = useRef(0);
 
   const themes = [
-    { id: 1, name: 'Dive into history and traditions', icon: '🏛️' },
-    { id: 2, name: 'Unwind by turquoise waters', icon: '🏖️' },
-    { id: 3, name: 'Witness nature in its purest form', icon: '🐘' },
-    { id: 4, name: 'Get your adrenaline rush!', icon: '🧗' },
-    { id: 5, name: 'Rejuvenate your soul', icon: '🧘' },
-    { id: 6, name: 'Indulge in exclusivity', icon: '✨' },
-    { id: 7, name: 'Amazing experiences at great value!', icon: '🎒' },
+    { id: 1, name: 'Dyk ner i historia och traditioner', icon: '🏛️' },
+    { id: 2, name: 'Koppla av vid turkosa vatten', icon: '🏖️' },
+    { id: 3, name: 'Upplev naturen i sin renaste form', icon: '🐘' },
+    { id: 4, name: 'Få adrenalinkicken!', icon: '🧗' },
+    { id: 5, name: 'Återupplev din själ', icon: '🧘' },
+    { id: 6, name: 'Skäm bort dig i exklusivitet', icon: '✨' },
+    { id: 7, name: 'Fantastiska upplevelser till bra pris!', icon: '🎒' },
   ];
 
   const tours = [
@@ -244,19 +244,19 @@ const Home = () => {
           </div>
 
         <div className="relative z-20 flex flex-col items-center mt-16 px-4">
-          <h1 className="font-kaisei text-[40px] md:text-[40px] leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
-          <p className="font-alex text-[28px] md:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
+          <h1 className="font-kaisei text-[40px] md:text-[40px] leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">HITTA DIN PERFEKTA SEMESTER</h1>
+          <p className="font-alex text-[28px] md:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Skräddarsydd bara för dig!</p>
 
           <div className="flex flex-col items-center mt-4">
-            <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-6">Tailored Experiences, Unmatched Adventures</p>
+            <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-6">Skräddarsydda upplevelser, oslagbara äventyr</p>
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center">
             <button className="px-10 py-3 rounded-full bg-white text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px] border border-[rgba(1,136,142,0.08)]">
-              Let's Start Your Journey
+              Börja ditt äventyr
             </button>
             <button className="px-10 py-3 rounded-full bg-gradient-to-r from-[#01888E] to-[#006D6D] text-white font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px]">
-              Build My Trip
+              Skapa min resa
             </button>
           </div>
         </div>
@@ -265,7 +265,7 @@ const Home = () => {
       {/* Categories Section */}
       <section className="py-12 bg-white max-w-7xl mx-auto text-center mt-6">
         <p className="text-[16px] text-[#003032] font-sans max-w-4xl mx-auto mb-10 leading-[26px] text-center px-4">
-          We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
+          Vi erbjuder <span className="font-bold text-[#01888E]">{themes.length}</span> extraordinära resekategorier, var och en noggrant utvald för att ge dig det bästa av Sri Lanka. Oavsett om du söker kulturarv, spännande äventyr eller en lyxig reträtt, har vi dig täckt!
         </p>
         <div
           className="flex flex-nowrap justify-center gap-3 overflow-x-auto pb-4"
@@ -341,12 +341,12 @@ const Home = () => {
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-10">
             <div>
-              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
+              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>Utforska Sri Lanka</span>
               <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-                <span className="font-bold">A Land</span> <span className="font-normal">of Diverse Wonders!</span>
+                <span className="font-bold">Ett land</span> <span className="font-normal">av mångsidiga underverk!</span>
               </h2>
               <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px]" style={{ fontFamily: 'Inter' }}>
-                We offer seven extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
+                Vi erbjuder sju extraordinära resekategorier, var och en noggrant utvald för att ge dig det bästa av Sri Lanka. Oavsett om du söker kulturarv, spännande äventyr eller en lyxig reträtt, har vi dig täckt!
               </p>
             </div>
 
@@ -441,7 +441,7 @@ const Home = () => {
           {/* Explore All Button */}
           <div className="flex justify-center mt-8">
             <button className="w-[176px] h-[36px] bg-[#01888E] text-[#E6F3F4] rounded-full text-[15px] font-bold tracking-wide shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-[#003032] transition-colors" style={{ fontFamily: 'Inter' }}>
-              Explore all tours
+              Utforska alla turer
             </button>
           </div>
         </div>
@@ -506,7 +506,7 @@ const Home = () => {
 
       <div className="flex justify-center mt-8">
         <button className="px-6 py-3 bg-[#01888E] text-[#E6F3F4] rounded-full text-[15px] font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:opacity-95 transition">
-          Start your adventure today
+          Börja ditt äventyr idag
         </button>
       </div>
 
@@ -517,12 +517,12 @@ const Home = () => {
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-2">
             <div>
-              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
+              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>BOENDEN</span>
               <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-                <span className="font-bold">Stay In</span> <span className="font-normal">Sri Lanka</span>
+                <span className="font-bold">Bo i</span> <span className="font-normal">Sri Lanka</span>
               </h2>
               <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px] mt-0" style={{ fontFamily: 'Inter' }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                Lorem Ipsum är bara dummytext för utskrift och typsättning. Lorem Ipsum har varit branschens standarddummytext sedan 1500-talet.
               </p>
             </div>
 
@@ -643,10 +643,10 @@ const Home = () => {
         <div className="w-full h-28 bg-white" />
         <div className="absolute left-0 right-0 top-[78%] transform -translate-y-1/2 flex justify-center px-4">
           <div className="bg-white max-w-3xl w-full md:w-[720px] mx-auto rounded-sm shadow-xl p-6 md:p-8 border border-gray-100">
-            <h3 className="text-center text-[#003032] font-bold text-[20px] md:text-[22px] leading-tight mb-3">Let's Customize Your Dream Tour Today!</h3>
-            <p className="text-center text-[13px] text-gray-600 max-w-3xl mx-auto mb-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <h3 className="text-center text-[#003032] font-bold text-[20px] md:text-[22px] leading-tight mb-3">Anpassa din drömresa idag!</h3>
+            <p className="text-center text-[13px] text-gray-600 max-w-3xl mx-auto mb-6">Lorem Ipsum är bara dummytext för utskrift och typsättning. Lorem Ipsum har varit branschens standarddummytext sedan 1500-talet, när en okänd tryckare tog en typgalleri och blandade den för att skapa en provbok.</p>
             <div className="flex justify-center">
-              <button className="px-6 py-3 bg-[#01888E] text-white rounded-md font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:opacity-95 transition">Customize</button>
+              <button className="px-6 py-3 bg-[#01888E] text-white rounded-md font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:opacity-95 transition">Anpassa</button>
             </div>
           </div>
         </div>
@@ -659,7 +659,7 @@ const Home = () => {
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-12">
             <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block">TESTIMONIALS</span>
-            <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3"><span className="font-bold">What Our</span> <span className="font-normal">Clients Say</span></h2>
+            <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3"><span className="font-bold">Vad våra</span> <span className="font-normal">kunder säger</span></h2>
           </div>
 
           <div className="relative flex justify-center items-center h-[420px] cursor-grab"
@@ -699,4 +699,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeSV;

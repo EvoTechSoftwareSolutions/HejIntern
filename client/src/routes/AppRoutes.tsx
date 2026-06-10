@@ -6,11 +6,10 @@ import About from "../pages/About";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
+        <Route path="sv" element={<HomeSV />} />
         <Route path="about" element={<About />} />
       </Route>
-    </Routes>
   );
 }
