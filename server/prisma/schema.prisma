@@ -4,13 +4,95 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-    url      = env("DATABASE_URL")
-
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String @unique
-  password String
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  username           String
+  email              String   @unique
+  passwordHash       String
+
+  passwordResetToken String?
+  passwordResetExpiry DateTime?
+  
+verificationToken     String?
+  verificationExpiry    DateTime?
+  roleId             String   @db.ObjectId
+  languageId         String   @db.ObjectId
+
+  isVerified         Boolean  @default(false)
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  role               Role     @relation(fields: [roleId], references: [id])
+  language           Language @relation(fields: [languageId], references: [id])
+ deletedAt            DateTime?
+
+ images    Image[]
+}
+
+model Role {
+  id                    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name                  String
+
+  canBook              Boolean @default(false)
+  canCustomize         Boolean @default(false)
+  canManageUsers       Boolean @default(false)
+  canAccessAnalytics   Boolean @default(false)
+
+  users                User[]
+}
+
+model Language {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  code          String  @unique
+  name          String
+  isDefault     Boolean @default(false)
+
+  users         User[]
+}
+
+model Theme {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  theme_name      String
+  theme_slug      String   @unique
+  description     String?
+
+  cover_image_id  String?  @db.ObjectId
+  cover_image     Image?   @relation(fields: [cover_image_id], references: [id])
+
+  display_order   Int      @default(0)
+  is_active       Boolean  @default(true)
+
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+}
+
+model Image {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  file_name     String
+  file_url      String
+  file_type     FileType
+
+  uploaded_by   String   @db.ObjectId
+  uploadedBy    User     @relation(fields: [uploaded_by], references: [id])
+
+  alt_text_en   String?
+  alt_text_sw   String?
+
+  entity_type   String?
+  entity_id     String?  @db.ObjectId
+
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+}
+
+enum FileType {
+  IMAGE
+  VIDEO
 }
