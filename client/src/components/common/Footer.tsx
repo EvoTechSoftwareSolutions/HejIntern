@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -8,7 +8,72 @@ import {
 
 import logo from "../../assets/footerlogo.png"; 
 
+// Text definitions for English and Swedish versions
+const footerText = {
+  navigationTitle: {
+    en: "Navigation",
+    sv: "Navigationer",
+  },
+  navigationLinks: [
+    { to: "/", en: "Home", sv: "Hem" },
+    { to: "/destinations", en: "Destinations", sv: "Destinationer" },
+    { to: "/tours", en: "Tours", sv: "Turer" },
+    { to: "/stays", en: "Stays", sv: "Boenden" },
+    { to: "/blog", en: "Blog", sv: "Blogg" },
+    { to: "/contact", en: "Contact Us", sv: "Kontakta oss" },
+  ],
+  quickLinksTitle: {
+    en: "Quick Links",
+    sv: "Snabblänkar",
+  },
+  quickLinks: [
+    { to: "/terms", en: "Terms & Conditions", sv: "Villkor & Förutsättningar" },
+    { to: "/privacy", en: "Privacy Policy", sv: "Integritetspolicy" },
+    { to: "/faq", en: "FAQ", sv: "Vanliga frågor" },
+    { to: "/gallery", en: "Gallery", sv: "Galleri" },
+    { to: "/about", en: "About Us", sv: "Om oss" },
+  ],
+  supportTitle: {
+    en: "Support",
+    sv: "Support",
+  },
+  supportLinks: [
+    { to: "/help-center", en: "Help Center", sv: "Help Center" },
+    { to: "/account", en: "My Account", sv: "My Hej Ceylon" },
+    { to: "/favorites", en: "My Favorites", sv: "My Favorites" },
+    { to: "/my-tours", en: "My Tours", sv: "My Tours" },
+    { to: "/profile", en: "My Profile", sv: "My Profile" },
+  ],
+  hotlineTitle: {
+    en: "Hotline",
+    sv: "Hotline",
+  },
+  contactTitle: {
+    en: "Contact Us",
+    sv: "Kontakta oss",
+  },
+  locationTitle: {
+    en: "Location",
+    sv: "Plats",
+  },
+  bottomCopy: {
+    en: "© HejCeylon (PVT) Ltd. | All rights reserved 2025",
+    sv: "© HejCeylon (PVT) Ltd. | Alla rättigheter förbehållna 2025",
+  },
+  designBy: {
+    en: "Design & Developed by Evon Technologies Software Solutions (PVT) Ltd.",
+    sv: "Design & Utvecklad av Evon Technologies Software Solutions (PVT) Ltd.",
+  },
+};
+
 const Footer = () => {
+  const location = useLocation();
+  const isSwedish = location.pathname.startsWith("/sv");
+  const t = (obj) => (isSwedish ? obj.sv : obj.en);
+
+  // Helper to prepend language prefix to routes when Swedish
+  const prefixed = (path) => (isSwedish ? `/sv${path}` : path);
+
   return (
     <footer className="bg-[#01888E] text-white rounded-t-[40px] overflow-hidden h-[370px] flex flex-col">
       {/* Main Footer */}
@@ -64,49 +129,48 @@ const Footer = () => {
               style={{ fontFamily: "'Poppins', sans-serif" }}
               className="font-bold text-sm leading-[20px] mb-3 uppercase tracking-wide text-[#E6F3F4] w-[99px] h-[20px]"
             >
-              Navigations
+              {t(footerText.navigationTitle)}
             </h3>
 
             <ul className="flex flex-col gap-3 text-[#E6F3F4] text-sm">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/destinations">Destinations</Link></li>
-              <li><Link to="/tours">Tours</Link></li>
-              <li><Link to="/stays">Stays</Link></li>
-              <li><Link to="/blog">Blog</Link></li>
-              <li><Link to="/contact">Contact Us</Link></li>
+              {footerText.navigationLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={prefixed(link.to)}>{t(link)}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Quick Links */}
           <div className="flex flex-col">
-            <h3 className="font-bold text-base mb-3 uppercase tracking-wide">Quick Links</h3>
+            <h3 className="font-bold text-base mb-3 uppercase tracking-wide">{t(footerText.quickLinksTitle)}</h3>
 
             <ul className="flex flex-col gap-3 text-[#E6F3F4] text-sm">
-              <li><Link to="/terms">Terms & Conditions</Link></li>
-              <li><Link to="/privacy">Privacy Policy</Link></li>
-              <li><Link to="/faq">FAQ</Link></li>
-              <li><Link to="/gallery">Gallery</Link></li>
-              <li><Link to="/about">About Us</Link></li>
+              {footerText.quickLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={prefixed(link.to)}>{t(link)}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Support */}
           <div className="flex flex-col">
-            <h3 className="font-bold text-base mb-3 uppercase tracking-wide">Support</h3>
+            <h3 className="font-bold text-base mb-3 uppercase tracking-wide">{t(footerText.supportTitle)}</h3>
 
             <ul className="flex flex-col gap-3 text-[#E6F3F4] text-sm">
-              <li><Link to="/help-center">Help Center</Link></li>
-              <li><Link to="/account">My Hej Ceylon</Link></li>
-              <li><Link to="/favorites">My Favorites</Link></li>
-              <li><Link to="/my-tours">My Tours</Link></li>
-              <li><Link to="/profile">My Profile</Link></li>
+              {footerText.supportLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={prefixed(link.to)}>{t(link)}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Section */}
           <div>
             {/* Hotline */}
-            <h3 className="font-bold text-sm mb-2 uppercase">Hotline</h3>
+            <h3 className="font-bold text-sm mb-2 uppercase">{t(footerText.hotlineTitle)}</h3>
 
             <div className="flex items-center gap-3 mb-3">
               <div className="w-12 h-12 rounded-full border border-[#E6F3F4] flex items-center justify-center">
@@ -116,7 +180,7 @@ const Footer = () => {
             </div>
 
             {/* Contact */}
-            <h3 className="font-bold text-sm mb-2 uppercase">Contact Us</h3>
+            <h3 className="font-bold text-sm mb-2 uppercase">{t(footerText.contactTitle)}</h3>
 
             <div className="flex items-center gap-3 mb-3">
               <div className="w-12 h-12 rounded-full border border-[#E6F3F4] flex items-center justify-center">
@@ -127,7 +191,7 @@ const Footer = () => {
             </div>
 
             {/* Location */}
-            <h3 className="font-bold text-sm mb-2 uppercase">Location</h3>
+            <h3 className="font-bold text-sm mb-2 uppercase">{t(footerText.locationTitle)}</h3>
 
             <div className="flex items-start gap-3">
               <div className="w-12 h-12 rounded-full border border-[#E6F3F4] flex items-center justify-center shrink-0">
@@ -149,9 +213,9 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="bg-white text-[#0F172A] h-14 flex items-center">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center w-full px-6 text-xs">
-          <p>© <strong>HejCeylon (PVT) Ltd.</strong> | All rights reserved 2025</p>
+          <p>© <strong>{footerText.bottomCopy[isSwedish ? "sv" : "en"]}</strong></p>
 
-          <p className="mt-2 md:mt-0">Design & Develop by <strong>Evon Technologies Software Solutions (PVT) Ltd.</strong></p>
+          <p className="mt-2 md:mt-0">{footerText.designBy[isSwedish ? "sv" : "en"]}</p>
         </div>
       </div>
     </footer>

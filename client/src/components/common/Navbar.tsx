@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { ChevronDown, Menu, Heart, LogOut } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { ChevronDown, Menu, Heart, LogOut, Bell } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import usa from '../../assets/usa.png';
 import sweden from '../../assets/sweden.svg';
@@ -8,6 +8,21 @@ import logo from '../../assets/logo.png';
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const isSwedish = location.pathname.startsWith('/sv');
+
+  const navText = {
+    myAccount: isSwedish ? 'Min Hej Ceylon' : 'My Hej Ceylon',
+    myWishlist: isSwedish ? 'Mina Önskade' : 'My Wishlist',
+    logout: isSwedish ? 'Logga ut' : 'Logout',
+    home: isSwedish ? 'HEM' : 'HOME',
+    tours: isSwedish ? 'RESOR' : 'TOURS',
+    destinations: isSwedish ? 'DESTINATIONER' : 'DESTINATIONS',
+    stays: isSwedish ? 'VISTELSER' : 'STAYS',
+    blog: isSwedish ? 'BLOGG' : 'BLOG',
+    contactUs: isSwedish ? 'KONTAKTA OSS' : 'CONTACT US',
+    gallery: isSwedish ? 'GALLERI' : 'GALLERY',
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -43,9 +58,8 @@ const Navbar = () => {
               className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              <span>My Hej Ceylon</span>
+              <span>{navText.myAccount}</span>
               <ChevronDown size={14} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-              <div className="w-4 h-4 bg-red-500 rounded-full text-white flex items-center justify-center text-[10px] ml-1 font-bold shadow-sm">1</div>
             </div>
 
             {/* Dropdown Menu */}
@@ -56,7 +70,7 @@ const Navbar = () => {
                   className="w-full px-4 py-2 text-left text-sm text-dark hover:bg-secondary flex items-center gap-2 transition-colors"
                 >
                   <Heart size={16} />
-                  My Wishlist
+                  {navText.myWishlist}
                 </button>
                 <div className="border-t border-gray-200 my-1"></div>
                 <button
@@ -64,17 +78,47 @@ const Navbar = () => {
                   className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors"
                 >
                   <LogOut size={16} />
-                  Logout
+                  {navText.logout}
                 </button>
               </div>
             )}
           </div>
 
+          {/* Notification Bell */}
+          <div className="relative cursor-pointer flex items-center hover:opacity-90 transition-opacity">
+            <Bell size={16} className="text-dark fill-dark" />
+            <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-bold shadow-sm">
+              1
+            </span>
+          </div>
+
+          {/* Divider */}
           <div className="h-4 w-px bg-dark/30 mx-1"></div>
 
-          <div className="flex items-center gap-2">
-            <img src={usa} alt="USA" className="w-4 h-4 object-cover rounded-full cursor-pointer hover:opacity-80 transition-opacity shadow-sm" />
-            <img src={sweden} alt="Sweden" className="w-4 h-4 object-cover rounded-full cursor-pointer hover:opacity-80 transition-opacity shadow-sm" />
+          {/* Language Flags */}
+          <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center justify-center">
+              <img 
+                src={usa} 
+                alt="USA" 
+                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
+                  !isSwedish 
+                    ? 'border-2 border-white shadow-[0_0_8px_rgba(1,136,142,0.8)] scale-105 z-10' 
+                    : 'opacity-70 hover:opacity-100'
+                }`} 
+              />
+            </Link>
+            <Link to="/sv" className="flex items-center justify-center">
+              <img 
+                src={sweden} 
+                alt="Sweden" 
+                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
+                  isSwedish 
+                    ? 'border-2 border-white shadow-[0_0_8px_rgba(1,136,142,0.8)] scale-105 z-10' 
+                    : 'opacity-70 hover:opacity-100'
+                }`} 
+              />
+            </Link>
           </div>
 
         </div>
@@ -87,13 +131,13 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-[13px] font-bold tracking-wide text-dark">
-          <Link to="/" className="text-primary hover:text-primary-dark transition-colors">HOME</Link>
-          <Link to="/tours" className="hover:text-primary transition-colors">TOURS</Link>
-          <Link to="/destinations" className="hover:text-primary transition-colors">DESTINATIONS</Link>
-          <Link to="/stays" className="hover:text-primary transition-colors">STAYS</Link>
-          <Link to="/blog" className="hover:text-primary transition-colors">BLOG</Link>
-          <Link to="/contact" className="hover:text-primary transition-colors">CONTACT US</Link>
-          <Link to="/gallery" className="hover:text-primary transition-colors">GALLERY</Link>
+          <Link to="/" className="text-primary hover:text-primary-dark transition-colors">{navText.home}</Link>
+          <Link to={isSwedish ? "/sv/tours" : "/tours"} className="hover:text-primary transition-colors">{navText.tours}</Link>
+          <Link to={isSwedish ? "/sv/destinations" : "/destinations"} className="hover:text-primary transition-colors">{navText.destinations}</Link>
+          <Link to={isSwedish ? "/sv/stays" : "/stays"} className="hover:text-primary transition-colors">{navText.stays}</Link>
+          <Link to={isSwedish ? "/sv/blog" : "/blog"} className="hover:text-primary transition-colors">{navText.blog}</Link>
+          <Link to={isSwedish ? "/sv/contact" : "/contact"} className="hover:text-primary transition-colors">{navText.contactUs}</Link>
+          <Link to={isSwedish ? "/sv/gallery" : "/gallery"} className="hover:text-primary transition-colors">{navText.gallery}</Link>
         </nav>
 
         {/* Mobile menu button */}
