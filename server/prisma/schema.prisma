@@ -8,91 +8,154 @@ datasource db {
 }
 
 model User {
-  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  username           String
-  email              String   @unique
-  passwordHash       String
+  username     String
+  email        String @unique
+  passwordHash String
 
-  passwordResetToken String?
+  passwordResetToken  String?
   passwordResetExpiry DateTime?
-  
-verificationToken     String?
-  verificationExpiry    DateTime?
-  roleId             String   @db.ObjectId
-  languageId         String   @db.ObjectId
 
-  isVerified         Boolean  @default(false)
+  verificationToken  String?
+  verificationExpiry DateTime?
+  roleId             String    @db.ObjectId
+  languageId         String    @db.ObjectId
 
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  isVerified Boolean @default(false)
 
-  role               Role     @relation(fields: [roleId], references: [id])
-  language           Language @relation(fields: [languageId], references: [id])
- deletedAt            DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
- images    Image[]
+  role      Role      @relation(fields: [roleId], references: [id])
+  language  Language  @relation(fields: [languageId], references: [id])
+  deletedAt DateTime?
+
+  images Image[]
 }
 
 model Role {
-  id                    String  @id @default(auto()) @map("_id") @db.ObjectId
-  name                  String
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
 
-  canBook              Boolean @default(false)
-  canCustomize         Boolean @default(false)
-  canManageUsers       Boolean @default(false)
-  canAccessAnalytics   Boolean @default(false)
+  canBook            Boolean @default(false)
+  canCustomize       Boolean @default(false)
+  canManageUsers     Boolean @default(false)
+  canAccessAnalytics Boolean @default(false)
 
-  users                User[]
+  users User[]
 }
 
 model Language {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
-  code          String  @unique
-  name          String
-  isDefault     Boolean @default(false)
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  code      String  @unique
+  name      String
+  isDefault Boolean @default(false)
 
-  users         User[]
+  users User[]
 }
 
 model Theme {
-  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  theme_name      String
-  theme_slug      String   @unique
-  description     String?
+  theme_name  String
+  theme_slug  String  @unique
+  description String?
 
-  cover_image_id  String?  @db.ObjectId
-  cover_image     Image?   @relation(fields: [cover_image_id], references: [id])
+  cover_image_id String? @db.ObjectId
+  cover_image    Image?  @relation("ThemeCover", fields: [cover_image_id], references: [id])
 
-  display_order   Int      @default(0)
-  is_active       Boolean  @default(true)
+  images ThemeImage[]
+  activity Activity[]
+  destination Destination[]
+  
+  display_order Int     @default(0)
+  is_active     Boolean @default(true)
 
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Image {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  file_name     String
-  file_url      String
-  file_type     FileType
+  file_name String
+  file_url  String
+  file_type FileType
 
-  uploaded_by   String   @db.ObjectId
-  uploadedBy    User     @relation(fields: [uploaded_by], references: [id])
+  uploaded_by String @db.ObjectId
+  uploadedBy  User   @relation(fields: [uploaded_by], references: [id])
 
-  alt_text_en   String?
-  alt_text_sw   String?
+  alt_text_en String?
+  alt_text_sw String?
 
-  entity_type   String?
+    entity_type   String?
   entity_id     String?  @db.ObjectId
 
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
+  coverThemes Theme[]      @relation("ThemeCover")
+  themes      ThemeImage[]
+  coverDestinations Destination[] @relation("DestinationCover")
+  
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model ThemeImage {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  themeId String @db.ObjectId
+  imageId String @db.ObjectId
+
+  theme Theme @relation(fields: [themeId], references: [id])
+  image Image @relation(fields: [imageId], references: [id])
+
+  created_at DateTime @default(now())
 }
 
 enum FileType {
   IMAGE
   VIDEO
 }
+
+model Destination {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  destination_name String
+  description      String?
+  region           String
+
+  theme_id String @db.ObjectId
+  theme    Theme  @relation(fields: [theme_id], references: [id])
+
+  cover_image_id String? @db.ObjectId
+  cover_image    Image?  @relation("DestinationCover", fields: [cover_image_id], references: [id])
+
+  is_active Boolean @default(true)
+
+  activity Activity[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+
+model Activity {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  activity_name String
+  description   String
+
+  theme_id String @db.ObjectId
+  theme    Theme  @relation(fields: [theme_id], references: [id])
+
+  destination_id String @db.ObjectId
+  destination     Destination @relation(fields: [destination_id], references: [id])
+
+  difficulty_level String
+  duration_hours   Float
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+

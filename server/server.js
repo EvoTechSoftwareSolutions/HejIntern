@@ -7,6 +7,10 @@ import helmet from "helmet"
 import { logger } from "./middleware/logger.js";
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/auth.routes.js";
+import themeRoutes from "./routes/theme.routes.js"
+import destinationRoutes from "./routes/destination.routes.js"
+import activityRoutes from "./routes/activity.routes.js"
+import uploadRoutes from "./routes/upload.routes.js"
 import { errorHandler } from "./utils/errorHandler.js";
 import { apiLimiter } from "./middleware/rateLimit.js";
 
@@ -34,6 +38,10 @@ app.use(apiLimiter);
 // Routes
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/themes", themeRoutes)
+app.use("/api/v1/images", uploadRoutes)
+app.use("/api/v1/destination", destinationRoutes)
+app.use("/api/v1/activity", activityRoutes)
 
 // Error handler LAST middleware
 app.use(errorHandler);

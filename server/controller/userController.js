@@ -50,11 +50,13 @@ export const getMyProfile = async (req, res) => {
 };
 
 //update user
+
 export const updateUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { username, email } = req.body;
 
+    // 1. CHECK USER EXISTS
     const user = await prisma.user.findUnique({
       where: { id },
     });
@@ -66,11 +68,26 @@ export const updateUser = async (req, res, next) => {
       });
     }
 
+    // 2. CHECK EMAIL DUPLICATE (only if email is changing)
+    if (email && email !== user.email) {
+      const existingEmail = await prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (existingEmail) {
+        return res.status(409).json({
+          success: false,
+          message: "Email already in use",
+        });
+      }
+    }
+
+    // 3. UPDATE USER (SAFE PARTIAL UPDATE)
     const updatedUser = await prisma.user.update({
       where: { id },
       data: {
-        username: username || user.username,
-        email: email || user.email,
+        username: username ?? user.username,
+        email: email ?? user.email,
       },
       select: {
         id: true,
@@ -78,15 +95,19 @@ export const updateUser = async (req, res, next) => {
         email: true,
         roleId: true,
         languageId: true,
+        isVerified: true,
+        createdAt: true,
         updatedAt: true,
       },
     });
 
+    // 4. RESPONSE
     return res.status(200).json({
       success: true,
       message: "User updated successfully",
       data: updatedUser,
     });
+
   } catch (error) {
     next(error);
   }
