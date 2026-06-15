@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Share2, Heart, Star, User, ChevronLeft, Umbrella, TreePine, Mountain, Sparkles, Tag } from 'lucide-react';
+import { Share2, Heart, Star, User, ChevronLeft } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 
 import aboutus from '../assets/aboutus.png';
@@ -11,22 +11,23 @@ import stay from '../assets/stay.png';
 import customize from '../assets/customize.png';
 
 const renderThemeIcon = (id: number, isActive: boolean) => {
+  const iconColor = isActive ? '#01888E' : '#003032';
   switch (id) {
     case 1: // Dive into history and traditions / Dyk ner i historia och traditioner
       return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
+        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor">
           <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
         </svg>
       );
     case 5: // Rejuvenate your soul / Återupplev din själ
       return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
+        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor">
           <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
         </svg>
       );
     case 2: // Unwind by turquoise waters / Koppla av vid turkosa vatten
       return (
-        <svg viewBox="0 0 100 80" className="w-10 h-10 text-[#003032]" fill="currentColor">
+        <svg viewBox="0 0 100 80" className="w-10 h-10" style={{ color: iconColor }} fill="currentColor">
           {/* Head */}
           <circle cx="68" cy="12" r="9" />
           {/* Body leaning forward with arm outstretched */}
@@ -42,7 +43,7 @@ const renderThemeIcon = (id: number, isActive: boolean) => {
       );
     case 3: // Witness nature in its purest form / Upplev naturen i sin renaste form
       return (
-        <svg viewBox="0 0 100 90" className="w-10 h-10 text-[#003032]" fill="currentColor">
+        <svg viewBox="0 0 100 90" className="w-10 h-10" style={{ color: iconColor }} fill="currentColor">
           {/* Person: head */}
           <circle cx="22" cy="20" r="7" />
           {/* Person: body */}
@@ -60,7 +61,7 @@ const renderThemeIcon = (id: number, isActive: boolean) => {
       );
     case 4: // Get your adrenaline rush! / Få adrenalinkicken!
       return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
+        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor">
           <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 6.7 1.4z"/>
           <path d="M2 10h3M3 14h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
@@ -73,7 +74,7 @@ const renderThemeIcon = (id: number, isActive: boolean) => {
       );
     case 7: // Amazing experiences at great value! / Fantastiska upplevelser till bra pris!
       return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor" fillRule="evenodd" clipRule="evenodd">
+        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor" fillRule="evenodd" clipRule="evenodd">
           <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7zm11.23 8.35L12 20l-4.73-4.65c-.32-.32-.52-.76-.52-1.25 0-1 .8-1.8 1.8-1.8.61 0 1.15.3 1.48.77l1.97 1.95 1.97-1.95c.33-.47.87-.77 1.48-.77 1 0 1.8.8 1.8 1.8 0 .49-.2 1.03-.52 1.25z" />
         </svg>
       );
