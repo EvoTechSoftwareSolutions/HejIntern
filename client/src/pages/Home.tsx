@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Share2, Heart, Star, User, ChevronLeft } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
-
+import React from "react";
 import aboutus from '../assets/aboutus.png';
 import explorebg from '../assets/explorebg.png';
 import sigiriya from '../assets/sigiriya.png';
