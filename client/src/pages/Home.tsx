@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Share2, Heart, Star, User, ChevronLeft, CornerUpRight } from 'lucide-react';
+import { Heart, Star, User, ChevronLeft, CornerUpRight } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/aboutus.png';
@@ -236,7 +236,8 @@ const Home = () => {
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`group w-[145px] h-[210px] rounded-[14px] p-4 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 ${theme.bgColor} shadow-lg hover:-translate-y-2 hover:shadow-2xl ${theme.shadow}`}
+                className={`group w-[145px] h-[210px] rounded-[14px] p-4 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 ${theme.bgColor} ${theme.shadow} ${activeTheme === theme.id ? 'ring-4 ring-[#01888E]/30 scale-105 shadow-2xl' : 'shadow-lg hover:-translate-y-2 hover:shadow-2xl'}`}
+                aria-pressed={activeTheme === theme.id}
               >
                 {/* Inner Icon Container */}
                 <div className="flex-1 flex items-center justify-center">
