@@ -50,12 +50,12 @@ const Navbar = () => {
   return (
     <header className="absolute top-0 left-0 w-full z-50 font-sans">
       {/* Top Bar */}
-      <div className="w-full bg-secondary py-1 px-4 sm:px-8 opacity-90">
-        <div className="max-w-7xl mx-auto flex justify-end items-center gap-4 text-xs font-medium text-dark h-6">
+      <div className="w-full bg-[#E6F3F4] py-1.5 px-4 sm:px-8">
+        <div className="max-w-7xl mx-auto flex justify-end items-center gap-4 text-[12px] font-medium text-[#003032] h-6">
           
           <div className="relative" ref={dropdownRef}>
             <div 
-              className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors"
+              className="flex items-center gap-1 cursor-pointer hover:text-[#01888E] transition-colors"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
               <span>{navText.myAccount}</span>
@@ -67,7 +67,7 @@ const Navbar = () => {
               <div className="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg min-w-[180px] py-2 z-50">
                 <button
                   onClick={handleWishlist}
-                  className="w-full px-4 py-2 text-left text-sm text-dark hover:bg-secondary flex items-center gap-2 transition-colors"
+                  className="w-full px-4 py-2 text-left text-sm text-[#003032] hover:bg-gray-50 flex items-center gap-2 transition-colors"
                 >
                   <Heart size={16} />
                   {navText.myWishlist}
@@ -85,26 +85,26 @@ const Navbar = () => {
           </div>
 
           {/* Notification Bell */}
-          <div className="relative cursor-pointer flex items-center hover:opacity-90 transition-opacity">
-            <Bell size={16} className="text-dark fill-dark" />
-            <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-bold shadow-sm">
+          <div className="relative cursor-pointer flex items-center hover:opacity-80 transition-opacity">
+            <Bell size={16} className="text-[#003032] fill-[#003032]" />
+            <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white rounded-full w-3.5 h-3.5 flex items-center justify-center text-[8px] font-bold shadow-sm">
               1
             </span>
           </div>
 
           {/* Divider */}
-          <div className="h-4 w-px bg-dark/30 mx-1"></div>
+          <div className="h-4 w-px bg-[#003032]/30 mx-1"></div>
 
           {/* Language Flags */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Link to="/" className="flex items-center justify-center">
               <img 
                 src={usa} 
                 alt="USA" 
                 className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
                   !isSwedish 
-                    ? 'border-2 border-white shadow-[0_0_8px_rgba(1,136,142,0.8)] scale-105 z-10' 
-                    : 'opacity-70 hover:opacity-100'
+                    ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10' 
+                    : 'opacity-70 hover:opacity-100 border-2 border-transparent'
                 }`} 
               />
             </Link>
@@ -114,8 +114,8 @@ const Navbar = () => {
                 alt="Sweden" 
                 className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
                   isSwedish 
-                    ? 'border-2 border-white shadow-[0_0_8px_rgba(1,136,142,0.8)] scale-105 z-10' 
-                    : 'opacity-70 hover:opacity-100'
+                    ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10' 
+                    : 'opacity-70 hover:opacity-100 border-2 border-transparent'
                 }`} 
               />
             </Link>
@@ -125,25 +125,27 @@ const Navbar = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
+      <div className="w-full bg-gradient-to-b from-black/20 to-transparent border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Hej Ceylon" className="h-16 md:h-20 object-contain drop-shadow-md" />
+          <img src={logo} alt="Hej Ceylon" className="h-16 md:h-16 object-contain" />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-[13px] font-bold tracking-wide text-dark">
-          <Link to="/" className="text-primary hover:text-primary-dark transition-colors">{navText.home}</Link>
-          <Link to={isSwedish ? "/sv/tours" : "/tours"} className="hover:text-primary transition-colors">{navText.tours}</Link>
-          <Link to={isSwedish ? "/sv/destinations" : "/destinations"} className="hover:text-primary transition-colors">{navText.destinations}</Link>
-          <Link to={isSwedish ? "/sv/stays" : "/stays"} className="hover:text-primary transition-colors">{navText.stays}</Link>
-          <Link to={isSwedish ? "/sv/blog" : "/blog"} className="hover:text-primary transition-colors">{navText.blog}</Link>
-          <Link to={isSwedish ? "/sv/contact" : "/contact"} className="hover:text-primary transition-colors">{navText.contactUs}</Link>
-          <Link to={isSwedish ? "/sv/gallery" : "/gallery"} className="hover:text-primary transition-colors">{navText.gallery}</Link>
+        <nav className="hidden md:flex items-center gap-8 text-[13px] font-bold tracking-wide text-[#003032]">
+          <Link to="/" className="text-[#01888E] border-b-2 border-[#01888E] pb-[2px] transition-colors">{navText.home}</Link>
+          <Link to={isSwedish ? "/sv/tours" : "/tours"} className="hover:text-[#01888E] transition-colors">{navText.tours}</Link>
+          <Link to={isSwedish ? "/sv/destinations" : "/destinations"} className="hover:text-[#01888E] transition-colors">{navText.destinations}</Link>
+          <Link to={isSwedish ? "/sv/stays" : "/stays"} className="hover:text-[#01888E] transition-colors">{navText.stays}</Link>
+          <Link to={isSwedish ? "/sv/blog" : "/blog"} className="hover:text-[#01888E] transition-colors">{navText.blog}</Link>
+          <Link to={isSwedish ? "/sv/contact" : "/contact"} className="hover:text-[#01888E] transition-colors">{navText.contactUs}</Link>
+          <Link to={isSwedish ? "/sv/gallery" : "/gallery"} className="hover:text-[#01888E] transition-colors">{navText.gallery}</Link>
         </nav>
 
         {/* Mobile menu button */}
-        <button className="md:hidden text-dark p-2 hover:bg-secondary rounded-lg transition-colors drop-shadow-md">
+        <button className="md:hidden text-[#003032] p-2 hover:bg-white/20 rounded-lg transition-colors">
           <Menu size={24} />
         </button>
+      </div>
       </div>
     </header>
   );

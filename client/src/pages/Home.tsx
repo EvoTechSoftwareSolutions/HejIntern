@@ -9,75 +9,31 @@ import ninearch from '../assets/ninearch.png';
 import thalpe from '../assets/thalpe.png';
 import stay from '../assets/stay.png';
 import customize from '../assets/customize.png';
+import icon1 from '../assets/1.png';
+import icon2 from '../assets/2.png';
+import icon3 from '../assets/3.png';
+import icon4 from '../assets/4.png';
+import icon5 from '../assets/5.png';
+import icon6 from '../assets/6.png';
+import icon7 from '../assets/7.png';
 
-const renderThemeIcon = (id: number, isActive: boolean) => {
-  const iconColor = isActive ? '#01888E' : '#003032';
+const renderThemeIcon = (id: number) => {
+  const iconClass = "w-[85px] h-[85px] object-contain transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-110";
   switch (id) {
-    case 1: // Dive into history and traditions
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor">
-          <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
-        </svg>
-      );
-    case 5: // Rejuvenate your soul
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor">
-          <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
-        </svg>
-      );
-    case 2: // Unwind by turquoise waters
-      return (
-        <svg viewBox="0 0 100 80" className="w-10 h-10" style={{ color: iconColor }} fill="currentColor">
-          {/* Head */}
-          <circle cx="68" cy="12" r="9" />
-          {/* Body leaning forward with arm outstretched */}
-          <path d="M62 22 Q50 28 30 26 Q28 26 28 28 Q28 30 30 30 Q54 32 66 26 L78 38 Q80 40 82 38 Q84 36 82 34 Z" />
-          {/* Legs kicking back */}
-          <path d="M62 24 L56 42 Q55 44 57 45 Q59 46 60 44 L65 30 Z" />
-          <path d="M58 26 L50 44 Q49 46 51 47 Q53 48 54 46 L62 28 Z" />
-          {/* Wave 1 */}
-          <path d="M10 56 Q20 50 30 56 Q40 62 50 56 Q60 50 70 56 Q80 62 90 56" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/>
-          {/* Wave 2 */}
-          <path d="M10 68 Q20 62 30 68 Q40 74 50 68 Q60 62 70 68 Q80 74 90 68" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/>
-        </svg>
-      );
-    case 3: // Witness nature in its purest form
-      return (
-        <svg viewBox="0 0 100 90" className="w-10 h-10" style={{ color: iconColor }} fill="currentColor">
-          {/* Person: head */}
-          <circle cx="22" cy="20" r="7" />
-          {/* Person: body */}
-          <rect x="18" y="30" width="8" height="22" rx="3" />
-          {/* Person: legs */}
-          <rect x="16" y="52" width="6" height="18" rx="3" />
-          <rect x="24" y="52" width="6" height="18" rx="3" />
-          {/* Ground line */}
-          <rect x="5" y="70" width="90" height="4" rx="2" />
-          {/* Tree trunk */}
-          <rect x="56" y="48" width="10" height="22" rx="3" />
-          {/* Tree canopy (cloud-like circle) */}
-          <circle cx="61" cy="32" r="22" />
-        </svg>
-      );
-    case 4: // Get your adrenaline rush!
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor">
-          <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 6.7 1.4z"/>
-          <path d="M2 10h3M3 14h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      );
-    case 6: // Indulge in exclusivity
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor">
-          <path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/>
-        </svg>
-      );
-    case 7: // Amazing experiences at great value!
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8" style={{ color: iconColor }} fill="currentColor" fillRule="evenodd" clipRule="evenodd">
-          <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7zm11.23 8.35L12 20l-4.73-4.65c-.32-.32-.52-.76-.52-1.25 0-1 .8-1.8 1.8-1.8.61 0 1.15.3 1.48.77l1.97 1.95 1.97-1.95c.33-.47.87-.77 1.48-.77 1 0 1.8.8 1.8 1.8 0 .49-.2 1.03-.52 1.25z" />
-        </svg>
-      );
+    case 1:
+      return <img src={icon1} alt="Theme 1" className={iconClass} />;
+    case 2:
+      return <img src={icon2} alt="Theme 2" className={iconClass} />;
+    case 3:
+      return <img src={icon3} alt="Theme 3" className={iconClass} />;
+    case 4:
+      return <img src={icon4} alt="Theme 4" className={iconClass} />;
+    case 5:
+      return <img src={icon5} alt="Theme 5" className={iconClass} />;
+    case 6:
+      return <img src={icon6} alt="Theme 6" className={iconClass} />;
+    case 7:
+      return <img src={icon7} alt="Theme 7" className={iconClass} />;
     default:
       return null;
   }
@@ -92,13 +48,13 @@ const Home = () => {
   const startXRef = useRef(0);
 
   const themes = [
-    { id: 1, name: 'Dive into history and traditions', icon: '🏛️' },
-    { id: 2, name: 'Unwind by turquoise waters', icon: '🏖️' },
-    { id: 3, name: 'Witness nature in its purest form', icon: '🐘' },
-    { id: 4, name: 'Get your adrenaline rush!', icon: '🧗' },
-    { id: 5, name: 'Rejuvenate your soul', icon: '🧘' },
-    { id: 6, name: 'Indulge in exclusivity', icon: '✨' },
-    { id: 7, name: 'Amazing experiences at great value!', icon: '🎒' },
+    { id: 1, name: 'Dive into\nhistory and\ntraditions', bgColor: 'bg-[#2DC7F8]', shadow: 'shadow-[#2DC7F8]/50', textColor: 'text-white', iconColor: 'white' },
+    { id: 2, name: 'Unwind by\nturquoise\nwaters', bgColor: 'bg-[#0E4751]', shadow: 'shadow-[#0E4751]/50', textColor: 'text-white', iconColor: 'white' },
+    { id: 3, name: 'Witness\nnature in its\npurest form', bgColor: 'bg-[#107A76]', shadow: 'shadow-[#107A76]/50', textColor: 'text-white', iconColor: 'white' },
+    { id: 4, name: 'Get your\nadrenaline\nrush!', bgColor: 'bg-[#FFC600]', shadow: 'shadow-[#FFC600]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
+    { id: 5, name: 'Rejuvenate\nyour soul', bgColor: 'bg-[#FFA800]', shadow: 'shadow-[#FFA800]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
+    { id: 6, name: 'Indulge in\nexclusivity', bgColor: 'bg-[#FFB094]', shadow: 'shadow-[#FFB094]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
+    { id: 7, name: 'Amazing\nexperiences at\ngreat value!', bgColor: 'bg-[#FF6B74]', shadow: 'shadow-[#FF6B74]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
   ];
 
   const tours = [
@@ -238,9 +194,11 @@ const Home = () => {
         <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
         <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
 
-<div className="absolute top-[122px] right-8 md:right-16 z-20 flex flex-col gap-3">
-            {themes.map((_, index) => (
-              <button key={index} onClick={() => setHeroSlide(index)} className={`w-3 h-3 rounded-full transition-all ${heroSlide === index ? 'bg-primary' : 'bg-secondary'} cursor-pointer hover:bg-primary`} />
+          <div className="absolute top-[20%] right-8 md:right-16 z-20 flex flex-col gap-4 items-center">
+            {[1, 2, 3, 4, 5].map((_, index) => (
+              <button key={index} onClick={() => setHeroSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${heroSlide === index ? 'w-[36px] h-[36px] border-[2px] border-white/80 p-[2px]' : 'w-[6px] h-[6px] bg-white hover:bg-gray-200'} cursor-pointer`}>
+                {heroSlide === index && <img src={heroBanner} className="w-full h-full rounded-full object-cover" alt="" />}
+              </button>
             ))}
           </div>
 
@@ -265,31 +223,26 @@ const Home = () => {
 
       {/* Categories Section */}
       <section className="py-12 bg-white max-w-7xl mx-auto text-center mt-6">
-        <p className="text-[16px] text-[#003032] font-sans max-w-4xl mx-auto mb-10 leading-[26px] text-center px-4">
+        <p className="text-[17px] text-[#003032] font-sans max-w-[800px] mx-auto mb-10 leading-[28px] text-center px-4 font-normal">
           We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
         </p>
         <div
-          className="flex flex-nowrap justify-center gap-3 overflow-x-auto pb-4"
+          className="flex flex-nowrap justify-center gap-4 overflow-x-auto pb-8 px-4"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {themes.map((theme) => {
-            const isActive = activeTheme === theme.id;
             return (
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`w-[118px] h-[155px] rounded-[16px] p-2 flex flex-col items-center justify-start transition-all duration-300 cursor-pointer flex-shrink-0 ${
-                  isActive
-                    ? 'bg-[#01888E] text-white shadow-[0_12px_24px_rgba(1,136,142,0.3)] transform -translate-y-1'
-                    : 'bg-[#E6F3F4] text-[#003032] hover:-translate-y-1 hover:shadow-md'
-                }`}
+                className={`group w-[145px] h-[210px] rounded-[14px] p-4 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 ${theme.bgColor} shadow-lg hover:-translate-y-2 hover:shadow-2xl ${theme.shadow}`}
               >
                 {/* Inner Icon Container */}
-                <div className="w-[95px] h-[78px] rounded-[12px] bg-[#D8EDEE] flex items-center justify-center mb-2 mt-1 shadow-sm">
-                  {renderThemeIcon(theme.id, isActive)}
+                <div className="flex-1 flex items-center justify-center">
+                  {renderThemeIcon(theme.id)}
                 </div>
                 {/* Label Text */}
-                <span className="text-[11px] font-bold text-center leading-[14px] px-1 mt-auto mb-1">
+                <span className={`text-[15px] font-bold text-center leading-[18px] ${theme.textColor} whitespace-pre-line flex items-center justify-center h-[54px] transition-all duration-300 group-hover:text-[15px]`}>
                   {theme.name}
                 </span>
               </div>
@@ -656,14 +609,15 @@ const Home = () => {
 
 
       {/* Testimonials Section */}
-      <section className="relative py-24 pl-[104px] pr-4 md:pr-8 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="relative py-24 pl-[104px] pr-4 md:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
+        <div className="absolute inset-0 bg-white/60 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-12">
-            <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block">TESTIMONIALS</span>
-            <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3"><span className="font-bold">What Our</span> <span className="font-normal">Clients Say</span></h2>
+          <div className="mb-12 text-center md:text-left">
+            <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block uppercase tracking-wider">TESTIMONIALS</span>
+            <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3"><span className="font-bold">What Our</span> <span className="font-bold text-[#01888E]">Clients Say</span></h2>
           </div>
 
-          <div className="relative flex justify-center items-center h-[420px] cursor-grab"
+          <div className="relative flex justify-center items-center h-[460px] cursor-grab"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -675,22 +629,61 @@ const Home = () => {
               if (position < -1) position += testimonials.length;
               if (position > 1) position -= testimonials.length;
 
+              const isActive = position === 0;
+              const translateX = `translateX(${position * 380}px)`;
               return (
-                <div key={testimonial.id} className={`absolute ease-in-out ${position === 0 ? 'scale-100 opacity-100 z-30' : 'scale-90 opacity-60 z-10'}`} style={{ transform: `translateX(${position * 340}px) ${position === 0 ? 'scale(1)' : 'scale(0.9)'}`, transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out` }}>
-                  <div className={`bg-white rounded-[24px] shadow-xl p-8 text-center overflow-hidden ${position === 0 ? 'w-[360px] h-[380px]' : 'w-[320px] h-[340px]'}`}>
-                    <div className="w-24 h-24 rounded-2xl mx-auto mb-5 bg-cover bg-center" style={{ backgroundImage: `url(${testimonial.avatar})` }} />
-                    <h3 className="text-[#003032] font-bold text-[18px]">{testimonial.name}</h3>
-                    <p className="text-[#01888E] font-semibold mb-4">{testimonial.country}</p>
-                    <p className={position === 0 ? 'text-[#003032] text-sm leading-relaxed break-words max-h-[180px] overflow-auto' : 'text-[#003032] text-xs leading-[16px] break-words max-h-[120px] overflow-hidden'}>{testimonial.text}</p>
+                <div
+                  key={testimonial.id}
+                  className={`absolute ease-in-out ${isActive ? 'z-30' : 'z-10'}`}
+                  style={{ 
+                    transform: `${translateX} ${isActive ? ' translateY(-12px)' : ''}`, 
+                    transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out`, 
+                    opacity: isActive ? 1 : 0.6 
+                  }}
+                >
+                  <div className={`relative bg-white/95 rounded-[24px] p-8 text-center overflow-hidden transition-all duration-700 flex flex-col items-center justify-between ${isActive ? 'w-[380px] h-[400px] scale-100 shadow-[0_10px_40px_rgba(1,136,142,0.15)] ring-1 ring-[#01888E]/20' : 'w-[340px] h-[360px] scale-95 shadow-md'}`}>
+                    
+                    {/* Top Row: Quote & Avatar */}
+                    <div className="w-full relative flex flex-col items-center mt-2">
+                      <div className={`absolute -top-4 left-0 text-[#01888E] font-serif leading-none font-bold ${isActive ? 'text-[72px]' : 'text-[56px] opacity-60'}`}>
+                        “
+                      </div>
+                      <div className={`rounded-full bg-cover bg-center shadow-sm z-10 ${isActive ? 'w-[88px] h-[88px] ring-4 ring-[#EAF5F5]' : 'w-[72px] h-[72px] ring-2 ring-gray-100'}`} style={{ backgroundImage: `url(${testimonial.avatar})` }} />
+                    </div>
+
+                    {/* Stars */}
+                    <div className="flex justify-center gap-1 mt-4 mb-3">
+                      {[1,2,3,4,5].map(s => <Star key={s} size={isActive ? 16 : 14} className="text-[#FFC600] fill-[#FFC600]" />)}
+                    </div>
+
+                    {/* Text */}
+                    <p className={`italic text-[#003032] mb-6 ${isActive ? 'text-[14px] leading-[22px]' : 'text-[12px] leading-[18px] opacity-80'} overflow-hidden flex-1 flex items-center`}>
+                      "{testimonial.text}"
+                    </p>
+
+                    {/* Name & Country */}
+                    <div className="mt-auto">
+                      <h3 className={`text-[#003032] font-extrabold ${isActive ? 'text-[20px] mb-1' : 'text-[16px] mb-0.5'}`}>Ethan Wilson</h3>
+                      <p className={`text-[#01888E] font-bold ${isActive ? 'text-[14px]' : 'text-[12px]'}`}>Sweden</p>
+                    </div>
+
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <div className="flex flex-col items-center mt-10 gap-3">
+          <div className="flex justify-center mt-8 gap-3">
             {testimonials.map((_, index) => (
-              <button key={index} onClick={() => setCurrentSlide(index)} className={`w-2 h-2 rounded-full transition-all ${currentSlide === index ? 'bg-primary' : 'bg-secondary'}`} />
+              <button 
+                key={index} 
+                onClick={() => setCurrentSlide(index)} 
+                className={`rounded-full transition-all flex items-center justify-center border border-[#01888E] ${
+                  currentSlide === index ? 'w-[16px] h-[16px] bg-transparent' : 'w-[12px] h-[12px] bg-white opacity-60 hover:opacity-100'
+                }`}
+              >
+                {currentSlide === index && <div className="w-[10px] h-[10px] bg-[#01888E] rounded-full" />}
+              </button>
             ))}
           </div>
         </div>
