@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Share2, Heart, Star, User, ChevronLeft } from 'lucide-react';
+import { Share2, Heart, Star, User, ChevronLeft, CornerUpRight } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/aboutus.png';
@@ -194,10 +194,10 @@ const Home = () => {
         <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
         <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
 
-          <div className="absolute top-[20%] right-8 md:right-16 z-20 flex flex-col gap-4 items-center">
+          <div className="absolute top-1/2 -translate-y-1/2 right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
             {[1, 2, 3, 4, 5].map((_, index) => (
-              <button key={index} onClick={() => setHeroSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${heroSlide === index ? 'w-[36px] h-[36px] border-[2px] border-white/80 p-[2px]' : 'w-[6px] h-[6px] bg-white hover:bg-gray-200'} cursor-pointer`}>
-                {heroSlide === index && <img src={heroBanner} className="w-full h-full rounded-full object-cover" alt="" />}
+              <button key={index} onClick={() => setHeroSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${heroSlide === index ? 'w-[44px] h-[44px] border-[2px] border-[#01888E] p-[3px]' : 'w-[6px] h-[6px] bg-white hover:bg-gray-200'} cursor-pointer`}>
+                {heroSlide === index && <img src={heroBanner} className="w-full h-full rounded-full object-cover ring-2 ring-white" alt="" />}
               </button>
             ))}
           </div>
@@ -206,15 +206,16 @@ const Home = () => {
           <h1 className="font-kaisei text-[40px] md:text-[40px] leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
           <p className="font-alex text-[28px] md:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
 
-          <div className="flex flex-col items-center mt-4">
-            <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-6">Tailored Experiences, Unmatched Adventures</p>
+          <div className="flex flex-col items-center mt-4 w-full">
+            <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-4">Tailored Experiences, Unmatched Adventures</p>
+            <div className="w-[300px] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-6" />
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center">
-            <button className="px-10 py-3 rounded-full bg-white text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px] border border-[rgba(1,136,142,0.08)]">
+            <button className="px-10 py-3.5 rounded-full bg-white/90 backdrop-blur-sm text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px] hover:bg-white">
               Let's Start Your Journey
             </button>
-            <button className="px-10 py-3 rounded-full bg-gradient-to-r from-[#01888E] to-[#006D6D] text-white font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px]">
+            <button className="px-10 py-3.5 rounded-full bg-[#01888E] text-white font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px] hover:bg-[#006D6D]">
               Build My Trip
             </button>
           </div>
@@ -293,19 +294,20 @@ const Home = () => {
       <section className="py-16 relative w-full overflow-hidden pl-[104px] pr-4 md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-10">
-            <div>
-              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
-              <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-                <span className="font-bold">A Land</span> <span className="font-normal">of Diverse Wonders!</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-[800px]">
+              <span className="text-[#01888E] text-[13px] font-bold tracking-wider uppercase mb-1.5 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
+              <h2 className="text-[34px] leading-tight text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
+                <span className="font-light">A Land of </span>
+                <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
               </h2>
-              <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px]" style={{ fontFamily: 'Inter' }}>
+              <p className="text-[14px] leading-[22px] text-[#003032] font-normal" style={{ fontFamily: 'Inter' }}>
                 We offer seven extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
               </p>
             </div>
 
-            {/* Carousel Navigation Buttons - right aligned on new line */}
-            <div className="flex justify-end mt-4">
+            {/* Carousel Navigation Buttons */}
+            <div className="flex justify-end mt-3">
               <div className="flex gap-2 shrink-0 mr-16">
                 <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
@@ -318,84 +320,68 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mb-10">
-            {tours.map((tour, index) => {
+            {tours.map((tour) => (
+              <div key={tour.id} className="bg-white rounded-[12px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-pointer flex flex-col">
+                {/* Image area */}
+                <div className="relative w-full h-[180px] bg-gray-100 shrink-0">
+                  <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-              return (
-                <div key={tour.id} className="bg-white rounded-[5px] w-[220px] h-[320px] shadow-sm hover:shadow-md transition-shadow cursor-pointer relative">
-
-                  {/* Card Image */}
-                  <div className="relative overflow-hidden bg-gray-100" style={{ width: '220px', height: '170px', borderTopLeftRadius: '5px', borderTopRightRadius: '5px' }}>
-                    <div
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${sigiriya})` }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-                    {/* Image overlay text */}
-                    <div className="absolute left-3 bottom-3 flex flex-col gap-1">
-                      {index > 0 && (
-                        <div className="flex items-center gap-1">
-                          <User size={10} className="text-white" />
-                          <span className="text-white text-[10px] font-medium leading-[12px] capitalize" style={{ fontFamily: 'Inter' }}>Lorem Ipsum is simply</span>
-                        </div>
-                      )}
-                      <div className="flex items-center gap-1">
-                        <Star size={10} className="text-white fill-white" />
-                        <span className="text-white text-[10px] font-medium leading-[12px] capitalize" style={{ fontFamily: 'Inter' }}>Lorem Ipsum is simply</span>
-                      </div>
-                    </div>
+                  {/* Rating badge top-left */}
+                  <div className="absolute left-3 top-3 bg-[#0BA77A] text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                    <span className="text-[#FFC600] text-[12px]">★</span>
+                    <span>4.5</span>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="pt-[14px] px-[8px] pb-3 relative">
+                  {/* Heart top-right */}
+                  <button aria-label="favorite" className="absolute right-3 top-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                    <Heart size={14} className="text-[#003032] fill-none" />
+                  </button>
 
-                    {/* Rating & Price Row */}
-                    <div className="flex items-center">
-                      <div className="h-[18px] px-1 border border-[#008000] rounded-[4px] flex items-center justify-center text-[#008000] text-[9px] font-bold" style={{ fontFamily: 'Inter' }}>
-                        {tour.rating || '4.5'}
-                      </div>
-                      <span className="ml-[8px] text-[9px] font-semibold text-[#008000] leading-[11px]" style={{ fontFamily: 'Inter' }}>
-                        {tour.reviews || '14'} Ratings
-                      </span>
-
-                      <div className="w-[1px] h-[13px] bg-[#003032] mx-[10px]"></div>
-
-                      <span className="text-[9px] font-semibold text-[#003032] leading-[11px] mr-[3px]" style={{ fontFamily: 'Inter' }}>From</span>
-                      <span className="text-[11px] font-semibold text-[#F30000] leading-[13px]" style={{ fontFamily: 'Inter' }}>
-                        {tour.price || '5$ - 1000$'}
-                      </span>
+                  {/* Text overlay bottom-left */}
+                  <div className="absolute left-3 bottom-3 flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-white text-[12px] font-semibold">
+                      <User size={13} className="text-white fill-white/20" />
+                      <span>Lorem Ipsum Is Simply</span>
                     </div>
-
-                    {/* Description text */}
-                    <p className="mt-[10px] mb-[15px] ml-[8px] text-[11px] leading-[13px] text-[#003032] font-normal w-[165px]" style={{ fontFamily: 'Inter' }}>
-                      Lorem Ipsum is simply dummy text of the printing and type setting industry.
-                    </p>
-
-                    {/* Divider Line */}
-                    <div className="w-[131px] h-[1px] bg-[#003032] opacity-[0.35] ml-[27px] mb-[4px]"></div>
-
-                    {/* Bottom Row */}
-                    <div className="flex items-center justify-between ml-[8px]">
-                      <div>
-                        <div className="text-[10px] font-normal text-[#008000] leading-[12px]" style={{ fontFamily: 'Inter' }}>{tour.category || 'Adventure'}</div>
-                        <div className="text-[10px] font-bold text-[#008000] leading-[12px]" style={{ fontFamily: 'Inter' }}>{tour.duration || '3 days'}</div>
-                      </div>
-
-                      <div className="flex gap-[6px] text-[#003032]">
-                        <button aria-label="share" className="hover:text-primary transition-colors"><Share2 size={16} strokeWidth={1.5} /></button>
-                        <button aria-label="favorite" className="hover:text-red-500 transition-colors"><Heart size={16} strokeWidth={1.5} /></button>
-                      </div>
+                    <div className="flex items-center gap-1.5 text-white/90 text-[10px] font-medium">
+                      <Star size={11} className="text-white fill-white/20" />
+                      <span>Lorem Ipsum Is Simply</span>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+
+                {/* Card content */}
+                <div className="p-4 flex flex-col justify-between flex-1">
+                  <div className="flex items-center gap-2 mb-2 text-[12px] font-bold" style={{ fontFamily: 'Inter' }}>
+                    <span className="text-[#01888E]">{tour.reviews} Ratings</span>
+                    <span className="text-gray-300">|</span>
+                    <span className="text-gray-600 font-normal">
+                      From <span className="text-[#FFA800] font-bold">{tour.price}</span>
+                    </span>
+                  </div>
+
+                  <p className="text-[12px] text-gray-500 leading-relaxed mb-4" style={{ fontFamily: 'Inter' }}>
+                    Lorem Ipsum is simply dummy text of the printing and type setting industry.
+                  </p>
+
+                  <div className="flex items-center justify-between mt-auto">
+                    <div>
+                      <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>{tour.category}</div>
+                      <div className="text-[11px] text-gray-400 font-medium mt-0.5" style={{ fontFamily: 'Inter' }}>{tour.duration}</div>
+                    </div>
+                    <button aria-label="share" className="text-gray-400 hover:text-[#01888E] transition-colors">
+                      <CornerUpRight size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Explore All Button */}
           <div className="flex justify-center mt-8">
-            <button className="w-[176px] h-[36px] bg-[#01888E] text-[#E6F3F4] rounded-full text-[15px] font-bold tracking-wide shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-[#003032] transition-colors" style={{ fontFamily: 'Inter' }}>
-              Explore all tours
+            <button className="px-8 py-3 bg-[#01888E] text-white rounded-full text-[16px] font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+              Explore All Tours
             </button>
           </div>
         </div>
@@ -416,43 +402,78 @@ const Home = () => {
           </div>
 
           <div className="flex flex-wrap gap-5 mt-6">
-            <div className="w-[377px] h-[187px] rounded-[8px] overflow-hidden relative">
+            <div className="w-[377px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
               <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-4 bottom-4 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
+              <div className="absolute left-4 bottom-4 text-white z-10 group-hover:opacity-0 transition-opacity duration-300">
                 <div className="text-[18px] font-extrabold drop-shadow-md">Nine Arch</div>
-                <div className="text-[11px] max-w-[340px] drop-shadow-sm">Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 md:p-6">
+                <div className="mb-2">
+                  <h4 className="text-[20px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1.5 inline-block" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+                </div>
+                <p className="text-[12.5px] text-[#003032] font-medium leading-relaxed" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
               </div>
             </div>
 
-            <div className="w-[195px] h-[188px] rounded-[8px] overflow-hidden relative">
+            <div className="w-[195px] h-[188px] rounded-[8px] overflow-hidden relative group cursor-pointer">
               <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md">Thalpe</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
+              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Thalpe</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
+                <div className="mb-1.5">
+                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+                </div>
+                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
+              </div>
             </div>
 
-            <div className="w-[213px] h-[187px] rounded-[8px] overflow-hidden relative">
+            <div className="w-[213px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
               <img src={ninearch} alt="Nine Arch 2" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-4 bottom-4 text-[16px] font-extrabold text-white drop-shadow-md">Nine Arch</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
+              <div className="absolute left-4 bottom-4 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Nine Arch</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
+                <div className="mb-1.5">
+                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+                </div>
+                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
+              </div>
             </div>
 
-            <div className="w-[187px] h-[187px] rounded-[8px] overflow-hidden relative">
+            <div className="w-[187px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
               <img src={ninearch} alt="Nine Arch small" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md">Nine Arch</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
+              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Nine Arch</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
+                <div className="mb-1.5">
+                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+                </div>
+                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
+              </div>
             </div>
 
-            <div className="w-[178px] h-[188px] rounded-[8px] overflow-hidden relative">
+            <div className="w-[178px] h-[188px] rounded-[8px] overflow-hidden relative group cursor-pointer">
               <img src={thalpe} alt="Thalpe 2" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md">Thalpe</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
+              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Thalpe</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
+                <div className="mb-1.5">
+                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+                </div>
+                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
+              </div>
             </div>
 
-            <div className="w-[419px] h-[187px] rounded-[8px] overflow-hidden relative">
+            <div className="w-[419px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
               <img src={thalpe} alt="Thalpe big" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-4 bottom-4 text-[18px] font-extrabold text-white drop-shadow-md">Thalpe</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
+              <div className="absolute left-4 bottom-4 text-[18px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Thalpe</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 md:p-6">
+                <div className="mb-2">
+                  <h4 className="text-[20px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1.5 inline-block" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+                </div>
+                <p className="text-[12.5px] text-[#003032] font-medium leading-relaxed" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
+              </div>
             </div>
           </div>
         </div>

@@ -124,28 +124,46 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <div className="w-full bg-gradient-to-b from-black/20 to-transparent border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
-          <img src={logo} alt="Hej Ceylon" className="h-16 md:h-16 object-contain" />
-        </Link>
+      {/* Main Navigation - glass background */}
+      <div className="w-full bg-[#f0f0f0]/30 backdrop-blur-[7.5px] shadow-[0_4px_24px_rgba(0,0,0,0.05)] border-b border-white/60 relative z-40">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-8 h-[85px] relative flex items-center justify-between">
+          <Link to="/" className="flex items-center z-20 shrink-0">
+            <img src={logo} alt="Hej Ceylon" className="h-10 md:h-12 object-contain" />
+          </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-[13px] font-bold tracking-wide text-[#003032]">
-          <Link to="/" className="text-[#01888E] border-b-2 border-[#01888E] pb-[2px] transition-colors">{navText.home}</Link>
-          <Link to={isSwedish ? "/sv/tours" : "/tours"} className="hover:text-[#01888E] transition-colors">{navText.tours}</Link>
-          <Link to={isSwedish ? "/sv/destinations" : "/destinations"} className="hover:text-[#01888E] transition-colors">{navText.destinations}</Link>
-          <Link to={isSwedish ? "/sv/stays" : "/stays"} className="hover:text-[#01888E] transition-colors">{navText.stays}</Link>
-          <Link to={isSwedish ? "/sv/blog" : "/blog"} className="hover:text-[#01888E] transition-colors">{navText.blog}</Link>
-          <Link to={isSwedish ? "/sv/contact" : "/contact"} className="hover:text-[#01888E] transition-colors">{navText.contactUs}</Link>
-          <Link to={isSwedish ? "/sv/gallery" : "/gallery"} className="hover:text-[#01888E] transition-colors">{navText.gallery}</Link>
-        </nav>
+          {/* Right-aligned nav */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-[13px] font-bold uppercase tracking-[0.15em] text-[#003032] z-10 ml-auto mr-2">
+            {
+              [
+                { to: '/', label: navText.home },
+                { to: isSwedish ? '/sv/tours' : '/tours', label: navText.tours },
+                { to: isSwedish ? '/sv/destinations' : '/destinations', label: navText.destinations },
+                { to: isSwedish ? '/sv/stays' : '/stays', label: navText.stays },
+                { to: isSwedish ? '/sv/blog' : '/blog', label: navText.blog },
+                { to: isSwedish ? '/sv/contact' : '/contact', label: navText.contactUs },
+                { to: isSwedish ? '/sv/gallery' : '/gallery', label: navText.gallery },
+              ].map((link) => {
+                const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to.replace('/sv','')));
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={`transition-colors pb-1 ${isActive ? 'text-[#01888E] border-b-[3px] border-[#01888E]' : 'hover:text-[#01888E] text-[#003032] border-b-[3px] border-transparent'}`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })
+            }
+          </nav>
 
-        {/* Mobile menu button */}
-        <button className="md:hidden text-[#003032] p-2 hover:bg-white/20 rounded-lg transition-colors">
-          <Menu size={24} />
-        </button>
-      </div>
+          {/* Right side - keep mobile menu for small screens */}
+          <div className="flex items-center gap-4 z-20 md:hidden">
+            <button className="text-[#003032] p-2 hover:bg-white/20 rounded-lg transition-colors">
+              <Menu size={24} />
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );
