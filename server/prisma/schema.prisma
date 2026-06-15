@@ -32,6 +32,8 @@ model User {
   deletedAt DateTime?
 
   images Image[]
+    customization Customization[]
+
 }
 
 model Role {
@@ -68,6 +70,7 @@ model Theme {
   images ThemeImage[]
   activity Activity[]
   destination Destination[]
+  tour_packages TourPackage[]
   
   display_order Int     @default(0)
   is_active     Boolean @default(true)
@@ -159,3 +162,72 @@ model Activity {
 }
 
 
+model TourPackage {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  package_name String
+  package_slug String @unique
+
+  short_description String
+  full_description  String
+
+  theme_id String @db.ObjectId
+  theme Theme @relation(fields: [theme_id], references: [id])
+
+  duration_days Int
+  base_price Float
+
+  is_featured Boolean @default(false)
+
+  status PackageStatus @default(ACTIVE)
+  customization Customization[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum PackageStatus {
+  ACTIVE
+  INACTIVE
+  DRAFT
+}
+
+
+model Customization {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  package_id String
+  tourPackage TourPackage @relation(fields: [package_id], references: [id])
+
+  selected_destinations Json?
+  selected_activities   Json?
+
+  group_size     Int
+  duration_days  Int
+
+  accommodation_level AccommodationLevel
+  budget_range        String
+
+  status CustomizationStatus @default(PENDING)
+
+  shareable_url String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum AccommodationLevel {
+  LOW
+  MEDIUM
+  HIGH
+  LUXURY
+}
+
+enum CustomizationStatus {
+  PENDING
+  CONFIRMED
+  DRAFT
+}
