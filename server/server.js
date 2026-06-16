@@ -10,6 +10,10 @@ import authRoutes from "./routes/auth.routes.js";
 import themeRoutes from "./routes/theme.routes.js"
 import destinationRoutes from "./routes/destination.routes.js"
 import activityRoutes from "./routes/activity.routes.js"
+import tourPackagesRoutes from "./routes/tourPackage.routes.js"
+import customizationRoutes from "./routes/customization.routes.js"
+import contactRoutes from "./routes/contact.routes.js"
+import bookingsRoutes from "./routes/booking.routes.js"
 import uploadRoutes from "./routes/upload.routes.js"
 import { errorHandler } from "./utils/errorHandler.js";
 import { apiLimiter } from "./middleware/rateLimit.js";
@@ -42,6 +46,10 @@ app.use("/api/v1/themes", themeRoutes)
 app.use("/api/v1/images", uploadRoutes)
 app.use("/api/v1/destination", destinationRoutes)
 app.use("/api/v1/activity", activityRoutes)
+app.use("/api/v1/packages", tourPackagesRoutes)
+app.use("/api/v1/customization", customizationRoutes)
+app.use("/api/v1/bookings", bookingsRoutes)
+app.use("/api/v1/contact", contactRoutes)
 
 // Error handler LAST middleware
 app.use(errorHandler);
