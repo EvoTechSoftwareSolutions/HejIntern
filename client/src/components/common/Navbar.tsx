@@ -52,9 +52,9 @@ const Navbar = () => {
       {/* Top Bar */}
       <div className="w-full bg-[#E6F3F4] py-1.5 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto flex justify-end items-center gap-4 text-[12px] font-medium text-[#003032] h-6">
-          
+
           <div className="relative" ref={dropdownRef}>
-            <div 
+            <div
               className="flex items-center gap-1 cursor-pointer hover:text-[#01888E] transition-colors"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
@@ -98,25 +98,23 @@ const Navbar = () => {
           {/* Language Flags */}
           <div className="flex items-center gap-2">
             <Link to="/" className="flex items-center justify-center">
-              <img 
-                src={usa} 
-                alt="USA" 
-                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
-                  !isSwedish 
-                    ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10' 
-                    : 'opacity-70 hover:opacity-100 border-2 border-transparent'
-                }`} 
+              <img
+                src={usa}
+                alt="USA"
+                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${!isSwedish
+                  ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10'
+                  : 'opacity-70 hover:opacity-100 border-2 border-transparent'
+                  }`}
               />
             </Link>
             <Link to="/sv" className="flex items-center justify-center">
-              <img 
-                src={sweden} 
-                alt="Sweden" 
-                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
-                  isSwedish 
-                    ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10' 
-                    : 'opacity-70 hover:opacity-100 border-2 border-transparent'
-                }`} 
+              <img
+                src={sweden}
+                alt="Sweden"
+                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${isSwedish
+                  ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10'
+                  : 'opacity-70 hover:opacity-100 border-2 border-transparent'
+                  }`}
               />
             </Link>
           </div>
@@ -143,7 +141,7 @@ const Navbar = () => {
                 { to: isSwedish ? '/sv/contact' : '/contact', label: navText.contactUs },
                 { to: isSwedish ? '/sv/gallery' : '/gallery', label: navText.gallery },
               ].map((link) => {
-                const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to.replace('/sv','')));
+                const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to.replace('/sv', '')));
                 return (
                   <Link
                     key={link.to}

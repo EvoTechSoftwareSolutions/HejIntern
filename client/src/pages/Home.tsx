@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Heart, Star, User, ChevronLeft, CornerUpRight } from 'lucide-react';
+import { Heart, Star, User, ChevronLeft, CornerUpRight, MapPin, ArrowRight } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/aboutus.png';
@@ -7,7 +7,7 @@ import explorebg from '../assets/explorebg.png';
 import sigiriya from '../assets/sigiriya.png';
 import ninearch from '../assets/ninearch.png';
 import thalpe from '../assets/thalpe.png';
-import stay from '../assets/stay.png';
+import stay from '../assets/stayimage.jpg';
 import customize from '../assets/customize.png';
 import icon1 from '../assets/1.png';
 import icon2 from '../assets/2.png';
@@ -18,7 +18,7 @@ import icon6 from '../assets/6.png';
 import icon7 from '../assets/7.png';
 
 const renderThemeIcon = (id: number) => {
-  const iconClass = "w-[85px] h-[85px] object-contain transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-110";
+  const iconClass = "w-[56px] h-[56px] sm:w-[72px] sm:h-[72px] md:w-[85px] md:h-[85px] object-contain transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-110";
   switch (id) {
     case 1:
       return <img src={icon1} alt="Theme 1" className={iconClass} />;
@@ -56,6 +56,7 @@ const Home = () => {
     { id: 6, name: 'Indulge in\nexclusivity', bgColor: 'bg-[#FFB094]', shadow: 'shadow-[#FFB094]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
     { id: 7, name: 'Amazing\nexperiences at\ngreat value!', bgColor: 'bg-[#FF6B74]', shadow: 'shadow-[#FF6B74]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
   ];
+  // responsive grid will handle layout on small screens
 
   const tours = [
     {
@@ -104,10 +105,7 @@ const Home = () => {
     },
   ];
 
-  // Uniform display values for Stay cards (use same text across cards)
-  const uniformStayTitle = 'Kandy Spice Villa';
-  const uniformStayLocation = 'Kandy, Sri Lanka';
-  const uniformStayRating = '4.5';
+  // (removed unused uniform stay constants)
 
   const testimonials = [
     {
@@ -174,6 +172,20 @@ const Home = () => {
     try { e.currentTarget.releasePointerCapture?.(e.pointerId); } catch (err) { }
   };
 
+  const toursRef = useRef<HTMLDivElement | null>(null);
+  const scrollPrevTours = () => {
+    const el = toursRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: -amount, behavior: 'smooth' });
+  };
+  const scrollNextTours = () => {
+    const el = toursRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: amount, behavior: 'smooth' });
+  };
+
   // Autoplay: advance testimonial every AUTO_SLIDE_MS, but pause while dragging
   useEffect(() => {
     const id = setInterval(() => {
@@ -185,10 +197,10 @@ const Home = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="w-full font-sans text-dark bg-white overflow-hidden">
+    <div className="w-full font-sans text-dark bg-white overflow-hidden pt-[110px] md:pt-[110px] lg:pt-0">
 
       {/* Hero Section */}
-      <section className="relative w-full h-[640px] flex flex-col justify-center items-center text-center text-secondary mt-0">
+      <section className="relative w-full h-[520px] md:h-[640px] flex flex-col justify-center items-center text-center text-secondary mt-0">
         <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBanner})` }} />
 
         <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
@@ -211,11 +223,11 @@ const Home = () => {
             <div className="w-[300px] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-6" />
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center">
-            <button className="px-10 py-3.5 rounded-full bg-white/90 backdrop-blur-sm text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px] hover:bg-white">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center w-full px-4 md:px-0">
+            <button className="px-10 py-3.5 rounded-full bg-white/90 backdrop-blur-sm text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-white">
               Let's Start Your Journey
             </button>
-            <button className="px-10 py-3.5 rounded-full bg-[#01888E] text-white font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px] hover:bg-[#006D6D]">
+            <button className="px-10 py-3.5 rounded-full bg-[#01888E] text-white font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-[#006D6D]">
               Build My Trip
             </button>
           </div>
@@ -227,16 +239,13 @@ const Home = () => {
         <p className="text-[17px] text-[#003032] font-sans max-w-[800px] mx-auto mb-10 leading-[28px] text-center px-4 font-normal">
           We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
         </p>
-        <div
-          className="flex flex-nowrap justify-center gap-4 overflow-x-auto pb-8 px-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-8 px-2 md:px-4">
           {themes.map((theme) => {
             return (
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`group w-[145px] h-[210px] rounded-[14px] p-4 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 ${theme.bgColor} ${theme.shadow} ${activeTheme === theme.id ? 'ring-4 ring-[#01888E]/30 scale-105 shadow-2xl' : 'shadow-lg hover:-translate-y-2 hover:shadow-2xl'}`}
+                className={`group min-h-[160px] md:h-[210px] rounded-[14px] p-3 md:p-4 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer ${theme.bgColor} ${theme.shadow} ${activeTheme === theme.id ? 'ring-4 ring-[#01888E]/30 scale-105 shadow-2xl' : 'shadow-lg hover:-translate-y-2 hover:shadow-2xl'}`}
                 aria-pressed={activeTheme === theme.id}
               >
                 {/* Inner Icon Container */}
@@ -244,7 +253,7 @@ const Home = () => {
                   {renderThemeIcon(theme.id)}
                 </div>
                 {/* Label Text */}
-                <span className={`text-[15px] font-bold text-center leading-[18px] ${theme.textColor} whitespace-pre-line flex items-center justify-center h-[54px] transition-all duration-300 group-hover:text-[15px]`}>
+                <span className={`text-[14px] md:text-[15px] font-bold text-center leading-[18px] ${theme.textColor} whitespace-pre-line flex items-center justify-center h-[48px] md:h-[54px] transition-all duration-300`}>
                   {theme.name}
                 </span>
               </div>
@@ -254,7 +263,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-12 pl-[104px] pr-4 md:pr-8 bg-white w-full">
+      <section className="py-12 px-4 md:pl-[104px] md:pr-8 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
             <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">Hello !</h2>
@@ -292,16 +301,16 @@ const Home = () => {
       </section>
 
       {/* Tours Section (background: explorebg.png) */}
-      <section className="py-16 relative w-full overflow-hidden pl-[104px] pr-4 md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-16 relative w-full overflow-hidden px-4 md:pl-[104px] md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div className="max-w-[800px]">
-              <span className="text-[#01888E] text-[13px] font-bold tracking-wider uppercase mb-1.5 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
-              <h2 className="text-[34px] leading-tight text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
+              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
+              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
                 <span className="font-light">A Land of </span>
                 <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
-              </h2>
+              </h3>
               <p className="text-[14px] leading-[22px] text-[#003032] font-normal" style={{ fontFamily: 'Inter' }}>
                 We offer seven extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
               </p>
@@ -309,20 +318,20 @@ const Home = () => {
 
             {/* Carousel Navigation Buttons */}
             <div className="flex justify-end mt-3">
-              <div className="flex gap-2 shrink-0 mr-16">
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
+              <div className="flex gap-2 shrink-0 mr-0 md:mr-16">
+                <button onClick={scrollPrevTours} className="w-[32px] h-[32px] bg-[#01888E] rounded-full flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors transform rotate-180">
-                  <ChevronLeft size={16} />
+                <button onClick={scrollNextTours} className="w-[32px] h-[32px] bg-[#01888E] rounded-full flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
+                  <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mb-10">
+          <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-10 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5">
             {tours.map((tour) => (
-              <div key={tour.id} className="bg-white rounded-[12px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-pointer flex flex-col">
+              <div key={tour.id} className="snap-start min-w-[280px] sm:min-w-[320px] md:min-w-0 bg-white rounded-[12px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-pointer flex flex-col flex-shrink-0">
                 {/* Image area */}
                 <div className="relative w-full h-[180px] bg-gray-100 shrink-0">
                   <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
@@ -390,115 +399,113 @@ const Home = () => {
 
       {/* Stays Section (background removed) */}
       {/* Destinations Section */}
-      <section className="py-16 px-[104px] pr-4 md:pr-8 bg-white w-full">
+      <section className="py-16 px-4 md:pl-[104px] md:pr-8 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-6">
-            <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>Reach Your Dream Destination</span>
-            <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-              <span className="font-bold">Your Adventure</span> <span className="font-normal">Starts Here!</span>
-            </h2>
-            <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px]" style={{ fontFamily: 'Inter' }}>
+          <div className="mb-8">
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Reach Your Dream Destination</span>
+            <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+              <span className="font-bold">Your Adventure</span> <span className="font-bold text-[#01888E]">Starts Here!</span>
+            </h3>
+            <p className="text-[15px] leading-relaxed text-[#003032] font-normal max-w-[800px]" style={{ fontFamily: 'Inter' }}>
               Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach. With us, you don't just travel—you experience Sri Lanka like never before.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-5 mt-6">
-            <div className="w-[377px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
-              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
-              <div className="absolute left-4 bottom-4 text-white z-10 group-hover:opacity-0 transition-opacity duration-300">
-                <div className="text-[18px] font-extrabold drop-shadow-md">Nine Arch</div>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 md:p-6">
-                <div className="mb-2">
-                  <h4 className="text-[20px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1.5 inline-block" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 mt-8">
+            {/* Card 1 */}
+            <div className="md:col-span-2 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:-translate-y-6">
+              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+              <div className="absolute left-6 bottom-6 right-6 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h4 className="text-[22px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                  <p className="text-[13px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
                 </div>
-                <p className="text-[12.5px] text-[#003032] font-medium leading-relaxed" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
               </div>
             </div>
 
-            <div className="w-[195px] h-[188px] rounded-[8px] overflow-hidden relative group cursor-pointer">
-              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Thalpe</div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
-                <div className="mb-1.5">
-                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+            {/* Card 2 */}
+            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:translate-y-6">
+              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h4 className="text-[20px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                  <p className="text-[11px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
                 </div>
-                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
               </div>
             </div>
 
-            <div className="w-[213px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
-              <img src={ninearch} alt="Nine Arch 2" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
-              <div className="absolute left-4 bottom-4 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Nine Arch</div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
-                <div className="mb-1.5">
-                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+            {/* Card 3 */}
+            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:-translate-y-6">
+              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h4 className="text-[20px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                  <p className="text-[11px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
                 </div>
-                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
               </div>
             </div>
 
-            <div className="w-[187px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
-              <img src={ninearch} alt="Nine Arch small" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Nine Arch</div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
-                <div className="mb-1.5">
-                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+            {/* Card 4 */}
+            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:translate-y-6">
+              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white/95 via-white/70 to-transparent pointer-events-none" />
+              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h4 className="text-[20px] font-bold text-[#003032]" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
+                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                  <p className="text-[11px] text-[#003032]/80 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
                 </div>
-                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
               </div>
             </div>
 
-            <div className="w-[178px] h-[188px] rounded-[8px] overflow-hidden relative group cursor-pointer">
-              <img src={thalpe} alt="Thalpe 2" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Thalpe</div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
-                <div className="mb-1.5">
-                  <h4 className="text-[16px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1 inline-block" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+            {/* Card 5 */}
+            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:-translate-y-6">
+              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h4 className="text-[20px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                  <p className="text-[11px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
                 </div>
-                <p className="text-[11px] text-[#003032] font-medium leading-normal" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
               </div>
             </div>
 
-            <div className="w-[419px] h-[187px] rounded-[8px] overflow-hidden relative group cursor-pointer">
-              <img src={thalpe} alt="Thalpe big" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60 group-hover:opacity-0 transition-opacity duration-300" />
-              <div className="absolute left-4 bottom-4 text-[18px] font-extrabold text-white drop-shadow-md z-10 group-hover:opacity-0 transition-opacity duration-300">Thalpe</div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 md:p-6">
-                <div className="mb-2">
-                  <h4 className="text-[20px] font-extrabold text-[#003032] border-b-2 border-[#01888E] pb-1.5 inline-block" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+            {/* Card 6 */}
+            <div className="md:col-span-2 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:translate-y-6">
+              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+              <div className="absolute left-6 bottom-6 right-6 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h4 className="text-[22px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
+                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                  <p className="text-[13px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
                 </div>
-                <p className="text-[12.5px] text-[#003032] font-medium leading-relaxed" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
               </div>
             </div>
+          </div>
+
+          <div className="flex justify-center mt-12">
+            <button className="px-8 py-3.5 bg-[#01888E] text-white rounded-full text-[16px] font-bold shadow-[0px_8px_16px_rgba(1,136,142,0.3)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+              Start Your Adventure Today
+            </button>
           </div>
         </div>
       </section>
 
-      <div className="flex justify-center mt-8">
-        <button className="px-6 py-3 bg-[#01888E] text-[#E6F3F4] rounded-full text-[15px] font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:opacity-95 transition">
-          Start your adventure today
-        </button>
-      </div>
 
-
-      {/* Stays Section (background: explorebg.png) */}
-      <section className="relative py-16 pl-[104px] pr-4 md:pr-8 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-
+      {/* Stays Section */}
+      <section className="relative py-16 pl-[104px] pr-4 md:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
+        <div className="absolute inset-0 bg-white/40 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-2">
-            <div>
-              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
-              <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-                <span className="font-bold">Stay In</span> <span className="font-normal">Sri Lanka</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-[800px]">
+              <span className="text-[#01888E] text-[13px] font-bold tracking-wider uppercase mb-1.5 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
+              <h2 className="text-[34px] leading-tight text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
+                <span className="font-bold">Stay In</span> <span className="font-bold text-[#01888E]">Sri Lanka</span>
               </h2>
-              <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px] mt-0" style={{ fontFamily: 'Inter' }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+              <p className="text-[14px] leading-[22px] text-[#003032] font-normal" style={{ fontFamily: 'Inter' }}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
               </p>
             </div>
 
@@ -515,96 +522,58 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start justify-items-center">
-            {tours.slice(0, 4).map((card, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start justify-items-center">
+            {[1, 2, 3, 4].map((_, idx) => (
               <div
-                key={card.id}
-                className={`relative rounded-[12px] overflow-hidden shadow-lg bg-white border border-[rgba(0,0,0,0.06)]`}
-                style={{
-                  width: idx === 0 ? '280px' : '240px',
-                  height: idx === 0 ? '320px' : '280px'
-                }}
+                key={idx}
+                className="w-full max-w-[280px] rounded-[12px] overflow-hidden shadow-sm bg-white border border-gray-100 flex flex-col group cursor-pointer hover:shadow-xl transition-shadow duration-300"
               >
-                {idx === 0 ? (
-                  <>
-                    <div
-                      className="w-full bg-cover bg-center"
-                      style={{ height: '180px', backgroundImage: `url(${stay})` }}
-                    />
+                {/* Image Header */}
+                <div className="relative w-full h-[190px] bg-gray-200 overflow-hidden">
+                  <img src={stay} alt="Amanwella Resort" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  
+                  {/* Rating Badge */}
+                  <div className="absolute top-3 left-3 bg-[#01888E] text-white px-2 py-0.5 rounded-[12px] flex items-center gap-1">
+                    <Star className="fill-[#FFC600] text-[#FFC600]" size={10} />
+                    <span className="text-[11px] font-bold" style={{ fontFamily: 'Inter' }}>4.5</span>
+                  </div>
 
-                    {/* heart icon top-right */}
-                    <button className="absolute right-3 top-3 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm">
-                      <Heart size={16} className="text-[#003032]" />
-                    </button>
+                  {/* Heart Button */}
+                  <button className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-[#003032] hover:bg-white/40 transition">
+                    <Heart size={14} className="stroke-[2.5]" />
+                  </button>
+                </div>
 
-                    {/* Card content (larger) */}
-                    <div className="p-4 bg-white h-full flex flex-col justify-between">
-                      <div>
-                        <h4 className="text-[16px] font-bold leading-[18px] text-[#003032]" style={{ fontFamily: 'Inter' }}>{uniformStayTitle}</h4>
-                        <p className="text-[12px] text-[#003032] mt-1" style={{ fontFamily: 'Inter' }}>{uniformStayLocation}</p>
-                      </div>
+                {/* Card Body */}
+                <div className="p-4 flex flex-col flex-1">
+                  <h4 className="text-[17px] font-bold text-[#003032] mb-1.5" style={{ fontFamily: 'Inter' }}>Amanwella Resort</h4>
+                  <div className="flex items-center text-gray-500 text-[12px] mb-3" style={{ fontFamily: 'Inter' }}>
+                    <MapPin size={12} className="mr-1 text-[#01888E]" /> Tangalle, Southern Province
+                  </div>
+                  
+                  <hr className="border-gray-100 mb-3" />
 
-                      <div className="flex items-center justify-between mt-3">
-                        <div className="flex items-center gap-3">
-                          <div className="h-[26px] px-3 border border-[#003032] rounded-[8px] flex items-center justify-center text-[#003032] text-[13px] font-bold" style={{ fontFamily: 'Inter' }}>{uniformStayRating}</div>
-                          <div className="flex items-center gap-[4px]">
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                          </div>
-                        </div>
-
-                        <div className="text-[13px] text-[#008000] font-semibold">{card.duration}</div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div
-                      className="w-full bg-cover bg-center"
-                      style={{ height: '150px', backgroundImage: `url(${stay})` }}
-                    />
-
-                    {/* heart icon top-right */}
-                    <button className="absolute right-3 top-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
-                      <Heart size={14} className="text-[#003032]" />
-                    </button>
-
-
-
-                    {/* Card content */}
-                    <div className="p-3 bg-white h-[110px] flex flex-col justify-between">
-                      <div>
-                        <h4 className="text-[13px] font-bold leading-[15px] text-[#003032]" style={{ fontFamily: 'Inter' }}>{uniformStayTitle}</h4>
-                        <p className="text-[11px] text-[#003032] mt-1" style={{ fontFamily: 'Inter' }}>{uniformStayLocation}</p>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="h-[20px] px-2 border border-[#003032] rounded-[6px] flex items-center justify-center text-[#003032] text-[12px] font-bold" style={{ fontFamily: 'Inter' }}>{uniformStayRating}</div>
-                          <div className="flex items-center gap-[4px]">
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                          </div>
-                        </div>
-
-                        <div className="text-[12px] text-[#008000] font-semibold">{card.duration}</div>
+                  {/* Card Footer */}
+                  <div className="flex items-end justify-between mt-auto">
+                    <div>
+                      <span className="block text-[9px] font-bold text-gray-400 uppercase tracking-wide mb-0.5" style={{ fontFamily: 'Inter' }}>Starting from</span>
+                      <div className="flex items-baseline gap-1" style={{ fontFamily: 'Inter' }}>
+                        <span className="text-[#01888E] text-[18px] font-bold">$850</span>
+                        <span className="text-[11px] text-gray-400 font-medium">/ night</span>
                       </div>
                     </div>
-                  </>
-                )}
+                    <button className="w-8 h-8 rounded-full bg-[#EAF5F5] flex items-center justify-center text-[#01888E] group-hover:bg-[#01888E] group-hover:text-white transition-colors duration-300">
+                      <ArrowRight size={16} className="stroke-[2.5]" />
+                    </button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-center mt-8">
-            <button className="px-8 py-3 bg-[#01888E] text-white rounded-full text-[16px] font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)]">
-              View all
+          <div className="flex justify-center mt-10">
+            <button className="px-10 py-3 bg-[#01888E] text-white rounded-full text-[15px] font-bold shadow-[0px_8px_16px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+              View All
             </button>
           </div>
         </div>
@@ -679,7 +648,7 @@ const Home = () => {
                     </div>
 
                     {/* Text */}
-                    <p className={`italic text-[#003032] mb-6 ${isActive ? 'text-[14px] leading-[22px]' : 'text-[12px] leading-[18px] opacity-80'} overflow-hidden flex-1 flex items-center`}>
+                    <p className={`italic text-[#003032] mb-6 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px] opacity-80'} overflow-hidden flex-1 flex items-center`}>
                       "{testimonial.text}"
                     </p>
 
