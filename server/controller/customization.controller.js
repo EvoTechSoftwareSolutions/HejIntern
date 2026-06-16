@@ -49,12 +49,26 @@ export const createCustomization = async (req, res, next) => {
   }
 };
 
+//for admin
 export const getAllCustomizations = async (req, res, next) => {
   try {
     const data = await prisma.customization.findMany({
       include: {
         user: true,
-        tourPackage: true,
+         tourPackage: {
+      include: {
+        theme: {
+          include: {
+            cover_image: true,
+            images: {
+              include: {
+                image: true,
+              },
+            },
+          },
+        },
+      },
+    },
       },
       orderBy: {
         created_at: "desc",
@@ -72,6 +86,48 @@ export const getAllCustomizations = async (req, res, next) => {
 };
 
 
+// get customization logged in user 
+
+export const getAllCustomizationsByUserId = async (req, res, next) => {
+  try {
+    // 1. get logged-in user id
+    const userId = req.user.id;
+
+    // 2. fetch customizations
+  const customizations = await prisma.customization.findMany({
+  where: { user_id: userId },
+  include: {
+    tourPackage: {
+      include: {
+        theme: {
+          include: {
+            cover_image: true,
+            images: {
+              include: {
+                image: true,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+});
+
+    // 3. response
+    return res.status(200).json({
+      success: true,
+      count: customizations.length,
+      data: customizations,
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+// customization get by id
 export const getCustomizationById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -80,7 +136,20 @@ export const getCustomizationById = async (req, res, next) => {
       where: { id },
       include: {
         user: true,
-        tourPackage: true,
+           tourPackage: {
+      include: {
+        theme: {
+          include: {
+            cover_image: true,
+            images: {
+              include: {
+                image: true,
+              },
+            },
+          },
+        },
+      },
+    },
       },
     });
 

@@ -31,9 +31,9 @@ model User {
   language  Language  @relation(fields: [languageId], references: [id])
   deletedAt DateTime?
 
-  images Image[]
-    customization Customization[]
-
+  images        Image[]
+  customization Customization[]
+  booking       Booking[]
 }
 
 model Role {
@@ -55,6 +55,7 @@ model Language {
   isDefault Boolean @default(false)
 
   users User[]
+  contact Contact[]
 }
 
 model Theme {
@@ -67,11 +68,11 @@ model Theme {
   cover_image_id String? @db.ObjectId
   cover_image    Image?  @relation("ThemeCover", fields: [cover_image_id], references: [id])
 
-  images ThemeImage[]
-  activity Activity[]
-  destination Destination[]
+  images        ThemeImage[]
+  activity      Activity[]
+  destination   Destination[]
   tour_packages TourPackage[]
-  
+
   display_order Int     @default(0)
   is_active     Boolean @default(true)
 
@@ -92,13 +93,13 @@ model Image {
   alt_text_en String?
   alt_text_sw String?
 
-    entity_type   String?
-  entity_id     String?  @db.ObjectId
+  entity_type String?
+  entity_id   String? @db.ObjectId
 
-  coverThemes Theme[]      @relation("ThemeCover")
-  themes      ThemeImage[]
+  coverThemes       Theme[]       @relation("ThemeCover")
+  themes            ThemeImage[]
   coverDestinations Destination[] @relation("DestinationCover")
-  
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
@@ -141,7 +142,6 @@ model Destination {
   updated_at DateTime @updatedAt
 }
 
-
 model Activity {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -151,8 +151,8 @@ model Activity {
   theme_id String @db.ObjectId
   theme    Theme  @relation(fields: [theme_id], references: [id])
 
-  destination_id String @db.ObjectId
-  destination     Destination @relation(fields: [destination_id], references: [id])
+  destination_id String      @db.ObjectId
+  destination    Destination @relation(fields: [destination_id], references: [id])
 
   difficulty_level String
   duration_hours   Float
@@ -160,7 +160,6 @@ model Activity {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
-
 
 model TourPackage {
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -172,18 +171,18 @@ model TourPackage {
   full_description  String
 
   theme_id String @db.ObjectId
-  theme Theme @relation(fields: [theme_id], references: [id])
+  theme    Theme  @relation(fields: [theme_id], references: [id])
 
   duration_days Int
-  base_price Float
+  base_price    Float
 
   is_featured Boolean @default(false)
 
-  status PackageStatus @default(ACTIVE)
+  status        PackageStatus   @default(ACTIVE)
   customization Customization[]
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  booking       Booking[]
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
 }
 
 enum PackageStatus {
@@ -192,27 +191,26 @@ enum PackageStatus {
   DRAFT
 }
 
-
 model Customization {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
   user_id String
   user    User   @relation(fields: [user_id], references: [id])
 
-  package_id String
+  package_id  String
   tourPackage TourPackage @relation(fields: [package_id], references: [id])
 
   selected_destinations Json?
   selected_activities   Json?
 
-  group_size     Int
-  duration_days  Int
+  group_size    Int
+  duration_days Int
 
   accommodation_level AccommodationLevel
   budget_range        String
 
-  status CustomizationStatus @default(PENDING)
-
+  status        CustomizationStatus @default(PENDING)
+  booking       Booking[]
   shareable_url String?
 
   created_at DateTime @default(now())
@@ -230,4 +228,100 @@ enum CustomizationStatus {
   PENDING
   CONFIRMED
   DRAFT
+}
+
+model Booking {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  user_id String @db.ObjectId
+  user User @relation(fields: [user_id], references: [id])
+
+  customization_id String @db.ObjectId
+  customization Customization @relation(fields: [customization_id], references: [id])
+
+  package_id String @db.ObjectId
+  tourPackage TourPackage @relation(fields: [package_id], references: [id])
+
+  booking_date DateTime @default(now())
+  travel_date DateTime
+
+  total_amount Float
+
+  payment_status PaymentStatus @default(PENDING)
+  booking_status BookingStatus @default(PENDING)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+
+// model Review {
+//   id String @id @default(auto()) @map("_id") @db.ObjectId
+
+//   user_id String @db.ObjectId
+//   user User @relation(fields: [user_id], references: [id])
+
+//   package_id String @db.ObjectId
+//   tourPackage TourPackage @relation(fields: [package_id], references: [id])
+
+//   booking_id String @db.ObjectId
+//   booking Booking @relation(fields: [booking_id], references: [id])
+
+//   star_rating Int
+//   review_text String
+
+//   is_approved Boolean @default(false)
+
+//   approved_by String? @db.ObjectId
+
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
+// }
+
+
+model Contact {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name   String
+  email  String
+  phone  String
+  subject String
+
+  enquiry_type ContactType
+
+  language   Language? @relation(fields: [language_id], references: [id])
+language_id String?
+
+  status ContactStatus @default(PENDING)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum ContactType {
+  GENERAL
+  BOOKING
+  PAYMENT
+  SUPPORT
+}
+
+enum ContactStatus {
+  PENDING
+  IN_PROGRESS
+  RESOLVED
+  REJECTED
 }

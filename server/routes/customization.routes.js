@@ -5,7 +5,8 @@ import {
   getCustomizationById,
   updateCustomization,
   deleteCustomization,
-  updateCustomizationStatus
+  updateCustomizationStatus,
+  getAllCustomizationsByUserId
 } from "../controller/customization.controller.js";
 import { verifyToken } from "../middleware/auth.middleware.js";
 
@@ -15,6 +16,7 @@ router.post("/",verifyToken, createCustomization);
 
 router.get("/",verifyToken, getAllCustomizations);
 
+router.get("/me",verifyToken, getAllCustomizationsByUserId);
 router.get("/:id",verifyToken, getCustomizationById);
 
 router.put("/:id",verifyToken, updateCustomization);
