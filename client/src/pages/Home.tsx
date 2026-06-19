@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Heart, Star, User, ChevronLeft, CornerUpRight, MapPin, ArrowRight } from 'lucide-react';
+import { Heart, Star, User, ChevronLeft, CornerUpRight, MapPin } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/aboutus.png';
@@ -18,7 +18,7 @@ import icon6 from '../assets/6.png';
 import icon7 from '../assets/7.png';
 
 const renderThemeIcon = (id: number) => {
-  const iconClass = "w-[56px] h-[56px] sm:w-[72px] sm:h-[72px] md:w-[85px] md:h-[85px] object-contain transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-110";
+  const iconClass = "w-full h-full object-contain transition-opacity duration-150 group-hover:opacity-95";
   switch (id) {
     case 1:
       return <img src={icon1} alt="Theme 1" className={iconClass} />;
@@ -79,7 +79,7 @@ const Home = () => {
       reviews: 42,
       duration: '2 days',
       category: 'Nature',
-      image: ninearch
+      image: sigiriya
     },
     {
       id: 3,
@@ -90,7 +90,7 @@ const Home = () => {
       reviews: 31,
       duration: '4 days',
       category: 'Relax',
-      image: thalpe
+      image: sigiriya
     },
     {
       id: 4,
@@ -110,24 +110,31 @@ const Home = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Name',
-      country: 'Country',
+      name: 'Ethan Wilson',
+      country: 'Sweden',
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop'
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'
     },
     {
       id: 2,
-      name: 'Name',
-      country: 'Country',
+      name: 'Ethan Wilson',
+      country: 'Sweden',
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop'
+      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'
     },
     {
       id: 3,
-      name: 'Name',
-      country: 'Country',
+      name: 'Ethan Wilson',
+      country: 'Sweden',
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      avatar: 'https://images.unsplash.com/photo-1517849845537-1d51a20414de?q=80&w=100&auto=format&fit=crop'
+      avatar: 'https://images.unsplash.com/photo-1517849845537-1d51a20414de?q=80&w=200&auto=format&fit=crop'
+    },
+    {
+      id: 4,
+      name: 'Ethan Wilson',
+      country: 'Sweden',
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
     },
   ];
 
@@ -186,6 +193,38 @@ const Home = () => {
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
 
+  const staysRef = useRef<HTMLDivElement | null>(null);
+  const scrollPrevStays = () => {
+    const el = staysRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: -amount, behavior: 'smooth' });
+  };
+  const scrollNextStays = () => {
+    const el = staysRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: amount, behavior: 'smooth' });
+  };
+
+  const stays = [
+    { id: 1, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: true },
+    { id: 2, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+    { id: 3, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+    { id: 4, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+  ];
+
+  const destinationDescription = 'Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.';
+
+  const destinationCards = [
+    { id: 1, name: 'Nine Arch', image: ninearch, wide: true, description: destinationDescription },
+    { id: 2, name: 'Thalpe', image: thalpe, wide: false, description: destinationDescription },
+    { id: 3, name: 'Nine Arch', image: ninearch, wide: false, description: destinationDescription },
+    { id: 4, name: 'Nine Arch', image: ninearch, wide: false, description: destinationDescription },
+    { id: 5, name: 'Thalpe', image: thalpe, wide: false, description: destinationDescription },
+    { id: 6, name: 'Thalpe', image: thalpe, wide: true, description: destinationDescription },
+  ];
+
   // Autoplay: advance testimonial every AUTO_SLIDE_MS, but pause while dragging
   useEffect(() => {
     const id = setInterval(() => {
@@ -224,10 +263,10 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center w-full px-4 md:px-0">
-            <button className="px-10 py-3.5 rounded-full bg-white/90 backdrop-blur-sm text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-white">
+            <button className="px-10 py-3.5 rounded-[12px] bg-white/90 backdrop-blur-sm text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-white">
               Let's Start Your Journey
             </button>
-            <button className="px-10 py-3.5 rounded-full bg-[#01888E] text-white font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-[#006D6D]">
+            <button className="px-10 py-3.5 rounded-[12px] bg-[#01888E] text-white font-sans font-bold text-[14px] leading-[18px] shadow-[0px_4px_12px_rgba(1,136,142,0.3)] transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-[#006D6D]">
               Build My Trip
             </button>
           </div>
@@ -235,27 +274,23 @@ const Home = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-12 bg-white max-w-7xl mx-auto text-center mt-6">
-        <p className="text-[17px] text-[#003032] font-sans max-w-[800px] mx-auto mb-10 leading-[28px] text-center px-4 font-normal">
+      <section className="py-8 bg-white max-w-7xl mx-auto text-center mt-2">
+        <p className="text-[17px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[28px] text-center px-4 font-normal">
           We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-8 px-2 md:px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-8 px-2 md:px-4 max-w-[1100px] mx-auto justify-center">
           {themes.map((theme) => {
             return (
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`group min-h-[160px] md:h-[210px] rounded-[14px] p-3 md:p-4 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer ${theme.bgColor} ${theme.shadow} ${activeTheme === theme.id ? 'ring-4 ring-[#01888E]/30 scale-105 shadow-2xl' : 'shadow-lg hover:-translate-y-2 hover:shadow-2xl'}`}
+                className={`group flex flex-col items-center justify-start gap-2 rounded-[12px] p-3 w-[120px] sm:w-[140px] bg-[#EAF5F5] cursor-pointer`}
                 aria-pressed={activeTheme === theme.id}
               >
-                {/* Inner Icon Container */}
-                <div className="flex-1 flex items-center justify-center">
+                <div className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] md:w-[96px] md:h-[96px] flex items-center justify-center pt-1">
                   {renderThemeIcon(theme.id)}
                 </div>
-                {/* Label Text */}
-                <span className={`text-[14px] md:text-[15px] font-bold text-center leading-[18px] ${theme.textColor} whitespace-pre-line flex items-center justify-center h-[48px] md:h-[54px] transition-all duration-300`}>
-                  {theme.name}
-                </span>
+                <span className={`text-[11px] md:text-[12px] font-semibold text-center leading-[14px] text-[#003032] whitespace-pre-line`}>{theme.name}</span>
               </div>
             );
           })}
@@ -263,7 +298,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-12 px-4 md:pl-[104px] md:pr-8 bg-white w-full">
+      <section className="py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
             <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">Hello !</h2>
@@ -271,12 +306,12 @@ const Home = () => {
 
           <div className="flex flex-col md:flex-row items-start gap-12">
             {/* Left: framed image */}
-            <div className="flex-shrink-0 w-full md:w-[420px]">
-              <div className="bg-white rounded-[18px] p-4 shadow-lg inline-block">
+            <div className="w-full md:w-1/2 flex justify-center">
+              <div className="bg-white rounded-[18px] p-4 inline-block">
                 <img
                   src={aboutus}
                   alt="About Hej Ceylon"
-                  className="w-[360px] md:w-[392px] h-auto md:h-[420px] object-cover rounded-[12px]"
+                  className="w-full max-w-[400px] h-auto md:h-[420px] object-cover rounded-[12px]"
                 />
               </div>
             </div>
@@ -301,10 +336,10 @@ const Home = () => {
       </section>
 
       {/* Tours Section (background: explorebg.png) */}
-      <section className="py-16 relative w-full overflow-hidden px-4 md:pl-[104px] md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
             <div className="max-w-[800px]">
               <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
               <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
@@ -318,33 +353,33 @@ const Home = () => {
 
             {/* Carousel Navigation Buttons */}
             <div className="flex justify-end mt-3">
-              <div className="flex gap-2 shrink-0 mr-0 md:mr-16">
-                <button onClick={scrollPrevTours} className="w-[32px] h-[32px] bg-[#01888E] rounded-full flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
+              <div className="flex gap-1 shrink-0 mr-0 md:mr-16">
+                <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-[34px] h-[28px] bg-[#01888E] rounded-[14px_0_0_14px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
-                <button onClick={scrollNextTours} className="w-[32px] h-[32px] bg-[#01888E] rounded-full flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
+                <button onClick={scrollNextTours} aria-label="Next tours" className="w-[34px] h-[28px] bg-[#01888E] rounded-[0_14px_14px_0] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
                 </button>
               </div>
             </div>
           </div>
 
-          <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-10 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5">
+          <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5">
             {tours.map((tour) => (
-              <div key={tour.id} className="snap-start min-w-[280px] sm:min-w-[320px] md:min-w-0 bg-white rounded-[12px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-pointer flex flex-col flex-shrink-0">
+              <div key={tour.id} className="snap-start min-w-[85%] sm:min-w-[48%] md:min-w-0 bg-white rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer flex flex-col flex-shrink-0">
                 {/* Image area */}
                 <div className="relative w-full h-[180px] bg-gray-100 shrink-0">
                   <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
                   {/* Rating badge top-left */}
-                  <div className="absolute left-3 top-3 bg-[#0BA77A] text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                  <div className="absolute left-3 top-3 bg-[#0BA77A] text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
                     <span className="text-[#FFC600] text-[12px]">★</span>
                     <span>4.5</span>
                   </div>
 
                   {/* Heart top-right */}
-                  <button aria-label="favorite" className="absolute right-3 top-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                  <button aria-label="favorite" className="absolute right-3 top-3 w-8 h-8 bg-white rounded-full flex items-center justify-center">
                     <Heart size={14} className="text-[#003032] fill-none" />
                   </button>
 
@@ -389,104 +424,51 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="flex justify-center mt-8">
-            <button className="px-8 py-3 bg-[#01888E] text-white rounded-full text-[16px] font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+          <div className="flex justify-center mt-6">
+            <button className="px-8 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
               Explore All Tours
             </button>
           </div>
         </div>
       </section>
 
-      {/* Stays Section (background removed) */}
       {/* Destinations Section */}
-      <section className="py-16 px-4 md:pl-[104px] md:pr-8 bg-white w-full">
+      <section className="py-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-8">
+          <div className="mb-6">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Reach Your Dream Destination</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
               <span className="font-bold">Your Adventure</span> <span className="font-bold text-[#01888E]">Starts Here!</span>
             </h3>
-            <p className="text-[15px] leading-relaxed text-[#003032] font-normal max-w-[800px]" style={{ fontFamily: 'Inter' }}>
+            <p className="text-[14px] leading-[22px] text-[#757575] font-normal max-w-[800px]" style={{ fontFamily: 'Inter' }}>
               Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach. With us, you don't just travel—you experience Sri Lanka like never before.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 mt-8">
-            {/* Card 1 */}
-            <div className="md:col-span-2 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:-translate-y-6">
-              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
-              <div className="absolute left-6 bottom-6 right-6 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h4 className="text-[22px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
-                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                  <p className="text-[13px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mt-6">
+            {destinationCards.map((card) => (
+              <div
+                key={card.id}
+                className={`group ${card.wide ? 'md:col-span-2' : 'md:col-span-1'} h-[220px] sm:h-[250px] md:h-[260px] rounded-[14px] overflow-hidden relative cursor-pointer`}
+              >
+                <img src={card.image} alt={card.name} className="w-full h-full object-cover" />
+                <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none" />
+                <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <h4 className={`font-bold text-[#003032] ${card.wide ? 'text-[22px]' : 'text-[20px]'}`} style={{ fontFamily: 'Inter' }}>
+                    {card.name}
+                  </h4>
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                    <p className={`text-[#003032]/75 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150 ${card.wide ? 'text-[13px] max-w-[90%]' : 'text-[11px]'}`} style={{ fontFamily: 'Inter' }}>
+                      {card.description}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:translate-y-6">
-              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
-              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h4 className="text-[20px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
-                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                  <p className="text-[11px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:-translate-y-6">
-              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
-              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h4 className="text-[20px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
-                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                  <p className="text-[11px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 */}
-            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:translate-y-6">
-              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white/95 via-white/70 to-transparent pointer-events-none" />
-              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h4 className="text-[20px] font-bold text-[#003032]" style={{ fontFamily: 'Inter' }}>Nine Arch</h4>
-                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                  <p className="text-[11px] text-[#003032]/80 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 5 */}
-            <div className="md:col-span-1 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:-translate-y-6">
-              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
-              <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h4 className="text-[20px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
-                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                  <p className="text-[11px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 6 */}
-            <div className="md:col-span-2 h-[240px] md:h-[280px] rounded-[16px] overflow-hidden relative group cursor-pointer md:transform md:translate-y-6">
-              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
-              <div className="absolute left-6 bottom-6 right-6 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h4 className="text-[22px] font-bold text-white" style={{ fontFamily: 'Inter' }}>Thalpe</h4>
-                <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                  <p className="text-[13px] text-white/90 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150" style={{ fontFamily: 'Inter' }}>Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          <div className="flex justify-center mt-12">
-            <button className="px-8 py-3.5 bg-[#01888E] text-white rounded-full text-[16px] font-bold shadow-[0px_8px_16px_rgba(1,136,142,0.3)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+          <div className="flex justify-center mt-8">
+            <button className="px-8 py-3.5 bg-[#01888E] text-white rounded-full text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
               Start Your Adventure Today
             </button>
           </div>
@@ -494,85 +476,87 @@ const Home = () => {
       </section>
 
 
-      {/* Stays Section */}
-      <section className="relative py-16 pl-[104px] pr-4 md:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
-        <div className="absolute inset-0 bg-white/40 pointer-events-none" />
+      {/* Stays Section (background: explorebg.png) */}
+      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
             <div className="max-w-[800px]">
-              <span className="text-[#01888E] text-[13px] font-bold tracking-wider uppercase mb-1.5 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
-              <h2 className="text-[34px] leading-tight text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
+              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
+              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
                 <span className="font-bold">Stay In</span> <span className="font-bold text-[#01888E]">Sri Lanka</span>
-              </h2>
-              <p className="text-[14px] leading-[22px] text-[#003032] font-normal" style={{ fontFamily: 'Inter' }}>
+              </h3>
+              <p className="text-[14px] leading-[22px] text-[#003032] font-normal max-w-[600px]" style={{ fontFamily: 'Inter' }}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
               </p>
             </div>
 
-            {/* Carousel Navigation Buttons - right aligned on new line */}
             <div className="flex justify-end mt-3">
-              <div className="flex gap-2 shrink-0 mr-16">
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
+              <div className="flex gap-1 shrink-0 mr-0 md:mr-16">
+                <button onClick={scrollPrevStays} aria-label="Previous stays" className="w-[34px] h-[28px] bg-[#01888E] rounded-[14px_0_0_14px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors transform rotate-180">
-                  <ChevronLeft size={16} />
+                <button onClick={scrollNextStays} aria-label="Next stays" className="w-[34px] h-[28px] bg-[#01888E] rounded-[0_14px_14px_0] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start justify-items-center">
-            {[1, 2, 3, 4].map((_, idx) => (
-              <div
-                key={idx}
-                className="w-full max-w-[280px] rounded-[12px] overflow-hidden shadow-sm bg-white border border-gray-100 flex flex-col group cursor-pointer hover:shadow-xl transition-shadow duration-300"
-              >
-                {/* Image Header */}
-                <div className="relative w-full h-[190px] bg-gray-200 overflow-hidden">
-                  <img src={stay} alt="Amanwella Resort" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  
-                  {/* Rating Badge */}
-                  <div className="absolute top-3 left-3 bg-[#01888E] text-white px-2 py-0.5 rounded-[12px] flex items-center gap-1">
-                    <Star className="fill-[#FFC600] text-[#FFC600]" size={10} />
-                    <span className="text-[11px] font-bold" style={{ fontFamily: 'Inter' }}>4.5</span>
-                  </div>
+          <div ref={(el) => { staysRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5 md:overflow-visible">
+            {stays.map((item) => (
+              <div key={item.id} className="snap-start min-w-[85%] sm:min-w-[48%] md:min-w-0 flex-shrink-0">
+                {item.featured ? (
+                  <div className="relative rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group">
+                    <div className="relative w-full h-[240px] bg-gray-200">
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
 
-                  {/* Heart Button */}
-                  <button className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-[#003032] hover:bg-white/40 transition">
-                    <Heart size={14} className="stroke-[2.5]" />
-                  </button>
-                </div>
+                      <div className="absolute top-3 left-3 bg-[#01888E] text-white text-[11px] font-bold px-2 py-0.5 rounded-[6px] flex items-center gap-1">
+                        <Star className="fill-[#FFC600] text-[#FFC600]" size={11} />
+                        <span>{item.rating}</span>
+                      </div>
 
-                {/* Card Body */}
-                <div className="p-4 flex flex-col flex-1">
-                  <h4 className="text-[17px] font-bold text-[#003032] mb-1.5" style={{ fontFamily: 'Inter' }}>Amanwella Resort</h4>
-                  <div className="flex items-center text-gray-500 text-[12px] mb-3" style={{ fontFamily: 'Inter' }}>
-                    <MapPin size={12} className="mr-1 text-[#01888E]" /> Tangalle, Southern Province
-                  </div>
-                  
-                  <hr className="border-gray-100 mb-3" />
+                      <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition">
+                        <Heart size={14} className="stroke-[2.5]" />
+                      </button>
 
-                  {/* Card Footer */}
-                  <div className="flex items-end justify-between mt-auto">
-                    <div>
-                      <span className="block text-[9px] font-bold text-gray-400 uppercase tracking-wide mb-0.5" style={{ fontFamily: 'Inter' }}>Starting from</span>
-                      <div className="flex items-baseline gap-1" style={{ fontFamily: 'Inter' }}>
-                        <span className="text-[#01888E] text-[18px] font-bold">$850</span>
-                        <span className="text-[11px] text-gray-400 font-medium">/ night</span>
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h4 className="text-[16px] font-bold text-white mb-1" style={{ fontFamily: 'Inter' }}>{item.name}</h4>
+                        <div className="flex items-center text-white/90 text-[12px]" style={{ fontFamily: 'Inter' }}>
+                          <MapPin size={12} className="mr-1 shrink-0" /> {item.location}
+                        </div>
                       </div>
                     </div>
-                    <button className="w-8 h-8 rounded-full bg-[#EAF5F5] flex items-center justify-center text-[#01888E] group-hover:bg-[#01888E] group-hover:text-white transition-colors duration-300">
-                      <ArrowRight size={16} className="stroke-[2.5]" />
-                    </button>
                   </div>
-                </div>
+                ) : (
+                  <div className="bg-white rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group flex flex-col">
+                    <div className="relative w-full h-[180px] bg-gray-200 shrink-0">
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+
+                      <div className="absolute top-3 left-3 bg-[#01888E] text-white text-[11px] font-bold px-2 py-0.5 rounded-[6px] flex items-center gap-1">
+                        <Star className="fill-[#FFC600] text-[#FFC600]" size={11} />
+                        <span>{item.rating}</span>
+                      </div>
+
+                      <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition">
+                        <Heart size={14} className="stroke-[2.5]" />
+                      </button>
+                    </div>
+
+                    <div className="p-4">
+                      <h4 className="text-[15px] font-bold text-[#003032] mb-1.5" style={{ fontFamily: 'Inter' }}>{item.name}</h4>
+                      <div className="flex items-center text-[#757575] text-[12px]" style={{ fontFamily: 'Inter' }}>
+                        <MapPin size={12} className="mr-1 text-[#01888E] shrink-0" /> {item.location}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
 
-          <div className="flex justify-center mt-10">
-            <button className="px-10 py-3 bg-[#01888E] text-white rounded-full text-[15px] font-bold shadow-[0px_8px_16px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+          <div className="flex justify-center mt-6">
+            <button className="px-8 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
               View All
             </button>
           </div>
@@ -582,33 +566,43 @@ const Home = () => {
 
 
       {/* Customize CTA Section */}
-      <section className="relative w-full flex flex-col items-center">
-        <div className="w-full h-[520px] bg-cover bg-center" style={{ backgroundImage: `url(${customize})` }} />
-        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/95 to-transparent pointer-events-none" />
-        <div className="w-full h-28 bg-white" />
-        <div className="absolute left-0 right-0 top-[78%] transform -translate-y-1/2 flex justify-center px-4">
-          <div className="bg-white max-w-3xl w-full md:w-[720px] mx-auto rounded-sm shadow-xl p-6 md:p-8 border border-gray-100">
-            <h3 className="text-center text-[#003032] font-bold text-[20px] md:text-[22px] leading-tight mb-3">Let's Customize Your Dream Tour Today!</h3>
-            <p className="text-center text-[13px] text-gray-600 max-w-3xl mx-auto mb-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            <div className="flex justify-center">
-              <button className="px-6 py-3 bg-[#01888E] text-white rounded-md font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:opacity-95 transition">Customize</button>
+      <section className="relative w-full bg-white">
+        <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] bg-cover bg-center" style={{ backgroundImage: `url(${customize})` }}>
+          <div className="absolute top-0 left-0 w-full h-36 sm:h-44 bg-gradient-to-b from-white from-40% via-white/90 to-transparent pointer-events-none" />
+
+          <div className="absolute left-0 right-0 bottom-0 translate-y-[45%] flex justify-center px-4 sm:px-6 z-10">
+            <div className="bg-white max-w-3xl w-full md:w-[720px] mx-auto rounded-[24px] shadow-[0px_8px_32px_rgba(0,0,0,0.12)] px-8 py-10 md:px-12 md:py-12">
+              <h3 className="text-center text-[#003032] font-bold text-[24px] md:text-[28px] leading-tight mb-5" style={{ fontFamily: 'Inter' }}>
+                Let's Customize Your <span className="text-[#01888E]">Dream Tour</span> Today!
+              </h3>
+              <p className="text-center text-[13px] md:text-[14px] text-[#757575] leading-relaxed max-w-2xl mx-auto mb-8 px-2" style={{ fontFamily: 'Inter' }}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              </p>
+              <div className="flex justify-center">
+                <button className="px-10 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.3)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+                  Customize
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        <div className="h-[100px] sm:h-[120px] md:h-[130px] bg-white" />
       </section>
 
 
 
       {/* Testimonials Section */}
-      <section className="relative py-24 pl-[104px] pr-4 md:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
-        <div className="absolute inset-0 bg-white/60 pointer-events-none" />
+      <section className="relative py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-12 text-center md:text-left">
-            <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block uppercase tracking-wider">TESTIMONIALS</span>
-            <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3"><span className="font-bold">What Our</span> <span className="font-bold text-[#01888E]">Clients Say</span></h2>
+          <div className="mb-8 text-center md:text-left">
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>TESTIMONIALS</span>
+            <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+              <span className="font-bold">What Our</span> <span className="font-bold text-[#01888E]">Clients Say</span>
+            </h2>
           </div>
 
-          <div className="relative flex justify-center items-center h-[460px] cursor-grab"
+          <div
+            className="relative flex justify-center items-center h-[420px] sm:h-[460px] cursor-grab touch-pan-y"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -621,59 +615,75 @@ const Home = () => {
               if (position > 1) position -= testimonials.length;
 
               const isActive = position === 0;
-              const translateX = `translateX(${position * 380}px)`;
+              const cardWidth = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 260 : window.innerWidth < 1024 ? 300 : 360) : 360;
+              const translateX = `translateX(${position * cardWidth}px)`;
+
               return (
                 <div
                   key={testimonial.id}
                   className={`absolute ease-in-out ${isActive ? 'z-30' : 'z-10'}`}
-                  style={{ 
-                    transform: `${translateX} ${isActive ? ' translateY(-12px)' : ''}`, 
-                    transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out`, 
-                    opacity: isActive ? 1 : 0.6 
+                  style={{
+                    transform: `${translateX}${isActive ? ' translateY(-8px) scale(1.05)' : ' scale(0.92)'}`,
+                    transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out`,
+                    opacity: isActive ? 1 : 0.55,
                   }}
                 >
-                  <div className={`relative bg-white/95 rounded-[24px] p-8 text-center overflow-hidden transition-all duration-700 flex flex-col items-center justify-between ${isActive ? 'w-[380px] h-[400px] scale-100 shadow-[0_10px_40px_rgba(1,136,142,0.15)] ring-1 ring-[#01888E]/20' : 'w-[340px] h-[360px] scale-95 shadow-md'}`}>
-                    
-                    {/* Top Row: Quote & Avatar */}
-                    <div className="w-full relative flex flex-col items-center mt-2">
-                      <div className={`absolute -top-4 left-0 text-[#01888E] font-serif leading-none font-bold ${isActive ? 'text-[72px]' : 'text-[56px] opacity-60'}`}>
-                        “
-                      </div>
-                      <div className={`rounded-full bg-cover bg-center shadow-sm z-10 ${isActive ? 'w-[88px] h-[88px] ring-4 ring-[#EAF5F5]' : 'w-[72px] h-[72px] ring-2 ring-gray-100'}`} style={{ backgroundImage: `url(${testimonial.avatar})` }} />
+                  <div
+                    className={`relative bg-white rounded-[24px] px-7 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${
+                      isActive
+                        ? 'w-[260px] sm:w-[300px] lg:w-[360px] min-h-[360px] shadow-[0px_8px_32px_rgba(1,136,142,0.18)]'
+                        : 'w-[240px] sm:w-[280px] lg:w-[320px] min-h-[320px] shadow-[0px_4px_16px_rgba(0,0,0,0.06)]'
+                    }`}
+                  >
+                    <div className="absolute top-4 left-5 text-[#01888E] font-serif leading-none font-bold text-[56px] sm:text-[64px] pointer-events-none select-none">
+                      “
                     </div>
 
-                    {/* Stars */}
-                    <div className="flex justify-center gap-1 mt-4 mb-3">
-                      {[1,2,3,4,5].map(s => <Star key={s} size={isActive ? 16 : 14} className="text-[#FFC600] fill-[#FFC600]" />)}
+                    <div
+                      className={`rounded-full bg-cover bg-center border-2 border-[#01888E] z-10 mt-2 ${isActive ? 'w-[80px] h-[80px] sm:w-[88px] sm:h-[88px]' : 'w-[68px] h-[68px] sm:w-[76px] sm:h-[76px]'}`}
+                      style={{ backgroundImage: `url(${testimonial.avatar})` }}
+                    />
+
+                    <div className="flex justify-center gap-1 mt-4 mb-4">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} size={isActive ? 16 : 14} className="text-[#FFC600] fill-[#FFC600]" />
+                      ))}
                     </div>
 
-                    {/* Text */}
-                    <p className={`italic text-[#003032] mb-6 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px] opacity-80'} overflow-hidden flex-1 flex items-center`}>
-                      "{testimonial.text}"
+                    <p
+                      className={`italic text-[#003032]/80 mb-6 px-1 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px]'}`}
+                      style={{ fontFamily: 'Inter' }}
+                    >
+                      {testimonial.text}
                     </p>
 
-                    {/* Name & Country */}
                     <div className="mt-auto">
-                      <h3 className={`text-[#003032] font-extrabold ${isActive ? 'text-[20px] mb-1' : 'text-[16px] mb-0.5'}`}>Ethan Wilson</h3>
-                      <p className={`text-[#01888E] font-bold ${isActive ? 'text-[14px]' : 'text-[12px]'}`}>Sweden</p>
+                      <h3 className={`text-[#003032] font-bold ${isActive ? 'text-[18px] mb-1' : 'text-[15px] mb-0.5'}`} style={{ fontFamily: 'Inter' }}>
+                        {testimonial.name}
+                      </h3>
+                      <p className={`text-[#01888E] font-semibold ${isActive ? 'text-[14px]' : 'text-[12px]'}`} style={{ fontFamily: 'Inter' }}>
+                        {testimonial.country}
+                      </p>
                     </div>
-
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <div className="flex justify-center mt-8 gap-3">
+          <div className="flex justify-center mt-6 gap-2.5">
             {testimonials.map((_, index) => (
-              <button 
-                key={index} 
-                onClick={() => setCurrentSlide(index)} 
-                className={`rounded-full transition-all flex items-center justify-center border border-[#01888E] ${
-                  currentSlide === index ? 'w-[16px] h-[16px] bg-transparent' : 'w-[12px] h-[12px] bg-white opacity-60 hover:opacity-100'
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
+                className={`rounded-full transition-all flex items-center justify-center ${
+                  currentSlide === index
+                    ? 'w-[18px] h-[18px] bg-[#01888E]'
+                    : 'w-[12px] h-[12px] bg-white border border-[#01888E] hover:opacity-100 opacity-80'
                 }`}
               >
-                {currentSlide === index && <div className="w-[10px] h-[10px] bg-[#01888E] rounded-full" />}
+                {currentSlide === index && <div className="w-[6px] h-[6px] bg-white rounded-full" />}
               </button>
             ))}
           </div>

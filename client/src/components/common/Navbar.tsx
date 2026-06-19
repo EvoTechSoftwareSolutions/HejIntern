@@ -124,7 +124,7 @@ const Navbar = () => {
 
       {/* Main Navigation - glass background */}
       <div className="w-full bg-[#f0f0f0]/30 backdrop-blur-[7.5px] shadow-[0_4px_24px_rgba(0,0,0,0.05)] border-b border-white/60 relative z-40">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-8 h-[85px] relative flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[85px] relative flex items-center justify-between">
           <Link to="/" className="flex items-center z-20 shrink-0">
             <img src={logo} alt="Hej Ceylon" className="h-10 md:h-12 object-contain" />
           </Link>

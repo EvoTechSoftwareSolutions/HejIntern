@@ -73,30 +73,30 @@ const ContactBlock = ({
   </div>
 );
 
-const Footer = () => {
+const FooterSV = () => {
   const navigationLinks: LinkItem[] = [
-    { to: "/", label: "Home" },
-    { to: "/destinations", label: "Destinations" },
-    { to: "/tours", label: "Tours" },
-    { to: "/stays", label: "Stays" },
-    { to: "/blog", label: "Blog" },
-    { to: "/contact", label: "Contact Us" },
+    { to: "/sv", label: "Hem" },
+    { to: "/sv/destinations", label: "Destinationer" },
+    { to: "/sv/tours", label: "Turer" },
+    { to: "/sv/stays", label: "Boenden" },
+    { to: "/sv/blog", label: "Blogg" },
+    { to: "/sv/contact", label: "Kontakt" },
   ];
 
   const quickLinks: LinkItem[] = [
-    { to: "/terms", label: "Terms & Conditions" },
-    { to: "/privacy", label: "Privacy Policy" },
-    { to: "/faq", label: "FAQ" },
-    { to: "/gallery", label: "Gallery" },
-    { to: "/about", label: "About Us" },
+    { to: "/sv/terms", label: "Villkor" },
+    { to: "/sv/privacy", label: "Integritetspolicy" },
+    { to: "/sv/faq", label: "Vanliga frågor" },
+    { to: "/sv/gallery", label: "Galleri" },
+    { to: "/sv/about", label: "Om oss" },
   ];
 
   const supportLinks: LinkItem[] = [
-    { to: "/help-center", label: "Help Center" },
-    { to: "/account", label: "My Hej Ceylon" },
-    { to: "/favorites", label: "My Favorites" },
-    { to: "/my-tours", label: "My Tours" },
-    { to: "/profile", label: "My Profile" },
+    { to: "/sv/help-center", label: "Hjälpcenter" },
+    { to: "/sv/account", label: "Mitt Hej Ceylon" },
+    { to: "/sv/favorites", label: "Mina favoriter" },
+    { to: "/sv/my-tours", label: "Mina turer" },
+    { to: "/sv/profile", label: "Min profil" },
   ];
 
   return (
@@ -124,25 +124,26 @@ const Footer = () => {
             </div>
 
             <p className="text-[13px] text-white leading-[22px] mb-5 sm:mb-6" style={{ fontFamily: "Inter" }}>
-              <span className="font-bold">Hej Ceylon</span>, we bring your dream events to life with stunning décor, expert
-              planning, and seamless execution. Whether it&apos;s a wedding, birthday, corporate event, or any special celebration.
+              <span className="font-bold">Hej Ceylon</span>, vi förverkligar dina drömevenemang med fantastisk dekoration,
+              professionell planering och smidig genomförande. Oavsett om det är ett bröllop, en födelsedag, ett företagsevent
+              eller en särskild fest.
             </p>
 
             <h4 className="font-bold text-[13px] mb-3 w-full" style={{ fontFamily: "Inter" }}>
-              Stay in the loop and sign up for the Wardiere newsletter:
+              Håll dig uppdaterad — anmäl dig till Wardiere-nyhetsbrevet:
             </h4>
 
             <div className="flex items-center w-full max-w-[360px] bg-transparent rounded-full border-[1.5px] border-white overflow-hidden">
               <input
                 type="email"
-                placeholder="Enter your email"
-                aria-label="Email address"
+                placeholder="Ange din e-postadress"
+                aria-label="E-postadress"
                 className="flex-1 min-w-0 bg-transparent pl-4 sm:pl-5 py-2.5 outline-none text-white placeholder:text-white/80 text-[13px] sm:text-[14px]"
                 style={{ fontFamily: "Inter" }}
               />
               <button
                 type="button"
-                aria-label="Subscribe to newsletter"
+                aria-label="Prenumerera på nyhetsbrev"
                 className="w-[34px] h-[34px] flex items-center justify-center bg-white rounded-full m-1 text-[#01888E] hover:bg-gray-100 transition shrink-0"
               >
                 <ArrowRight size={18} strokeWidth={2.5} />
@@ -151,8 +152,8 @@ const Footer = () => {
           </div>
 
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8">
-            <FooterLinkColumn title="Navigations" links={navigationLinks} className="col-span-1" />
-            <FooterLinkColumn title="Quick Links" links={quickLinks} className="col-span-1" />
+            <FooterLinkColumn title="Navigering" links={navigationLinks} className="col-span-1" />
+            <FooterLinkColumn title="Snabblänkar" links={quickLinks} className="col-span-1" />
             <FooterLinkColumn title="Support" links={supportLinks} className="col-span-2 sm:col-span-1" />
           </div>
         </div>
@@ -164,11 +165,11 @@ const Footer = () => {
             +94 71 160 2095
           </ContactBlock>
 
-          <ContactBlock title="Contact Us" icon={<Mail size={18} className="text-white" />}>
+          <ContactBlock title="Kontakt" icon={<Mail size={18} className="text-white" />}>
             info@elegantdecos.lk
           </ContactBlock>
 
-          <ContactBlock title="Location" icon={<MapPin size={18} className="text-white" />}>
+          <ContactBlock title="Adress" icon={<MapPin size={18} className="text-white" />}>
             <span>
               New Puttalam Rd,
               <br />
@@ -177,8 +178,6 @@ const Footer = () => {
           </ContactBlock>
         </div>
 
-        <hr className="border-white/30 my-8 sm:my-10" />
-        
         <div className="flex justify-center gap-3 mt-8 sm:mt-10">
           {[
             { href: "#", label: "WhatsApp", Icon: WhatsAppIcon },
@@ -204,10 +203,10 @@ const Footer = () => {
           style={{ fontFamily: "Inter" }}
         >
           <p>
-            <span className="font-bold text-[#4B5563]">© HejCeylon (PVT) Ltd.</span> | All right reserved 2025
+            <span className="font-bold text-[#4B5563]">© HejCeylon (PVT) Ltd.</span> | Alla rättigheter förbehållna 2025
           </p>
           <p className="text-[#4B5563]">
-            Design & Develop by{" "}
+            Design & utveckling av{" "}
             <span className="font-bold text-[#1F2937]">Evon Technologies Software Solutions (PVT) Ltd.</span>
           </p>
         </div>
@@ -216,4 +215,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterSV;
