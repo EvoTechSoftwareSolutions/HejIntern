@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, Menu, Heart, LogOut, Bell } from 'lucide-react';
+import { ChevronDown, Menu, Heart, LogOut, Bell, X } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import usa from '../../assets/usa.png';
 import sweden from '../../assets/sweden.svg';
@@ -7,6 +7,7 @@ import logo from '../../assets/logo.png';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const isSwedish = location.pathname.startsWith('/sv');
@@ -157,11 +158,43 @@ const Navbar = () => {
 
           {/* Right side - keep mobile menu for small screens */}
           <div className="flex items-center gap-4 z-20 md:hidden">
-            <button className="text-[#003032] p-2 hover:bg-white/20 rounded-lg transition-colors">
-              <Menu size={24} />
+            <button 
+              className="text-[#003032] p-2 hover:bg-white/20 rounded-lg transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu Panel */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 py-4 flex flex-col z-40">
+            {
+              [
+                { to: '/', label: navText.home },
+                { to: isSwedish ? '/sv/tours' : '/tours', label: navText.tours },
+                { to: isSwedish ? '/sv/destinations' : '/destinations', label: navText.destinations },
+                { to: isSwedish ? '/sv/stays' : '/stays', label: navText.stays },
+                { to: isSwedish ? '/sv/blog' : '/blog', label: navText.blog },
+                { to: isSwedish ? '/sv/contact' : '/contact', label: navText.contactUs },
+                { to: isSwedish ? '/sv/gallery' : '/gallery', label: navText.gallery },
+              ].map((link) => {
+                const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to.replace('/sv', '')));
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`px-6 py-3 font-bold uppercase tracking-[0.1em] text-[13px] ${isActive ? 'text-[#01888E] bg-[#E6F3F4]/50' : 'text-[#003032] hover:bg-gray-50'}`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })
+            }
+          </div>
+        )}
       </div>
     </header>
   );

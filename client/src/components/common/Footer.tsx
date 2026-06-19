@@ -84,7 +84,7 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="flex flex-wrap sm:flex-nowrap gap-16 lg:gap-16 xl:gap-24 pt-2">
+          <div className="flex flex-col sm:flex-row flex-wrap sm:flex-nowrap gap-8 sm:gap-16 lg:gap-16 xl:gap-24 pt-2">
 
             {/* Navigation */}
             <div className="flex flex-col">
@@ -190,8 +190,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-white text-[#0F172A] h-[52px] flex items-center relative z-20">
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center w-full px-6 text-[12px]" style={{ fontFamily: 'Inter' }}>
+      <div className="bg-white text-[#0F172A] min-h-[52px] py-3 flex items-center relative z-20">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center w-full px-6 text-[12px] text-center md:text-left gap-2 md:gap-0" style={{ fontFamily: 'Inter' }}>
           <p><span className="font-bold text-[#4B5563]">© HejCeylon (PVT) Ltd.</span> | All right reserved 2025</p>
           <p className="mt-1 md:mt-0 text-[#4B5563]">Design & Develop by <span className="font-bold text-[#1F2937]">Evon Technologies Software Solutions (PVT) Ltd.</span></p>
         </div>

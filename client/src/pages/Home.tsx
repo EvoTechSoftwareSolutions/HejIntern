@@ -46,6 +46,14 @@ const Home = () => {
   const [_dragOffset, setDragOffset] = useState(0);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
+  const [slideWidth, setSlideWidth] = useState(380);
+
+  useEffect(() => {
+    const updateWidth = () => setSlideWidth(window.innerWidth < 480 ? window.innerWidth * 0.85 : 380);
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   const themes = [
     { id: 1, name: 'Dive into\nhistory and\ntraditions', bgColor: 'bg-[#2DC7F8]', shadow: 'shadow-[#2DC7F8]/50', textColor: 'text-white', iconColor: 'white' },
@@ -215,8 +223,8 @@ const Home = () => {
           </div>
 
         <div className="relative z-20 flex flex-col items-center mt-16 px-4">
-          <h1 className="font-kaisei text-[40px] md:text-[40px] leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
-          <p className="font-alex text-[28px] md:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
+          <h1 className="font-kaisei text-[28px] md:text-[40px] leading-[36px] md:leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
+          <p className="font-alex text-[24px] md:text-[34px] leading-[32px] md:leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
 
           <div className="flex flex-col items-center mt-4 w-full">
             <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-4">Tailored Experiences, Unmatched Adventures</p>
@@ -263,7 +271,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-12 px-4 md:pl-[104px] md:pr-8 bg-white w-full">
+      <section className="py-12 px-4 lg:pl-[104px] lg:pr-8 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
             <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">Hello !</h2>
@@ -276,7 +284,7 @@ const Home = () => {
                 <img
                   src={aboutus}
                   alt="About Hej Ceylon"
-                  className="w-[360px] md:w-[392px] h-auto md:h-[420px] object-cover rounded-[12px]"
+                  className="w-full max-w-[360px] md:max-w-[392px] h-auto md:h-[420px] object-cover rounded-[12px]"
                 />
               </div>
             </div>
@@ -301,7 +309,7 @@ const Home = () => {
       </section>
 
       {/* Tours Section (background: explorebg.png) */}
-      <section className="py-16 relative w-full overflow-hidden px-4 md:pl-[104px] md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-16 relative w-full overflow-hidden px-4 lg:pl-[104px] lg:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -318,7 +326,7 @@ const Home = () => {
 
             {/* Carousel Navigation Buttons */}
             <div className="flex justify-end mt-3">
-              <div className="flex gap-2 shrink-0 mr-0 md:mr-16">
+              <div className="flex gap-2 shrink-0 mr-0 lg:mr-16">
                 <button onClick={scrollPrevTours} className="w-[32px] h-[32px] bg-[#01888E] rounded-full flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
@@ -399,7 +407,7 @@ const Home = () => {
 
       {/* Stays Section (background removed) */}
       {/* Destinations Section */}
-      <section className="py-16 px-4 md:pl-[104px] md:pr-8 bg-white w-full">
+      <section className="py-16 px-4 lg:pl-[104px] lg:pr-8 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-8">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Reach Your Dream Destination</span>
@@ -495,7 +503,7 @@ const Home = () => {
 
 
       {/* Stays Section */}
-      <section className="relative py-16 pl-[104px] pr-4 md:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
+      <section className="relative py-16 px-4 lg:pl-[104px] lg:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
         <div className="absolute inset-0 bg-white/40 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -511,7 +519,7 @@ const Home = () => {
 
             {/* Carousel Navigation Buttons - right aligned on new line */}
             <div className="flex justify-end mt-3">
-              <div className="flex gap-2 shrink-0 mr-16">
+              <div className="flex gap-2 shrink-0 mr-0 lg:mr-16">
                 <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
@@ -587,7 +595,7 @@ const Home = () => {
         <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/95 to-transparent pointer-events-none" />
         <div className="w-full h-28 bg-white" />
         <div className="absolute left-0 right-0 top-[78%] transform -translate-y-1/2 flex justify-center px-4">
-          <div className="bg-white max-w-3xl w-full md:w-[720px] mx-auto rounded-sm shadow-xl p-6 md:p-8 border border-gray-100">
+          <div className="bg-white w-[90%] md:max-w-[720px] mx-auto rounded-sm shadow-xl p-6 md:p-8 border border-gray-100">
             <h3 className="text-center text-[#003032] font-bold text-[20px] md:text-[22px] leading-tight mb-3">Let's Customize Your Dream Tour Today!</h3>
             <p className="text-center text-[13px] text-gray-600 max-w-3xl mx-auto mb-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             <div className="flex justify-center">
@@ -600,7 +608,7 @@ const Home = () => {
 
 
       {/* Testimonials Section */}
-      <section className="relative py-24 pl-[104px] pr-4 md:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
+      <section className="relative py-24 px-4 lg:pl-[104px] lg:pr-8 overflow-hidden bg-[#EAF5F5]" style={{ backgroundImage: `url(${explorebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay' }}>
         <div className="absolute inset-0 bg-white/60 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-12 text-center md:text-left">
@@ -621,7 +629,7 @@ const Home = () => {
               if (position > 1) position -= testimonials.length;
 
               const isActive = position === 0;
-              const translateX = `translateX(${position * 380}px)`;
+              const translateX = `translateX(${position * slideWidth}px)`;
               return (
                 <div
                   key={testimonial.id}
@@ -632,7 +640,7 @@ const Home = () => {
                     opacity: isActive ? 1 : 0.6 
                   }}
                 >
-                  <div className={`relative bg-white/95 rounded-[24px] p-8 text-center overflow-hidden transition-all duration-700 flex flex-col items-center justify-between ${isActive ? 'w-[380px] h-[400px] scale-100 shadow-[0_10px_40px_rgba(1,136,142,0.15)] ring-1 ring-[#01888E]/20' : 'w-[340px] h-[360px] scale-95 shadow-md'}`}>
+                  <div className={`relative bg-white/95 rounded-[24px] p-8 text-center overflow-hidden transition-all duration-700 flex flex-col items-center justify-between ${isActive ? 'w-[85vw] sm:w-[380px] h-[400px] scale-100 shadow-[0_10px_40px_rgba(1,136,142,0.15)] ring-1 ring-[#01888E]/20' : 'w-[80vw] sm:w-[340px] h-[360px] scale-95 shadow-md'}`}>
                     
                     {/* Top Row: Quote & Avatar */}
                     <div className="w-full relative flex flex-col items-center mt-2">
