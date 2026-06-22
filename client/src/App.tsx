@@ -1,8 +1,14 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home.tsx';
 import HomeSV from './pages/HomeSV.tsx';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
+import FooterSV from './components/common/FooterSV';
+
+function AppFooter() {
+  const { pathname } = useLocation();
+  return pathname.startsWith('/sv') ? <FooterSV /> : <Footer />;
+}
 
 function App() {
   return (
@@ -15,7 +21,7 @@ function App() {
           <Route path="/sv" element={<HomeSV />} />
         </Routes>
         </main>
-        <Footer />
+        <AppFooter />
       </div>
     </BrowserRouter>
   );

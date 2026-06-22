@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import { Heart, Star, User, ChevronLeft, CornerUpRight, MapPin } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
-import FooterSV from "../components/common/FooterSV";
 import aboutus from '../assets/aboutus.png';
 import explorebg from '../assets/explorebg.png';
 import bg2 from '../assets/bg2.png';
@@ -691,8 +690,6 @@ const HomeSV = () => {
           </div>
         </div>
       </section>
-
-      <FooterSV />
     </div>
   );
 };
