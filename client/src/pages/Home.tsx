@@ -228,10 +228,10 @@ const Home = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="w-full font-sans text-dark bg-white overflow-hidden">
+    <div className="w-full font-sans text-dark bg-white overflow-hidden pt-[80px] md:pt-[100px] lg:pt-0">
 
       {/* Hero Section */}
-      <section className="relative w-full h-[640px] flex flex-col justify-center items-center text-center text-secondary mt-0">
+      <section className="relative w-full min-h-[520px] md:min-h-[640px] lg:min-h-screen flex flex-col justify-center items-center text-center text-secondary mt-0">
         <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBanner})` }} />
 
         <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
@@ -244,11 +244,12 @@ const Home = () => {
           </div>
 
         <div className="relative z-20 flex flex-col items-center mt-16 px-4">
-          <h1 className="font-kaisei text-[40px] md:text-[40px] leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
-          <p className="font-alex text-[28px] md:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
+          <h1 className="font-kaisei text-[28px] md:text-[40px] lg:text-[56px] leading-tight font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
+          <p className="font-alex text-[20px] md:text-[30px] lg:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
 
-          <div className="flex flex-col items-center mt-4">
-            <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-6">Tailored Experiences, Unmatched Adventures</p>
+          <div className="flex flex-col items-center mt-4 w-full">
+            <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-4">Tailored Experiences, Unmatched Adventures</p>
+            <div className="w-full max-w-[300px] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-6" />
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center">
@@ -267,21 +268,15 @@ const Home = () => {
         <p className="text-[16px] text-[#003032] font-sans max-w-4xl mx-auto mb-10 leading-[26px] text-center px-4">
           We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
         </p>
-        <div
-          className="flex flex-nowrap justify-center gap-3 overflow-x-auto pb-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pb-8 px-2 md:px-4 max-w-[1100px] mx-auto justify-center">
           {themes.map((theme) => {
             const isActive = activeTheme === theme.id;
             return (
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`w-[118px] h-[155px] rounded-[16px] p-2 flex flex-col items-center justify-start transition-all duration-300 cursor-pointer flex-shrink-0 ${
-                  isActive
-                    ? 'bg-[#01888E] text-white shadow-[0_12px_24px_rgba(1,136,142,0.3)] transform -translate-y-1'
-                    : 'bg-[#E6F3F4] text-[#003032] hover:-translate-y-1 hover:shadow-md'
-                }`}
+                className={`group flex flex-col items-center justify-start gap-2 rounded-[12px] p-3 w-full sm:w-[140px] bg-[#EAF5F5] cursor-pointer`}
+                aria-pressed={activeTheme === theme.id}
               >
                 {/* Inner Icon Container */}
                 <div className="w-[95px] h-[78px] rounded-[12px] bg-[#D8EDEE] flex items-center justify-center mb-2 mt-1 shadow-sm">
@@ -301,17 +296,17 @@ const Home = () => {
       <section className="py-12 pl-[104px] pr-4 md:pr-8 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
-            <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">Hello !</h2>
+            <h2 className="font-petemoss text-[40px] sm:text-[60px] md:text-[80px] lg:text-[96px] text-[#01888E]">Hello !</h2>
           </div>
 
-          <div className="flex flex-col md:flex-row items-start gap-12">
+          <div className="flex flex-col md:flex-row items-start gap-6 md:gap-12">
             {/* Left: framed image */}
             <div className="flex-shrink-0 w-full md:w-[420px]">
               <div className="bg-white rounded-[18px] p-4 shadow-lg inline-block">
                 <img
                   src={aboutus}
                   alt="About Hej Ceylon"
-                  className="w-[360px] md:w-[392px] h-auto md:h-[420px] object-cover rounded-[12px]"
+                  className="w-full max-w-[400px] h-[280px] sm:h-[340px] md:h-[420px] object-cover rounded-[12px]"
                 />
               </div>
             </div>
@@ -319,7 +314,7 @@ const Home = () => {
             {/* Right: Text */}
             <div className="flex flex-col max-w-[700px]">
               <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2" style={{ fontFamily: 'Inter' }}>ABOUT US</span>
-              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+              <h3 className="text-[26px] sm:text-[30px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
                 Who We <span className="text-[#01888E]">Are</span>
               </h3>
 
@@ -363,8 +358,13 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mb-10">
-            {tours.map((tour, index) => {
+          <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5">
+            {tours.map((tour) => (
+              <div key={tour.id} className="snap-start min-w-[280px] sm:min-w-[320px]  md:min-w-0 bg-white rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer flex flex-col flex-shrink-0">
+                {/* Image area */}
+                <div className="relative w-full h-[180px] bg-gray-100 shrink-0">
+                  <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
               return (
                 <div key={tour.id} className="bg-white rounded-[5px] w-[220px] h-[320px] shadow-sm hover:shadow-md transition-shadow cursor-pointer relative">
@@ -461,13 +461,24 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-5 mt-6">
-            <div className="w-[377px] h-[187px] rounded-[8px] overflow-hidden relative">
-              <img src={ninearch} alt="Nine Arch" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-4 bottom-4 text-white">
-                <div className="text-[18px] font-extrabold drop-shadow-md">Nine Arch</div>
-                <div className="text-[11px] max-w-[340px] drop-shadow-sm">Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.</div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mt-6">
+            {destinationCards.map((card) => (
+              <div
+                key={card.id}
+                className={`group ${card.wide ? 'md:col-span-2' : 'md:col-span-1'} h-[200px] sm:h-[240px] md:h-[260px] lg:h-[300px] rounded-[14px] overflow-hidden relative cursor-pointer`}
+              >
+                <img src={card.image} alt={card.name} className="w-full h-full object-cover" />
+                <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none" />
+                <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <h4 className={`font-bold text-[#003032] ${card.wide ? 'text-[22px]' : 'text-[20px]'}`} style={{ fontFamily: 'Inter' }}>
+                    {card.name}
+                  </h4>
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                    <p className={`text-[#003032]/75 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150 ${card.wide ? 'text-[13px] max-w-[90%]' : 'text-[11px]'}`} style={{ fontFamily: 'Inter' }}>
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -637,16 +648,23 @@ const Home = () => {
 
 
       {/* Customize CTA Section */}
-      <section className="relative w-full flex flex-col items-center">
-        <div className="w-full h-[520px] bg-cover bg-center" style={{ backgroundImage: `url(${customize})` }} />
-        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/95 to-transparent pointer-events-none" />
-        <div className="w-full h-28 bg-white" />
-        <div className="absolute left-0 right-0 top-[78%] transform -translate-y-1/2 flex justify-center px-4">
-          <div className="bg-white max-w-3xl w-full md:w-[720px] mx-auto rounded-sm shadow-xl p-6 md:p-8 border border-gray-100">
-            <h3 className="text-center text-[#003032] font-bold text-[20px] md:text-[22px] leading-tight mb-3">Let's Customize Your Dream Tour Today!</h3>
-            <p className="text-center text-[13px] text-gray-600 max-w-3xl mx-auto mb-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            <div className="flex justify-center">
-              <button className="px-6 py-3 bg-[#01888E] text-white rounded-md font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:opacity-95 transition">Customize</button>
+      <section className="relative w-full bg-white">
+        <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] bg-cover bg-center" style={{ backgroundImage: `url(${customize})` }}>
+          <div className="absolute top-0 left-0 w-full h-36 sm:h-44 bg-gradient-to-b from-white from-40% via-white/90 to-transparent pointer-events-none" />
+
+          <div className="absolute left-0 right-0 bottom-0 translate-y-[45%] flex justify-center px-4 sm:px-6 z-10">
+            <div className="bg-white max-w-3xl w-full md:max-w-[720px] mx-auto rounded-[24px] shadow-[0px_8px_32px_rgba(0,0,0,0.12)] px-4 sm:px6 py-8 md:px-12 md:py-12">
+              <h3 className="text-center text-[#003032] font-bold text-[24px] md:text-[28px] leading-tight mb-5" style={{ fontFamily: 'Inter' }}>
+                Let's Customize Your <span className="text-[#01888E]">Dream Tour</span> Today!
+              </h3>
+              <p className="text-center text-[13px] md:text-[14px] text-[#757575] leading-relaxed max-w-2xl mx-auto mb-8 px-2" style={{ fontFamily: 'Inter' }}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              </p>
+              <div className="flex justify-center">
+                <button className="px-10 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.3)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+                  Customize
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -655,7 +673,7 @@ const Home = () => {
 
 
       {/* Testimonials Section */}
-      <section className="relative py-24 pl-[104px] pr-4 md:pr-8 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="relative py-14 mt-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-12">
             <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block">TESTIMONIALS</span>
