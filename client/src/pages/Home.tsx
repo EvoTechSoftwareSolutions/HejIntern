@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Share2, Heart, Star, User, ChevronLeft, Umbrella, TreePine, Mountain, Sparkles, Tag } from 'lucide-react';
+import { Share2, Heart, Star, User, ChevronLeft } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/aboutus.png';
@@ -10,7 +10,7 @@ import thalpe from '../assets/thalpe.png';
 import stay from '../assets/stay.png';
 import customize from '../assets/customize.png';
 
-const renderThemeIcon = (id: number, isActive: boolean) => {
+const renderThemeIcon = (id: number, _isActive: boolean) => {
   switch (id) {
     case 1: // Dive into history and traditions
       return (
