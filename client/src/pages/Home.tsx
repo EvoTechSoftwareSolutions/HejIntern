@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Share2, Heart, Star, User, ChevronLeft } from 'lucide-react';
+import { Heart, Star, User, ChevronLeft, CornerUpRight, MapPin } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/aboutus.png';
@@ -7,76 +7,33 @@ import explorebg from '../assets/explorebg.png';
 import sigiriya from '../assets/sigiriya.png';
 import ninearch from '../assets/ninearch.png';
 import thalpe from '../assets/thalpe.png';
-import stay from '../assets/stay.png';
+import stay from '../assets/stayimage.jpg';
 import customize from '../assets/customize.png';
+import icon1 from '../assets/1.png';
+import icon2 from '../assets/2.png';
+import icon3 from '../assets/3.png';
+import icon4 from '../assets/4.png';
+import icon5 from '../assets/5.png';
+import icon6 from '../assets/6.png';
+import icon7 from '../assets/7.png';
 
-const renderThemeIcon = (id: number, _isActive: boolean) => {
+const renderThemeIcon = (id: number) => {
+  const iconClass = "w-full h-full object-contain transition-opacity duration-150 group-hover:opacity-95";
   switch (id) {
-    case 1: // Dive into history and traditions
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
-          <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
-        </svg>
-      );
-    case 5: // Rejuvenate your soul
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
-          <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 8v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6C13.68 9.26 13.12 9 12.5 9h-1c-.62 0-1.18.26-1.56.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.9-1.12 1.62v.33c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-.33c0-.72-.45-1.35-1.12-1.62L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25z" />
-        </svg>
-      );
-    case 2: // Unwind by turquoise waters
-      return (
-        <svg viewBox="0 0 100 80" className="w-10 h-10 text-[#003032]" fill="currentColor">
-          {/* Head */}
-          <circle cx="68" cy="12" r="9" />
-          {/* Body leaning forward with arm outstretched */}
-          <path d="M62 22 Q50 28 30 26 Q28 26 28 28 Q28 30 30 30 Q54 32 66 26 L78 38 Q80 40 82 38 Q84 36 82 34 Z" />
-          {/* Legs kicking back */}
-          <path d="M62 24 L56 42 Q55 44 57 45 Q59 46 60 44 L65 30 Z" />
-          <path d="M58 26 L50 44 Q49 46 51 47 Q53 48 54 46 L62 28 Z" />
-          {/* Wave 1 */}
-          <path d="M10 56 Q20 50 30 56 Q40 62 50 56 Q60 50 70 56 Q80 62 90 56" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/>
-          {/* Wave 2 */}
-          <path d="M10 68 Q20 62 30 68 Q40 74 50 68 Q60 62 70 68 Q80 74 90 68" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/>
-        </svg>
-      );
-    case 3: // Witness nature in its purest form
-      return (
-        <svg viewBox="0 0 100 90" className="w-10 h-10 text-[#003032]" fill="currentColor">
-          {/* Person: head */}
-          <circle cx="22" cy="20" r="7" />
-          {/* Person: body */}
-          <rect x="18" y="30" width="8" height="22" rx="3" />
-          {/* Person: legs */}
-          <rect x="16" y="52" width="6" height="18" rx="3" />
-          <rect x="24" y="52" width="6" height="18" rx="3" />
-          {/* Ground line */}
-          <rect x="5" y="70" width="90" height="4" rx="2" />
-          {/* Tree trunk */}
-          <rect x="56" y="48" width="10" height="22" rx="3" />
-          {/* Tree canopy (cloud-like circle) */}
-          <circle cx="61" cy="32" r="22" />
-        </svg>
-      );
-    case 4: // Get your adrenaline rush!
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
-          <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 6.7 1.4z"/>
-          <path d="M2 10h3M3 14h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      );
-    case 6: // Indulge in exclusivity
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor">
-          <path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/>
-        </svg>
-      );
-    case 7: // Amazing experiences at great value!
-      return (
-        <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#003032]" fill="currentColor" fillRule="evenodd" clipRule="evenodd">
-          <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7zm11.23 8.35L12 20l-4.73-4.65c-.32-.32-.52-.76-.52-1.25 0-1 .8-1.8 1.8-1.8.61 0 1.15.3 1.48.77l1.97 1.95 1.97-1.95c.33-.47.87-.77 1.48-.77 1 0 1.8.8 1.8 1.8 0 .49-.2 1.03-.52 1.25z" />
-        </svg>
-      );
+    case 1:
+      return <img src={icon1} alt="Theme 1" className={iconClass} />;
+    case 2:
+      return <img src={icon2} alt="Theme 2" className={iconClass} />;
+    case 3:
+      return <img src={icon3} alt="Theme 3" className={iconClass} />;
+    case 4:
+      return <img src={icon4} alt="Theme 4" className={iconClass} />;
+    case 5:
+      return <img src={icon5} alt="Theme 5" className={iconClass} />;
+    case 6:
+      return <img src={icon6} alt="Theme 6" className={iconClass} />;
+    case 7:
+      return <img src={icon7} alt="Theme 7" className={iconClass} />;
     default:
       return null;
   }
@@ -89,17 +46,17 @@ const Home = () => {
   const [_dragOffset, setDragOffset] = useState(0);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
-  const toursRef = useRef<HTMLDivElement | null>(null);
 
   const themes = [
-    { id: 1, name: 'Dive into history and traditions', icon: '🏛️' },
-    { id: 2, name: 'Unwind by turquoise waters', icon: '🏖️' },
-    { id: 3, name: 'Witness nature in its purest form', icon: '🐘' },
-    { id: 4, name: 'Get your adrenaline rush!', icon: '🧗' },
-    { id: 5, name: 'Rejuvenate your soul', icon: '🧘' },
-    { id: 6, name: 'Indulge in exclusivity', icon: '✨' },
-    { id: 7, name: 'Amazing experiences at great value!', icon: '🎒' },
+    { id: 1, name: 'Dive into\nhistory and\ntraditions', bgColor: 'bg-[#2DC7F8]', shadow: 'shadow-[#2DC7F8]/50', textColor: 'text-white', iconColor: 'white' },
+    { id: 2, name: 'Unwind by\nturquoise\nwaters', bgColor: 'bg-[#0E4751]', shadow: 'shadow-[#0E4751]/50', textColor: 'text-white', iconColor: 'white' },
+    { id: 3, name: 'Witness\nnature in its\npurest form', bgColor: 'bg-[#107A76]', shadow: 'shadow-[#107A76]/50', textColor: 'text-white', iconColor: 'white' },
+    { id: 4, name: 'Get your\nadrenaline\nrush!', bgColor: 'bg-[#FFC600]', shadow: 'shadow-[#FFC600]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
+    { id: 5, name: 'Rejuvenate\nyour soul', bgColor: 'bg-[#FFA800]', shadow: 'shadow-[#FFA800]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
+    { id: 6, name: 'Indulge in\nexclusivity', bgColor: 'bg-[#FFB094]', shadow: 'shadow-[#FFB094]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
+    { id: 7, name: 'Amazing\nexperiences at\ngreat value!', bgColor: 'bg-[#FF6B74]', shadow: 'shadow-[#FF6B74]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
   ];
+  // responsive grid will handle layout on small screens
 
   const tours = [
     {
@@ -122,7 +79,7 @@ const Home = () => {
       reviews: 42,
       duration: '2 days',
       category: 'Nature',
-      image: ninearch
+      image: sigiriya
     },
     {
       id: 3,
@@ -133,7 +90,7 @@ const Home = () => {
       reviews: 31,
       duration: '4 days',
       category: 'Relax',
-      image: thalpe
+      image: sigiriya
     },
     {
       id: 4,
@@ -148,38 +105,36 @@ const Home = () => {
     },
   ];
 
-  const uniformStayTitle = 'Kandy Spice Villa';
-  const uniformStayLocation = 'Kandy, Sri Lanka';
-  const uniformStayRating = '4.5';
-
-  const destinationCards = [
-    { id: 1, name: 'Sigiriya', description: 'Explore the ancient rock fortress.', image: sigiriya, wide: false },
-    { id: 2, name: 'Ella', description: 'Enjoy scenic views and waterfalls.', image: ninearch, wide: false },
-    { id: 3, name: 'Thalpe', description: 'Relax on beautiful pristine beaches.', image: thalpe, wide: false },
-    { id: 4, name: 'Kandy', description: 'Experience culture and traditions.', image: sigiriya, wide: false }
-  ];
+  // (removed unused uniform stay constants)
 
   const testimonials = [
     {
       id: 1,
-      name: 'Name',
-      country: 'Country',
+      name: 'Ethan Wilson',
+      country: 'Sweden',
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop'
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'
     },
     {
       id: 2,
-      name: 'Name',
-      country: 'Country',
+      name: 'Ethan Wilson',
+      country: 'Sweden',
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop'
+      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'
     },
     {
       id: 3,
-      name: 'Name',
-      country: 'Country',
+      name: 'Ethan Wilson',
+      country: 'Sweden',
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      avatar: 'https://images.unsplash.com/photo-1517849845537-1d51a20414de?q=80&w=100&auto=format&fit=crop'
+      avatar: 'https://images.unsplash.com/photo-1517849845537-1d51a20414de?q=80&w=200&auto=format&fit=crop'
+    },
+    {
+      id: 4,
+      name: 'Ethan Wilson',
+      country: 'Sweden',
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
     },
   ];
 
@@ -224,6 +179,52 @@ const Home = () => {
     try { e.currentTarget.releasePointerCapture?.(e.pointerId); } catch (err) { }
   };
 
+  const toursRef = useRef<HTMLDivElement | null>(null);
+  const scrollPrevTours = () => {
+    const el = toursRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: -amount, behavior: 'smooth' });
+  };
+  const scrollNextTours = () => {
+    const el = toursRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: amount, behavior: 'smooth' });
+  };
+
+  const staysRef = useRef<HTMLDivElement | null>(null);
+  const scrollPrevStays = () => {
+    const el = staysRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: -amount, behavior: 'smooth' });
+  };
+  const scrollNextStays = () => {
+    const el = staysRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.9 || 320;
+    el.scrollBy({ left: amount, behavior: 'smooth' });
+  };
+
+  const stays = [
+    { id: 1, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: true },
+    { id: 2, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+    { id: 3, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+    { id: 4, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+  ];
+
+  const destinationDescription = 'Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.';
+
+  const destinationCards = [
+    { id: 1, name: 'Nine Arch', image: ninearch, wide: true, description: destinationDescription },
+    { id: 2, name: 'Thalpe', image: thalpe, wide: false, description: destinationDescription },
+    { id: 3, name: 'Nine Arch', image: ninearch, wide: false, description: destinationDescription },
+    { id: 4, name: 'Nine Arch', image: ninearch, wide: false, description: destinationDescription },
+    { id: 5, name: 'Thalpe', image: thalpe, wide: false, description: destinationDescription },
+    { id: 6, name: 'Thalpe', image: thalpe, wide: true, description: destinationDescription },
+  ];
+
   // Autoplay: advance testimonial every AUTO_SLIDE_MS, but pause while dragging
   useEffect(() => {
     const id = setInterval(() => {
@@ -244,9 +245,11 @@ const Home = () => {
         <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
         <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
 
-<div className="absolute top-[122px] right-8 md:right-16 z-20 flex flex-col gap-3">
-            {themes.map((_, index) => (
-              <button key={index} onClick={() => setHeroSlide(index)} className={`w-3 h-3 rounded-full transition-all ${heroSlide === index ? 'bg-primary' : 'bg-secondary'} cursor-pointer hover:bg-primary`} />
+          <div className="absolute top-1/2 -translate-y-1/2 right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
+            {[1, 2, 3, 4, 5].map((_, index) => (
+              <button key={index} onClick={() => setHeroSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${heroSlide === index ? 'w-[44px] h-[44px] border-[2px] border-[#01888E] p-[3px]' : 'w-[6px] h-[6px] bg-white hover:bg-gray-200'} cursor-pointer`}>
+                {heroSlide === index && <img src={heroBanner} className="w-full h-full rounded-full object-cover ring-2 ring-white" alt="" />}
+              </button>
             ))}
           </div>
 
@@ -259,11 +262,11 @@ const Home = () => {
             <div className="w-full max-w-[300px] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-6" />
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center">
-            <button className="px-10 py-3 rounded-full bg-white text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px] border border-[rgba(1,136,142,0.08)]">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center w-full px-4 md:px-0">
+            <button className="px-10 py-3.5 rounded-[12px] bg-white/90 backdrop-blur-sm text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-white">
               Let's Start Your Journey
             </button>
-            <button className="px-10 py-3 rounded-full bg-gradient-to-r from-[#01888E] to-[#006D6D] text-white font-sans font-bold text-[14px] leading-[18px] shadow-lg transition-colors flex items-center justify-center min-w-[260px]">
+            <button className="px-10 py-3.5 rounded-[12px] bg-[#01888E] text-white font-sans font-bold text-[14px] leading-[18px] shadow-[0px_4px_12px_rgba(1,136,142,0.3)] transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-[#006D6D]">
               Build My Trip
             </button>
           </div>
@@ -271,13 +274,12 @@ const Home = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-12 bg-white max-w-7xl mx-auto text-center mt-6">
-        <p className="text-[16px] text-[#003032] font-sans max-w-4xl mx-auto mb-10 leading-[26px] text-center px-4">
+      <section className="py-8 bg-white max-w-7xl mx-auto text-center mt-2">
+        <p className="text-[17px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[28px] text-center px-4 font-normal">
           We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pb-8 px-2 md:px-4 max-w-[1100px] mx-auto justify-center">
           {themes.map((theme) => {
-            const isActive = activeTheme === theme.id;
             return (
               <div
                 key={theme.id}
@@ -285,14 +287,10 @@ const Home = () => {
                 className={`group flex flex-col items-center justify-start gap-2 rounded-[12px] p-3 w-full sm:w-[140px] bg-[#EAF5F5] cursor-pointer`}
                 aria-pressed={activeTheme === theme.id}
               >
-                {/* Inner Icon Container */}
-                <div className="w-[95px] h-[78px] rounded-[12px] bg-[#D8EDEE] flex items-center justify-center mb-2 mt-1 shadow-sm">
-                  {renderThemeIcon(theme.id, isActive)}
+                <div className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] md:w-[96px] md:h-[96px] flex items-center justify-center pt-1">
+                  {renderThemeIcon(theme.id)}
                 </div>
-                {/* Label Text */}
-                <span className="text-[11px] font-bold text-center leading-[14px] px-1 mt-auto mb-1">
-                  {theme.name}
-                </span>
+                <span className={`text-[11px] md:text-[12px] font-semibold text-center leading-[14px] text-[#003032] whitespace-pre-line`}>{theme.name}</span>
               </div>
             );
           })}
@@ -300,7 +298,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-12 pl-[104px] pr-4 md:pr-8 bg-white w-full">
+      <section className="py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
             <h2 className="font-petemoss text-[40px] sm:text-[60px] md:text-[80px] lg:text-[96px] text-[#01888E]">Hello !</h2>
@@ -308,8 +306,8 @@ const Home = () => {
 
           <div className="flex flex-col md:flex-row items-start gap-6 md:gap-12">
             {/* Left: framed image */}
-            <div className="flex-shrink-0 w-full md:w-[420px]">
-              <div className="bg-white rounded-[18px] p-4 shadow-lg inline-block">
+            <div className="w-full md:w-1/2 flex justify-center">
+              <div className="bg-white rounded-[18px] p-4 inline-block">
                 <img
                   src={aboutus}
                   alt="About Hej Ceylon"
@@ -338,126 +336,111 @@ const Home = () => {
       </section>
 
       {/* Tours Section (background: explorebg.png) */}
-      <section className="py-16 relative w-full overflow-hidden pl-[104px] pr-4 md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-10">
-            <div>
-              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
-              <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-                <span className="font-bold">A Land</span> <span className="font-normal">of Diverse Wonders!</span>
-              </h2>
-              <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px]" style={{ fontFamily: 'Inter' }}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+            <div className="max-w-[800px]">
+              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
+              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+                <span className="font-light">A Land of </span>
+                <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
+              </h3>
+              <p className="text-[14px] leading-[22px] text-[#003032] font-normal" style={{ fontFamily: 'Inter' }}>
                 We offer seven extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
               </p>
             </div>
 
-            {/* Carousel Navigation Buttons - right aligned on new line */}
-            <div className="flex justify-end mt-4">
-              <div className="flex gap-2 shrink-0 mr-16">
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
+            {/* Carousel Navigation Buttons */}
+            <div className="flex justify-end mt-3">
+              <div className="flex gap-1 shrink-0 mr-0 md:mr-16">
+                <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-[34px] h-[28px] bg-[#01888E] rounded-[14px_0_0_14px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors transform rotate-180">
-                  <ChevronLeft size={16} />
+                <button onClick={scrollNextTours} aria-label="Next tours" className="w-[34px] h-[28px] bg-[#01888E] rounded-[0_14px_14px_0] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
                 </button>
               </div>
             </div>
           </div>
 
           <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5">
-            {tours.map((tour, index) => {
-              return (
-                <div key={tour.id} className="bg-white rounded-[5px] w-[220px] h-[320px] shadow-sm hover:shadow-md transition-shadow cursor-pointer relative">
+            {tours.map((tour) => (
+              <div key={tour.id} className="snap-start min-w-[280px] sm:min-w-[320px]  md:min-w-0 bg-white rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer flex flex-col flex-shrink-0">
+                {/* Image area */}
+                <div className="relative w-full h-[180px] bg-gray-100 shrink-0">
+                  <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                  {/* Card Image */}
-                  <div className="relative overflow-hidden bg-gray-100" style={{ width: '220px', height: '170px', borderTopLeftRadius: '5px', borderTopRightRadius: '5px' }}>
-                    <div
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${sigiriya})` }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-                    {/* Image overlay text */}
-                    <div className="absolute left-3 bottom-3 flex flex-col gap-1">
-                      {index > 0 && (
-                        <div className="flex items-center gap-1">
-                          <User size={10} className="text-white" />
-                          <span className="text-white text-[10px] font-medium leading-[12px] capitalize" style={{ fontFamily: 'Inter' }}>Lorem Ipsum is simply</span>
-                        </div>
-                      )}
-                      <div className="flex items-center gap-1">
-                        <Star size={10} className="text-white fill-white" />
-                        <span className="text-white text-[10px] font-medium leading-[12px] capitalize" style={{ fontFamily: 'Inter' }}>Lorem Ipsum is simply</span>
-                      </div>
-                    </div>
+                  {/* Rating badge top-left */}
+                  <div className="absolute left-3 top-3 bg-[#0BA77A] text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <span className="text-[#FFC600] text-[12px]">★</span>
+                    <span>4.5</span>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="pt-[14px] px-[8px] pb-3 relative">
+                  {/* Heart top-right */}
+                  <button aria-label="favorite" className="absolute right-3 top-3 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                    <Heart size={14} className="text-[#003032] fill-none" />
+                  </button>
 
-                    {/* Rating & Price Row */}
-                    <div className="flex items-center">
-                      <div className="h-[18px] px-1 border border-[#008000] rounded-[4px] flex items-center justify-center text-[#008000] text-[9px] font-bold" style={{ fontFamily: 'Inter' }}>
-                        {tour.rating || '4.5'}
-                      </div>
-                      <span className="ml-[8px] text-[9px] font-semibold text-[#008000] leading-[11px]" style={{ fontFamily: 'Inter' }}>
-                        {tour.reviews || '14'} Ratings
-                      </span>
-
-                      <div className="w-[1px] h-[13px] bg-[#003032] mx-[10px]"></div>
-
-                      <span className="text-[9px] font-semibold text-[#003032] leading-[11px] mr-[3px]" style={{ fontFamily: 'Inter' }}>From</span>
-                      <span className="text-[11px] font-semibold text-[#F30000] leading-[13px]" style={{ fontFamily: 'Inter' }}>
-                        {tour.price || '5$ - 1000$'}
-                      </span>
+                  {/* Text overlay bottom-left */}
+                  <div className="absolute left-3 bottom-3 flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-white text-[12px] font-semibold">
+                      <User size={13} className="text-white fill-white/20" />
+                      <span>Lorem Ipsum Is Simply</span>
                     </div>
-
-                    {/* Description text */}
-                    <p className="mt-[10px] mb-[15px] ml-[8px] text-[11px] leading-[13px] text-[#003032] font-normal w-[165px]" style={{ fontFamily: 'Inter' }}>
-                      Lorem Ipsum is simply dummy text of the printing and type setting industry.
-                    </p>
-
-                    {/* Divider Line */}
-                    <div className="w-[131px] h-[1px] bg-[#003032] opacity-[0.35] ml-[27px] mb-[4px]"></div>
-
-                    {/* Bottom Row */}
-                    <div className="flex items-center justify-between ml-[8px]">
-                      <div>
-                        <div className="text-[10px] font-normal text-[#008000] leading-[12px]" style={{ fontFamily: 'Inter' }}>{tour.category || 'Adventure'}</div>
-                        <div className="text-[10px] font-bold text-[#008000] leading-[12px]" style={{ fontFamily: 'Inter' }}>{tour.duration || '3 days'}</div>
-                      </div>
-
-                      <div className="flex gap-[6px] text-[#003032]">
-                        <button aria-label="share" className="hover:text-primary transition-colors"><Share2 size={16} strokeWidth={1.5} /></button>
-                        <button aria-label="favorite" className="hover:text-red-500 transition-colors"><Heart size={16} strokeWidth={1.5} /></button>
-                      </div>
+                    <div className="flex items-center gap-1.5 text-white/90 text-[10px] font-medium">
+                      <Star size={11} className="text-white fill-white/20" />
+                      <span>Lorem Ipsum Is Simply</span>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+
+                {/* Card content */}
+                <div className="p-4 flex flex-col justify-between flex-1">
+                  <div className="flex items-center gap-2 mb-2 text-[12px] font-bold" style={{ fontFamily: 'Inter' }}>
+                    <span className="text-[#01888E]">{tour.reviews} Ratings</span>
+                    <span className="text-gray-300">|</span>
+                    <span className="text-gray-600 font-normal">
+                      From <span className="text-[#FFA800] font-bold">{tour.price}</span>
+                    </span>
+                  </div>
+
+                  <p className="text-[12px] text-gray-500 leading-relaxed mb-4" style={{ fontFamily: 'Inter' }}>
+                    Lorem Ipsum is simply dummy text of the printing and type setting industry.
+                  </p>
+
+                  <div className="flex items-center justify-between mt-auto">
+                    <div>
+                      <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>{tour.category}</div>
+                      <div className="text-[11px] text-gray-400 font-medium mt-0.5" style={{ fontFamily: 'Inter' }}>{tour.duration}</div>
+                    </div>
+                    <button aria-label="share" className="text-gray-400 hover:text-[#01888E] transition-colors">
+                      <CornerUpRight size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Explore All Button */}
-          <div className="flex justify-center mt-8">
-            <button className="w-[176px] h-[36px] bg-[#01888E] text-[#E6F3F4] rounded-full text-[15px] font-bold tracking-wide shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-[#003032] transition-colors" style={{ fontFamily: 'Inter' }}>
-              Explore all tours
+          <div className="flex justify-center mt-6">
+            <button className="px-8 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+              Explore All Tours
             </button>
           </div>
         </div>
       </section>
 
-      {/* Stays Section (background removed) */}
       {/* Destinations Section */}
-      <section className="py-16 px-[104px] pr-4 md:pr-8 bg-white w-full">
+      <section className="py-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-6">
-            <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>Reach Your Dream Destination</span>
-            <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-              <span className="font-bold">Your Adventure</span> <span className="font-normal">Starts Here!</span>
-            </h2>
-            <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px]" style={{ fontFamily: 'Inter' }}>
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Reach Your Dream Destination</span>
+            <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+              <span className="font-bold">Your Adventure</span> <span className="font-bold text-[#01888E]">Starts Here!</span>
+            </h3>
+            <p className="text-[14px] leading-[22px] text-[#757575] font-normal max-w-[800px]" style={{ fontFamily: 'Inter' }}>
               Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach. With us, you don't just travel—you experience Sri Lanka like never before.
             </p>
           </div>
@@ -484,165 +467,97 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-5 mt-6 justify-center">
-            <div className="w-[195px] h-[188px] rounded-[8px] overflow-hidden relative">
-              <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md">Thalpe</div>
-            </div>
-
-            <div className="w-[213px] h-[187px] rounded-[8px] overflow-hidden relative">
-              <img src={ninearch} alt="Nine Arch 2" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-4 bottom-4 text-[16px] font-extrabold text-white drop-shadow-md">Nine Arch</div>
-            </div>
-
-            <div className="w-[187px] h-[187px] rounded-[8px] overflow-hidden relative">
-              <img src={ninearch} alt="Nine Arch small" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md">Nine Arch</div>
-            </div>
-
-            <div className="w-[178px] h-[188px] rounded-[8px] overflow-hidden relative">
-              <img src={thalpe} alt="Thalpe 2" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-3 bottom-3 text-[16px] font-extrabold text-white drop-shadow-md">Thalpe</div>
-            </div>
-
-            <div className="w-[419px] h-[187px] rounded-[8px] overflow-hidden relative">
-              <img src={thalpe} alt="Thalpe big" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
-              <div className="absolute left-4 bottom-4 text-[18px] font-extrabold text-white drop-shadow-md">Thalpe</div>
-            </div>
+          <div className="flex justify-center mt-8">
+            <button className="px-8 py-3.5 bg-[#01888E] text-white rounded-full text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+              Start Your Adventure Today
+            </button>
           </div>
         </div>
       </section>
 
-      <div className="flex justify-center mt-8">
-        <button className="px-6 py-3 bg-[#01888E] text-[#E6F3F4] rounded-full text-[15px] font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)] hover:opacity-95 transition">
-          Start your adventure today
-        </button>
-      </div>
-
 
       {/* Stays Section (background: explorebg.png) */}
-      <section className="relative py-16 pl-[104px] pr-4 md:pr-8 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-
+      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-2">
-            <div>
-              <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
-              <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3" style={{ fontFamily: 'Inter' }}>
-                <span className="font-bold">Stay In</span> <span className="font-normal">Sri Lanka</span>
-              </h2>
-              <p className="text-[12px] leading-[15px] text-[#003032] font-normal max-w-[880px] mt-0" style={{ fontFamily: 'Inter' }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+            <div className="max-w-[800px]">
+              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
+              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+                <span className="font-bold">Stay In</span> <span className="font-bold text-[#01888E]">Sri Lanka</span>
+              </h3>
+              <p className="text-[14px] leading-[22px] text-[#003032] font-normal max-w-[600px]" style={{ fontFamily: 'Inter' }}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
               </p>
             </div>
 
-            {/* Carousel Navigation Buttons - right aligned on new line */}
             <div className="flex justify-end mt-3">
-              <div className="flex gap-2 shrink-0 mr-16">
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors">
+              <div className="flex gap-1 shrink-0 mr-0 md:mr-16">
+                <button onClick={scrollPrevStays} aria-label="Previous stays" className="w-[34px] h-[28px] bg-[#01888E] rounded-[14px_0_0_14px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
-                <button className="w-[32px] h-[22px] bg-[#01888E] rounded-[10px_0px_0px_10px] flex items-center justify-center text-[#E6F3F4] hover:bg-[#003032] transition-colors transform rotate-180">
-                  <ChevronLeft size={16} />
+                <button onClick={scrollNextStays} aria-label="Next stays" className="w-[34px] h-[28px] bg-[#01888E] rounded-[0_14px_14px_0] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start justify-items-center">
-            {tours.slice(0, 4).map((card, idx) => (
-              <div
-                key={card.id}
-                className={`relative rounded-[12px] overflow-hidden shadow-lg bg-white border border-[rgba(0,0,0,0.06)]`}
-                style={{
-                  width: idx === 0 ? '280px' : '240px',
-                  height: idx === 0 ? '320px' : '280px'
-                }}
-              >
-                {idx === 0 ? (
-                  <>
-                    <div
-                      className="w-full bg-cover bg-center"
-                      style={{ height: '180px', backgroundImage: `url(${stay})` }}
-                    />
+          <div ref={(el) => { staysRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5 md:overflow-visible">
+            {stays.map((item) => (
+              <div key={item.id} className="snap-start min-w-[85%] sm:min-w-[48%] md:min-w-0 flex-shrink-0">
+                {item.featured ? (
+                  <div className="relative rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group">
+                    <div className="relative w-full h-[240px] bg-gray-200">
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
 
-                    {/* heart icon top-right */}
-                    <button className="absolute right-3 top-3 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm">
-                      <Heart size={16} className="text-[#003032]" />
-                    </button>
-
-                    {/* Card content (larger) */}
-                    <div className="p-4 bg-white h-full flex flex-col justify-between">
-                      <div>
-                        <h4 className="text-[16px] font-bold leading-[18px] text-[#003032]" style={{ fontFamily: 'Inter' }}>{uniformStayTitle}</h4>
-                        <p className="text-[12px] text-[#003032] mt-1" style={{ fontFamily: 'Inter' }}>{uniformStayLocation}</p>
+                      <div className="absolute top-3 left-3 bg-[#01888E] text-white text-[11px] font-bold px-2 py-0.5 rounded-[6px] flex items-center gap-1">
+                        <Star className="fill-[#FFC600] text-[#FFC600]" size={11} />
+                        <span>{item.rating}</span>
                       </div>
 
-                      <div className="flex items-center justify-between mt-3">
-                        <div className="flex items-center gap-3">
-                          <div className="h-[26px] px-3 border border-[#003032] rounded-[8px] flex items-center justify-center text-[#003032] text-[13px] font-bold" style={{ fontFamily: 'Inter' }}>{uniformStayRating}</div>
-                          <div className="flex items-center gap-[4px]">
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                          </div>
-                        </div>
+                      <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition">
+                        <Heart size={14} className="stroke-[2.5]" />
+                      </button>
 
-                        <div className="text-[13px] text-[#008000] font-semibold">{card.duration}</div>
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h4 className="text-[16px] font-bold text-white mb-1" style={{ fontFamily: 'Inter' }}>{item.name}</h4>
+                        <div className="flex items-center text-white/90 text-[12px]" style={{ fontFamily: 'Inter' }}>
+                          <MapPin size={12} className="mr-1 shrink-0" /> {item.location}
+                        </div>
                       </div>
                     </div>
-                  </>
+                  </div>
                 ) : (
-                  <>
-                    <div
-                      className="w-full bg-cover bg-center"
-                      style={{ height: '150px', backgroundImage: `url(${stay})` }}
-                    />
+                  <div className="bg-white rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group flex flex-col">
+                    <div className="relative w-full h-[180px] bg-gray-200 shrink-0">
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
 
-                    {/* heart icon top-right */}
-                    <button className="absolute right-3 top-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
-                      <Heart size={14} className="text-[#003032]" />
-                    </button>
-
-
-
-                    {/* Card content */}
-                    <div className="p-3 bg-white h-[110px] flex flex-col justify-between">
-                      <div>
-                        <h4 className="text-[13px] font-bold leading-[15px] text-[#003032]" style={{ fontFamily: 'Inter' }}>{uniformStayTitle}</h4>
-                        <p className="text-[11px] text-[#003032] mt-1" style={{ fontFamily: 'Inter' }}>{uniformStayLocation}</p>
+                      <div className="absolute top-3 left-3 bg-[#01888E] text-white text-[11px] font-bold px-2 py-0.5 rounded-[6px] flex items-center gap-1">
+                        <Star className="fill-[#FFC600] text-[#FFC600]" size={11} />
+                        <span>{item.rating}</span>
                       </div>
 
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="h-[20px] px-2 border border-[#003032] rounded-[6px] flex items-center justify-center text-[#003032] text-[12px] font-bold" style={{ fontFamily: 'Inter' }}>{uniformStayRating}</div>
-                          <div className="flex items-center gap-[4px]">
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                            <Star size={14} className="text-[#FFCC00]" />
-                          </div>
-                        </div>
+                      <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition">
+                        <Heart size={14} className="stroke-[2.5]" />
+                      </button>
+                    </div>
 
-                        <div className="text-[12px] text-[#008000] font-semibold">{card.duration}</div>
+                    <div className="p-4">
+                      <h4 className="text-[15px] font-bold text-[#003032] mb-1.5" style={{ fontFamily: 'Inter' }}>{item.name}</h4>
+                      <div className="flex items-center text-[#757575] text-[12px]" style={{ fontFamily: 'Inter' }}>
+                        <MapPin size={12} className="mr-1 text-[#01888E] shrink-0" /> {item.location}
                       </div>
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
             ))}
           </div>
 
-          <div className="flex justify-center mt-8">
-            <button className="px-8 py-3 bg-[#01888E] text-white rounded-full text-[16px] font-bold shadow-[0px_8px_12px_rgba(1,136,142,0.25)]">
-              View all
+          <div className="flex justify-center mt-6">
+            <button className="px-8 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+              View All
             </button>
           </div>
         </div>
@@ -671,6 +586,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <div className="h-[100px] sm:h-[120px] md:h-[130px] bg-white" />
       </section>
 
 
@@ -678,12 +594,15 @@ const Home = () => {
       {/* Testimonials Section */}
       <section className="relative py-14 mt-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-12">
-            <span className="text-[#01888E] text-[11px] leading-[13px] font-normal mb-2 block">TESTIMONIALS</span>
-            <h2 className="text-[26px] leading-[31px] text-[#003032] mb-3"><span className="font-bold">What Our</span> <span className="font-normal">Clients Say</span></h2>
+          <div className="mb-8 text-center md:text-left">
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>TESTIMONIALS</span>
+            <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+              <span className="font-bold">What Our</span> <span className="font-bold text-[#01888E]">Clients Say</span>
+            </h2>
           </div>
 
-          <div className="relative flex justify-center items-center h-[420px] cursor-grab"
+          <div
+            className="relative flex justify-center items-center h-[420px] sm:h-[460px] cursor-grab touch-pan-y"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -695,22 +614,77 @@ const Home = () => {
               if (position < -1) position += testimonials.length;
               if (position > 1) position -= testimonials.length;
 
+              const isActive = position === 0;
+              const cardWidth = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 260 : window.innerWidth < 1024 ? 300 : 360) : 360;
+              const translateX = `translateX(${position * cardWidth}px)`;
+
               return (
-                <div key={testimonial.id} className={`absolute ease-in-out ${position === 0 ? 'scale-100 opacity-100 z-30' : 'scale-90 opacity-60 z-10'}`} style={{ transform: `translateX(${position * 340}px) ${position === 0 ? 'scale(1)' : 'scale(0.9)'}`, transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out` }}>
-                  <div className={`bg-white rounded-[24px] shadow-xl p-8 text-center overflow-hidden ${position === 0 ? 'w-[360px] h-[380px]' : 'w-[320px] h-[340px]'}`}>
-                    <div className="w-24 h-24 rounded-2xl mx-auto mb-5 bg-cover bg-center" style={{ backgroundImage: `url(${testimonial.avatar})` }} />
-                    <h3 className="text-[#003032] font-bold text-[18px]">{testimonial.name}</h3>
-                    <p className="text-[#01888E] font-semibold mb-4">{testimonial.country}</p>
-                    <p className={position === 0 ? 'text-[#003032] text-sm leading-relaxed break-words max-h-[180px] overflow-auto' : 'text-[#003032] text-xs leading-[16px] break-words max-h-[120px] overflow-hidden'}>{testimonial.text}</p>
+                <div
+                  key={testimonial.id}
+                  className={`absolute ease-in-out ${isActive ? 'z-30' : 'z-10'}`}
+                  style={{
+                    transform: `${translateX}${isActive ? ' translateY(-8px) scale(1.05)' : ' scale(0.92)'}`,
+                    transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out`,
+                    opacity: isActive ? 1 : 0.55,
+                  }}
+                >
+                  <div
+                    className={`relative bg-white rounded-[24px] px-7 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${
+                      isActive
+                        ? 'w-[260px] sm:w-[300px] lg:w-[360px] min-h-[360px] shadow-[0px_8px_32px_rgba(1,136,142,0.18)]'
+                        : 'w-[240px] sm:w-[280px] lg:w-[320px] min-h-[320px] shadow-[0px_4px_16px_rgba(0,0,0,0.06)]'
+                    }`}
+                  >
+                    <div className="absolute top-4 left-5 text-[#01888E] font-serif leading-none font-bold text-[56px] sm:text-[64px] pointer-events-none select-none">
+                      “
+                    </div>
+
+                    <div
+                      className={`rounded-full bg-cover bg-center border-2 border-[#01888E] z-10 mt-2 ${isActive ? 'w-[80px] h-[80px] sm:w-[88px] sm:h-[88px]' : 'w-[68px] h-[68px] sm:w-[76px] sm:h-[76px]'}`}
+                      style={{ backgroundImage: `url(${testimonial.avatar})` }}
+                    />
+
+                    <div className="flex justify-center gap-1 mt-4 mb-4">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} size={isActive ? 16 : 14} className="text-[#FFC600] fill-[#FFC600]" />
+                      ))}
+                    </div>
+
+                    <p
+                      className={`italic text-[#003032]/80 mb-6 px-1 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px]'}`}
+                      style={{ fontFamily: 'Inter' }}
+                    >
+                      {testimonial.text}
+                    </p>
+
+                    <div className="mt-auto">
+                      <h3 className={`text-[#003032] font-bold ${isActive ? 'text-[18px] mb-1' : 'text-[15px] mb-0.5'}`} style={{ fontFamily: 'Inter' }}>
+                        {testimonial.name}
+                      </h3>
+                      <p className={`text-[#01888E] font-semibold ${isActive ? 'text-[14px]' : 'text-[12px]'}`} style={{ fontFamily: 'Inter' }}>
+                        {testimonial.country}
+                      </p>
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <div className="flex flex-col items-center mt-10 gap-3">
+          <div className="flex justify-center mt-6 gap-2.5">
             {testimonials.map((_, index) => (
-              <button key={index} onClick={() => setCurrentSlide(index)} className={`w-2 h-2 rounded-full transition-all ${currentSlide === index ? 'bg-primary' : 'bg-secondary'}`} />
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
+                className={`rounded-full transition-all flex items-center justify-center ${
+                  currentSlide === index
+                    ? 'w-[18px] h-[18px] bg-[#01888E]'
+                    : 'w-[12px] h-[12px] bg-white border border-[#01888E] hover:opacity-100 opacity-80'
+                }`}
+              >
+                {currentSlide === index && <div className="w-[6px] h-[6px] bg-white rounded-full" />}
+              </button>
             ))}
           </div>
         </div>
