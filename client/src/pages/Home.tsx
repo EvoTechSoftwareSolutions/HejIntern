@@ -89,6 +89,7 @@ const Home = () => {
   const [_dragOffset, setDragOffset] = useState(0);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
+  const toursRef = useRef<HTMLDivElement | null>(null);
 
   const themes = [
     { id: 1, name: 'Dive into history and traditions', icon: '🏛️' },
@@ -147,10 +148,16 @@ const Home = () => {
     },
   ];
 
-  // Uniform display values for Stay cards (use same text across cards)
   const uniformStayTitle = 'Kandy Spice Villa';
   const uniformStayLocation = 'Kandy, Sri Lanka';
   const uniformStayRating = '4.5';
+
+  const destinationCards = [
+    { id: 1, name: 'Sigiriya', description: 'Explore the ancient rock fortress.', image: sigiriya, wide: false },
+    { id: 2, name: 'Ella', description: 'Enjoy scenic views and waterfalls.', image: ninearch, wide: false },
+    { id: 3, name: 'Thalpe', description: 'Relax on beautiful pristine beaches.', image: thalpe, wide: false },
+    { id: 4, name: 'Kandy', description: 'Experience culture and traditions.', image: sigiriya, wide: false }
+  ];
 
   const testimonials = [
     {
@@ -359,13 +366,7 @@ const Home = () => {
           </div>
 
           <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5">
-            {tours.map((tour) => (
-              <div key={tour.id} className="snap-start min-w-[280px] sm:min-w-[320px]  md:min-w-0 bg-white rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer flex flex-col flex-shrink-0">
-                {/* Image area */}
-                <div className="relative w-full h-[180px] bg-gray-100 shrink-0">
-                  <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
+            {tours.map((tour, index) => {
               return (
                 <div key={tour.id} className="bg-white rounded-[5px] w-[220px] h-[320px] shadow-sm hover:shadow-md transition-shadow cursor-pointer relative">
 
@@ -480,8 +481,10 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
 
+          <div className="flex flex-wrap gap-5 mt-6 justify-center">
             <div className="w-[195px] h-[188px] rounded-[8px] overflow-hidden relative">
               <img src={thalpe} alt="Thalpe" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/10 to-black/60" />
