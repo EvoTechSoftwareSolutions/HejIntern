@@ -3,10 +3,11 @@ import {
   Phone,
   Mail,
   MapPin,
-  ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 
 import logo from "../../assets/footerlogo.png"; 
+import footerbg from "../../assets/footerbg.png";
 
 // Text definitions for English and Swedish versions
 const footerText = {
@@ -39,10 +40,10 @@ const footerText = {
   },
   supportLinks: [
     { to: "/help-center", en: "Help Center", sv: "Help Center" },
-    { to: "/account", en: "My Account", sv: "My Hej Ceylon" },
-    { to: "/favorites", en: "My Favorites", sv: "My Favorites" },
-    { to: "/my-tours", en: "My Tours", sv: "My Tours" },
-    { to: "/profile", en: "My Profile", sv: "My Profile" },
+    { to: "/account", en: "My Hej Ceylon", sv: "Mitt Hej Ceylon" },
+    { to: "/favorites", en: "My Favorites", sv: "Mina favoriter" },
+    { to: "/my-tours", en: "My Tours", sv: "Mina turer" },
+    { to: "/profile", en: "My Profile", sv: "Min profil" },
   ],
   hotlineTitle: {
     en: "Hotline",
@@ -61,7 +62,7 @@ const footerText = {
     sv: "© HejCeylon (PVT) Ltd. | Alla rättigheter förbehållna 2025",
   },
   designBy: {
-    en: "Design & Developed by Evon Technologies Software Solutions (PVT) Ltd.",
+    en: "Design & Develop by Evon Technologies Software Solutions (PVT) Ltd.",
     sv: "Design & Utvecklad av Evon Technologies Software Solutions (PVT) Ltd.",
   },
 };
@@ -75,37 +76,43 @@ const Footer = () => {
   const prefixed = (path) => (isSwedish ? `/sv${path}` : path);
 
   return (
-    <footer className="bg-[#01888E] text-white rounded-t-[40px] overflow-hidden h-[370px] flex flex-col">
+    <footer className="bg-[#01888E] text-white rounded-t-[40px] flex flex-col pt-8 relative z-10 overflow-hidden">
+      {/* Background Pattern with lower opacity */}
+      <div 
+        className="absolute bottom-14 left-0 w-full h-[300px] bg-bottom bg-no-repeat pointer-events-none opacity-20"
+        style={{ backgroundImage: `url(${footerbg})`, backgroundSize: '100% 300px' }}
+      />
+      
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-start">
+      <div className="max-w-7xl mx-auto px-6 py-6 pb-12 w-full relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 items-start relative z-10">
           
           {/* Logo & Description */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-3 mb-3">
-              <img src={logo} alt="Hej Ceylon" className="h-11" />
+            <div className="flex items-center gap-3 mb-4">
+              <img src={logo} alt="Hej Ceylon" className="h-10" />
               <div>
-                <div className="text-white font-bold text-lg">HejCeylon.com</div>
+                <div className="text-white font-bold text-lg leading-tight" style={{ fontFamily: 'Inter' }}>HejCeylon.com</div>
               </div>
             </div>
 
-            <p className="text-xs text-[#E6F3F4] leading-5 mb-4">
+            <p className="text-[12px] text-white/90 leading-relaxed mb-6" style={{ fontFamily: 'Inter' }}>
               Hej Ceylon, we bring your dream events to life with stunning décor,
               expert planning, and seamless execution. Whether it's a wedding,
               birthday, corporate event, or any special celebration.
             </p>
 
-            <h4 className="font-semibold text-sm mb-3">Stay in the loop and sign up for the Wardiere newsletter:</h4>
+            <h4 className="font-semibold text-[13px] mb-3 text-white/90" style={{ fontFamily: 'Inter' }}>Stay in the loop and sign up for the Wardiere newsletter:</h4>
 
             {/* Newsletter */}
-            <div className="flex items-center w-full max-w-md bg-transparent rounded-full border border-[#E6F3F4] overflow-hidden mb-5">
+            <div className="flex items-center w-full max-w-sm bg-transparent rounded-full border border-white overflow-hidden mb-6">
               <input
                 type="email"
                 placeholder=""
-                className="flex-1 bg-transparent pl-4 py-3 outline-none text-white placeholder:text-white/70 text-sm"
+                className="flex-1 bg-transparent pl-4 py-2.5 outline-none text-white placeholder:text-white/70 text-sm"
               />
-              <button className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full border-l border-white/10 mr-1">
-                <ChevronRight size={20} />
+              <button className="w-8 h-8 flex items-center justify-center bg-white rounded-full text-[#01888E] mr-1 transition hover:bg-gray-100">
+                <ArrowRight size={18} strokeWidth={2.5} />
               </button>
             </div>
 
@@ -115,7 +122,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href="/"
-                  className="w-10 h-10 rounded-full border-2 border-white/40 flex items-center justify-center bg-white/5 text-white hover:bg-white/10 transition"
+                  className="w-10 h-10 rounded-full border border-white flex items-center justify-center bg-transparent text-white hover:bg-white/20 transition"
                 >
                   {item === 'wa' ? '✓' : item === 'fb' ? 'f' : item === 'ig' ? '◯' : '♪'}
                 </a>
@@ -173,8 +180,8 @@ const Footer = () => {
             <h3 className="font-bold text-sm mb-2 uppercase">{t(footerText.hotlineTitle)}</h3>
 
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 rounded-full border border-[#E6F3F4] flex items-center justify-center">
-                <Phone size={18} />
+              <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center shrink-0">
+                <Phone size={16} />
               </div>
               <span className="text-[#E6F3F4] text-xs">+94 71 160 2095</span>
             </div>
@@ -183,8 +190,8 @@ const Footer = () => {
             <h3 className="font-bold text-sm mb-2 uppercase">{t(footerText.contactTitle)}</h3>
 
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 rounded-full border border-[#E6F3F4] flex items-center justify-center">
-                <Mail size={18} />
+              <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center shrink-0">
+                <Mail size={16} />
               </div>
 
               <span className="text-[#E6F3F4] text-xs">info@elegantdeco.lk</span>
@@ -194,8 +201,8 @@ const Footer = () => {
             <h3 className="font-bold text-sm mb-2 uppercase">{t(footerText.locationTitle)}</h3>
 
             <div className="flex items-start gap-3">
-              <div className="w-12 h-12 rounded-full border border-[#E6F3F4] flex items-center justify-center shrink-0">
-                <MapPin size={18} />
+              <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center shrink-0">
+                <MapPin size={16} />
               </div>
 
               <span className="text-[#E6F3F4] text-xs">
@@ -211,8 +218,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-white text-[#0F172A] h-14 flex items-center">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center w-full px-6 text-xs">
+      <div className="bg-white text-[#0F172A] h-14 flex items-center relative z-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center w-full px-6 text-[11px] sm:text-xs">
           <p>© <strong>{footerText.bottomCopy[isSwedish ? "sv" : "en"]}</strong></p>
 
           <p className="mt-2 md:mt-0">{footerText.designBy[isSwedish ? "sv" : "en"]}</p>

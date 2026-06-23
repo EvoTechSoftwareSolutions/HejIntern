@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Share2, Heart, Star, User, ChevronLeft, Umbrella, TreePine, Mountain, Sparkles, Tag } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
-
+import React from "react";
 import aboutus from '../assets/aboutus.png';
 import explorebg from '../assets/explorebg.png';
 import sigiriya from '../assets/sigiriya.png';
@@ -413,7 +413,7 @@ const HomeSV = () => {
                     </div>
 
                     {/* Description text */}
-                    <p className="mt-[10px] mb-[15px] ml-[8px] text-[11px] leading-[13px] text-[#003032] font-normal w-[165px]" style={{ fontFamily: 'Inter' }}>
+                    <p className="mt-[10px] mb-[15px] ml-[8px] text-[11px] leading-[13px] text-[#003032] font-normal w-[165px] tracking-wide" style={{ fontFamily: 'Inter' }}>
                       Lorem Ipsum is simply dummy text of the printing and type setting industry.
                     </p>
 
@@ -674,27 +674,48 @@ const HomeSV = () => {
               if (position < -1) position += testimonials.length;
               if (position > 1) position -= testimonials.length;
 
+              const isActive = position === 0;
+              const cardWidth = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 240 : window.innerWidth < 1024 ? 280 : 320) : 320;
+              const translateX = `translateX(${position * cardWidth}px)`;
+
               return (
-                <div key={testimonial.id} className={`absolute ease-in-out ${position === 0 ? 'scale-100 opacity-100 z-30' : 'scale-90 opacity-60 z-10'}`} style={{ transform: `translateX(${position * 340}px) ${position === 0 ? 'scale(1)' : 'scale(0.9)'}`, transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out` }}>
-                  <div className={`bg-white rounded-[24px] shadow-xl p-8 text-center overflow-hidden ${position === 0 ? 'w-[360px] h-[380px]' : 'w-[320px] h-[340px]'}`}>
-                    <div className="w-24 h-24 rounded-2xl mx-auto mb-5 bg-cover bg-center" style={{ backgroundImage: `url(${testimonial.avatar})` }} />
-                    <h3 className="text-[#003032] font-bold text-[18px]">{testimonial.name}</h3>
-                    <p className="text-[#01888E] font-semibold mb-4">{testimonial.country}</p>
-                    <p className={position === 0 ? 'text-[#003032] text-sm leading-relaxed break-words max-h-[180px] overflow-auto' : 'text-[#003032] text-xs leading-[16px] break-words max-h-[120px] overflow-hidden'}>{testimonial.text}</p>
+                <div key={testimonial.id} className={`absolute ease-in-out ${isActive ? 'scale-100 opacity-100 z-30' : 'scale-90 opacity-60 z-10'}`} style={{ transform: `${translateX} ${isActive ? 'translateY(-8px) scale(1.05)' : 'scale(0.92)'}`, transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out` }}>
+                  <div className={`relative bg-white rounded-[24px] shadow-xl p-8 text-center overflow-hidden flex flex-col items-center transition-all duration-700 ${isActive ? 'w-[360px] min-h-[360px]' : 'w-[320px] min-h-[320px]'}`}>
+                    <div className="absolute top-6 left-6 text-[#01888E] pointer-events-none select-none">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.039 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" />
+                      </svg>
+                    </div>
+
+                    <div className={`rounded-full bg-cover bg-center ring-[4px] ring-[#01888E]/20 border-2 border-[#01888E] z-10 mt-2 mb-4 ${isActive ? 'w-20 h-20' : 'w-16 h-16'}`} style={{ backgroundImage: `url(${testimonial.avatar})`, boxShadow: '0 4px 14px rgba(1, 136, 142, 0.3)' }} />
+                    
+                    <div className="flex justify-center gap-1 mb-5">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} size={isActive ? 16 : 14} className="text-[#FFC600] fill-[#FFC600]" />
+                      ))}
+                    </div>
+
+                    <p className={`italic px-4 mb-4 ${isActive ? 'text-[#003032]/80 text-sm leading-relaxed break-words max-h-[180px] overflow-auto' : 'text-[#003032]/80 text-xs leading-[16px] break-words max-h-[120px] overflow-hidden'}`}>“{testimonial.text}”</p>
+                    
+                    <div className="mt-auto">
+                      <h3 className="text-[#003032] font-bold text-[18px]">{testimonial.name}</h3>
+                      <p className="text-[#01888E] font-semibold">{testimonial.country}</p>
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <div className="flex flex-col items-center mt-10 gap-3">
+          <div className="flex justify-center mt-10 gap-3">
             {testimonials.map((_, index) => (
-              <button key={index} onClick={() => setCurrentSlide(index)} className={`w-2 h-2 rounded-full transition-all ${currentSlide === index ? 'bg-primary' : 'bg-secondary'}`} />
+              <button key={index} onClick={() => setCurrentSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${currentSlide === index ? 'w-[18px] h-[18px] border-[2px] border-[#01888E] bg-white' : 'w-[14px] h-[14px] bg-white border border-[#01888E]/40 hover:border-[#01888E]/60'}`}>
+                {currentSlide === index && <div className="w-[10px] h-[10px] bg-[#01888E] rounded-full" />}
+              </button>
             ))}
           </div>
         </div>
       </section>
-
     </div>
   );
 };

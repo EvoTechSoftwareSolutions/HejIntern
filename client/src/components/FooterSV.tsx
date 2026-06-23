@@ -1,0 +1,218 @@
+import { Link } from "react-router-dom";
+import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+
+import logo from "../../assets/footerlogo.png";
+import footerbg from "../../assets/footerbg.png";
+
+const WhatsAppIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+  </svg>
+);
+
+const FacebookIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.2v-2.9h2.2V9.3c0-2.2 1.3-3.4 3.2-3.4.9 0 1.8.16 1.8.16v2h-1c-1 0-1.3.63-1.3 1.3v1.54h2.2l-.35 2.9h-1.85v7A10 10 0 0 0 22 12z" />
+  </svg>
+);
+
+const InstagramIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const TikTokIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 15.68a6.34 6.34 0 0 0 6.26 6.32 6.33 6.33 0 0 0 6.31-6.24V8.15a8.32 8.32 0 0 0 4.31 1.78V6.44a4.83 4.83 0 0 1-2.29-.6z" />
+  </svg>
+);
+
+type LinkItem = { to: string; label: string };
+
+const FooterLinkColumn = ({ title, links, className = "" }: { title: string; links: LinkItem[]; className?: string }) => (
+  <div className={`flex flex-col items-center lg:items-start text-center lg:text-left ${className}`}>
+    <h3 className="font-bold text-[13px] mb-4 sm:mb-5 uppercase tracking-wider text-white" style={{ fontFamily: "Inter" }}>
+      {title}
+    </h3>
+    <ul className="flex flex-col gap-3 sm:gap-4 text-white text-[13px] font-medium" style={{ fontFamily: "Inter" }}>
+      {links.map((link) => (
+        <li key={link.to + link.label}>
+          <Link to={link.to} className="hover:text-white/80 transition-colors">
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const ContactBlock = ({
+  title,
+  icon,
+  children,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) => (
+  <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+    <h3 className="font-bold text-[13px] mb-4 uppercase text-white tracking-wider" style={{ fontFamily: "Inter" }}>
+      {title}
+    </h3>
+    <div className="flex items-center gap-3">
+      <div className="w-[42px] h-[42px] rounded-full border-[1.5px] border-white flex items-center justify-center shrink-0">
+        {icon}
+      </div>
+      <div className="text-white text-[14px] font-medium text-left" style={{ fontFamily: "Inter" }}>
+        {children}
+      </div>
+    </div>
+  </div>
+);
+
+const FooterSV = () => {
+  const navigationLinks: LinkItem[] = [
+    { to: "/sv", label: "Hem" },
+    { to: "/sv/destinations", label: "Destinationer" },
+    { to: "/sv/tours", label: "Turer" },
+    { to: "/sv/stays", label: "Boenden" },
+    { to: "/sv/blog", label: "Blogg" },
+    { to: "/sv/contact", label: "Kontakt" },
+  ];
+
+  const quickLinks: LinkItem[] = [
+    { to: "/sv/terms", label: "Villkor" },
+    { to: "/sv/privacy", label: "Integritetspolicy" },
+    { to: "/sv/faq", label: "Vanliga frågor" },
+    { to: "/sv/gallery", label: "Galleri" },
+    { to: "/sv/about", label: "Om oss" },
+  ];
+
+  const supportLinks: LinkItem[] = [
+    { to: "/sv/help-center", label: "Hjälpcenter" },
+    { to: "/sv/account", label: "Mitt Hej Ceylon" },
+    { to: "/sv/favorites", label: "Mina favoriter" },
+    { to: "/sv/my-tours", label: "Mina turer" },
+    { to: "/sv/profile", label: "Min profil" },
+  ];
+
+  return (
+    <footer className="relative text-white rounded-t-[24px] sm:rounded-t-[28px] overflow-hidden flex flex-col bg-[#01888E]">
+      <div
+        className="absolute bottom-0 left-0 right-0 z-0 pointer-events-none"
+        style={{
+          height: "58%",
+          backgroundImage: `url(${footerbg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.22,
+        }}
+      />
+
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left max-w-md mx-auto lg:mx-0 lg:max-w-none">
+            <div className="flex items-center gap-3 mb-4">
+              <img src={logo} alt="Hej Ceylon" className="h-[38px] w-auto" />
+              <div className="text-white font-bold text-[20px] sm:text-[22px] tracking-wide" style={{ fontFamily: "Inter" }}>
+                HejCeylon.com
+              </div>
+            </div>
+
+            <p className="text-[13px] text-white leading-[22px] mb-5 sm:mb-6" style={{ fontFamily: "Inter" }}>
+              <span className="font-bold">Hej Ceylon</span>, vi förverkligar dina drömevenemang med fantastisk dekoration,
+              professionell planering och smidig genomförande. Oavsett om det är ett bröllop, en födelsedag, ett företagsevent
+              eller en särskild fest.
+            </p>
+
+            <h4 className="font-bold text-[13px] mb-3 w-full" style={{ fontFamily: "Inter" }}>
+              Håll dig uppdaterad — anmäl dig till Wardiere-nyhetsbrevet:
+            </h4>
+
+            <div className="flex items-center w-full max-w-[360px] bg-transparent rounded-full border-[1.5px] border-white overflow-hidden">
+              <input
+                type="email"
+                placeholder="Ange din e-postadress"
+                aria-label="E-postadress"
+                className="flex-1 min-w-0 bg-transparent pl-4 sm:pl-5 py-2.5 outline-none text-white placeholder:text-white/80 text-[13px] sm:text-[14px]"
+                style={{ fontFamily: "Inter" }}
+              />
+              <button
+                type="button"
+                aria-label="Prenumerera på nyhetsbrev"
+                className="w-[34px] h-[34px] flex items-center justify-center bg-white rounded-full m-1 text-[#01888E] hover:bg-gray-100 transition shrink-0"
+              >
+                <ArrowRight size={18} strokeWidth={2.5} />
+              </button>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8">
+            <FooterLinkColumn title="Navigering" links={navigationLinks} className="col-span-1" />
+            <FooterLinkColumn title="Snabblänkar" links={quickLinks} className="col-span-1" />
+            <FooterLinkColumn title="Support" links={supportLinks} className="col-span-2 sm:col-span-1" />
+          </div>
+        </div>
+
+        <hr className="border-white/30 my-8 sm:my-10" />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
+          <ContactBlock title="Hotline" icon={<Phone size={18} className="text-white" />}>
+            +94 71 160 2095
+          </ContactBlock>
+
+          <ContactBlock title="Kontakt" icon={<Mail size={18} className="text-white" />}>
+            info@elegantdecos.lk
+          </ContactBlock>
+
+          <ContactBlock title="Adress" icon={<MapPin size={18} className="text-white" />}>
+            <span>
+              New Puttalam Rd,
+              <br />
+              Pandulagama, Anuradhapura
+            </span>
+          </ContactBlock>
+        </div>
+
+        <div className="flex justify-center gap-3 mt-8 sm:mt-10">
+          {[
+            { href: "#", label: "WhatsApp", Icon: WhatsAppIcon },
+            { href: "#", label: "Facebook", Icon: FacebookIcon },
+            { href: "#", label: "Instagram", Icon: InstagramIcon },
+            { href: "#", label: "TikTok", Icon: TikTokIcon },
+          ].map(({ href, label, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              className="w-[36px] h-[36px] rounded-full border-[1.5px] border-white flex items-center justify-center text-white hover:bg-white hover:text-[#01888E] transition"
+            >
+              <Icon size={16} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-white text-[#0F172A] relative z-20 py-3 sm:py-0 sm:min-h-[44px] flex items-center">
+        <div
+          className="max-w-[1200px] mx-auto flex flex-col sm:flex-row justify-between items-center w-full px-4 sm:px-6 lg:px-8 gap-2 sm:gap-4 text-[11px] sm:text-[12px] text-center sm:text-left"
+          style={{ fontFamily: "Inter" }}
+        >
+          <p>
+            <span className="font-bold text-[#4B5563]">© HejCeylon (PVT) Ltd.</span> | Alla rättigheter förbehållna 2025
+          </p>
+          <p className="text-[#4B5563]">
+            Design & utveckling av{" "}
+            <span className="font-bold text-[#1F2937]">Evon Technologies Software Solutions (PVT) Ltd.</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default FooterSV;

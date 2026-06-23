@@ -48,13 +48,13 @@ const Home = () => {
   const startXRef = useRef(0);
 
   const themes = [
-    { id: 1, name: 'Dive into\nhistory and\ntraditions', bgColor: 'bg-[#2DC7F8]', shadow: 'shadow-[#2DC7F8]/50', textColor: 'text-white', iconColor: 'white' },
-    { id: 2, name: 'Unwind by\nturquoise\nwaters', bgColor: 'bg-[#0E4751]', shadow: 'shadow-[#0E4751]/50', textColor: 'text-white', iconColor: 'white' },
-    { id: 3, name: 'Witness\nnature in its\npurest form', bgColor: 'bg-[#107A76]', shadow: 'shadow-[#107A76]/50', textColor: 'text-white', iconColor: 'white' },
-    { id: 4, name: 'Get your\nadrenaline\nrush!', bgColor: 'bg-[#FFC600]', shadow: 'shadow-[#FFC600]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
-    { id: 5, name: 'Rejuvenate\nyour soul', bgColor: 'bg-[#FFA800]', shadow: 'shadow-[#FFA800]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
-    { id: 6, name: 'Indulge in\nexclusivity', bgColor: 'bg-[#FFB094]', shadow: 'shadow-[#FFB094]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
-    { id: 7, name: 'Amazing\nexperiences at\ngreat value!', bgColor: 'bg-[#FF6B74]', shadow: 'shadow-[#FF6B74]/50', textColor: 'text-[#003032]', iconColor: '#003032' },
+    { id: 1, name: 'Dive into history\nand traditions' },
+    { id: 2, name: 'Unwind by\nturquoise\nwaters' },
+    { id: 3, name: 'Witness\nnature in its\npurest form' },
+    { id: 4, name: 'Get your\nadrenaline rush!' },
+    { id: 5, name: 'Rejuvenate your\nsoul' },
+    { id: 6, name: 'Indulge in\nexclusivity' },
+    { id: 7, name: 'Amazing\nexperiences at\ngreat value!' },
   ];
   // responsive grid will handle layout on small screens
 
@@ -103,6 +103,50 @@ const Home = () => {
       category: 'Heritage',
       image: sigiriya
     },
+    {
+      id: 5,
+      title: 'Galle Fort Explorer',
+      location: 'Galle, Sri Lanka',
+      price: '20$ - 150$',
+      rating: 4.9,
+      reviews: 56,
+      duration: '2 days',
+      category: 'Heritage',
+      image: sigiriya
+    },
+    {
+      id: 6,
+      title: 'Nuwara Eliya Tea Trail',
+      location: 'Nuwara Eliya, Sri Lanka',
+      price: '35$ - 220$',
+      rating: 4.6,
+      reviews: 38,
+      duration: '3 days',
+      category: 'Nature',
+      image: sigiriya
+    },
+    {
+      id: 7,
+      title: 'Mirissa Whale Watch',
+      location: 'Mirissa, Sri Lanka',
+      price: '25$ - 180$',
+      rating: 4.5,
+      reviews: 22,
+      duration: '1 day',
+      category: 'Adventure',
+      image: sigiriya
+    },
+    {
+      id: 8,
+      title: 'Yala Safari Jeep',
+      location: 'Yala, Sri Lanka',
+      price: '60$ - 400$',
+      rating: 4.8,
+      reviews: 47,
+      duration: '2 days',
+      category: 'Wildlife',
+      image: sigiriya
+    },
   ];
 
   // (removed unused uniform stay constants)
@@ -128,13 +172,6 @@ const Home = () => {
       country: 'Sweden',
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
       avatar: 'https://images.unsplash.com/photo-1517849845537-1d51a20414de?q=80&w=200&auto=format&fit=crop'
-    },
-    {
-      id: 4,
-      name: 'Ethan Wilson',
-      country: 'Sweden',
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
     },
   ];
 
@@ -183,13 +220,15 @@ const Home = () => {
   const scrollPrevTours = () => {
     const el = toursRef.current;
     if (!el) return;
-    const amount = el.clientWidth * 0.9 || 320;
+    const card = el.firstElementChild as HTMLElement;
+    const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: -amount, behavior: 'smooth' });
   };
   const scrollNextTours = () => {
     const el = toursRef.current;
     if (!el) return;
-    const amount = el.clientWidth * 0.9 || 320;
+    const card = el.firstElementChild as HTMLElement;
+    const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
 
@@ -197,21 +236,27 @@ const Home = () => {
   const scrollPrevStays = () => {
     const el = staysRef.current;
     if (!el) return;
-    const amount = el.clientWidth * 0.9 || 320;
+    const card = el.firstElementChild as HTMLElement;
+    const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: -amount, behavior: 'smooth' });
   };
   const scrollNextStays = () => {
     const el = staysRef.current;
     if (!el) return;
-    const amount = el.clientWidth * 0.9 || 320;
+    const card = el.firstElementChild as HTMLElement;
+    const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
 
   const stays = [
-    { id: 1, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: true },
-    { id: 2, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
-    { id: 3, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
-    { id: 4, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+    { id: 1, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: false },
+    { id: 2, name: 'Heritance Kandalama', location: 'Dambulla, Central Province', rating: 4.8, image: stay, featured: false },
+    { id: 3, name: 'Cape Weligama', location: 'Weligama, Southern Province', rating: 4.7, image: stay, featured: false },
+    { id: 4, name: 'Jetwing Surf', location: 'Arugam Bay, Eastern Province', rating: 4.6, image: stay, featured: false },
+    { id: 5, name: 'Wild Coast Tented Lodge', location: 'Yala, Southern Province', rating: 4.9, image: stay, featured: false },
+    { id: 6, name: 'Santani Wellness Resort', location: 'Kandy, Central Province', rating: 4.7, image: stay, featured: false },
+    { id: 7, name: 'Tri Lanka', location: 'Koggala Lake, Southern Province', rating: 4.8, image: stay, featured: false },
+    { id: 8, name: 'The Fortress Resort', location: 'Koggala, Southern Province', rating: 4.6, image: stay, featured: false },
   ];
 
   const destinationDescription = 'Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.';
@@ -245,29 +290,29 @@ const Home = () => {
         <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
         <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
 
-          <div className="absolute top-1/2 -translate-y-1/2 right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
-            {[1, 2, 3, 4, 5].map((_, index) => (
-              <button key={index} onClick={() => setHeroSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${heroSlide === index ? 'w-[44px] h-[44px] border-[2px] border-[#01888E] p-[3px]' : 'w-[6px] h-[6px] bg-white hover:bg-gray-200'} cursor-pointer`}>
-                {heroSlide === index && <img src={heroBanner} className="w-full h-full rounded-full object-cover ring-2 ring-white" alt="" />}
-              </button>
-            ))}
-          </div>
+        <div className="absolute top-1/2 -translate-y-1/2 right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
+          {[1, 2, 3, 4, 5].map((_, index) => (
+            <button key={index} onClick={() => setHeroSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${heroSlide === index ? 'w-[44px] h-[44px] border-[2px] border-[#01888E] p-[3px]' : 'w-[6px] h-[6px] bg-white hover:bg-gray-200'} cursor-pointer`}>
+              {heroSlide === index && <div className="w-full h-full rounded-full bg-cover ring-2 ring-white" style={{ backgroundImage: `url('/carousel-3.jpg')` }} />}
+            </button>
+          ))}
+        </div>
 
         <div className="relative z-20 flex flex-col items-center mt-16 px-4">
-          <h1 className="font-kaisei text-[40px] md:text-[40px] leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
-          <p className="font-alex text-[28px] md:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
+          <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">Find Your Perfect Gateway</h1>
+          <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
 
           <div className="flex flex-col items-center mt-4 w-full">
-            <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-4">Tailored Experiences, Unmatched Adventures</p>
-            <div className="w-[300px] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-6" />
+            <p className="font-sans text-[14px] md:text-[15px] leading-[20px] text-white/95 font-medium drop-shadow-sm mb-3">Tailored Experiences, Unmatched Adventures</p>
+            <div className="w-[280px] h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mb-5" />
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center w-full px-4 md:px-0">
-            <button className="px-10 py-3.5 rounded-[12px] bg-white/90 backdrop-blur-sm text-[#003032] font-sans font-bold text-[14px] leading-[18px] shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-white">
-              Let's Start Your Journey
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-1 items-center w-full px-4 md:px-0">
+            <button className="px-6 py-3 rounded-[8px] bg-[#E2E8F0]/95 backdrop-blur-sm text-[#003032] font-sans font-bold text-[13px] leading-[18px] uppercase tracking-wide whitespace-nowrap shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-colors flex items-center justify-center w-full sm:w-[240px] hover:bg-white">
+              LET'S START YOUR JOURNEY
             </button>
-            <button className="px-10 py-3.5 rounded-[12px] bg-[#01888E] text-white font-sans font-bold text-[14px] leading-[18px] shadow-[0px_4px_12px_rgba(1,136,142,0.3)] transition-colors flex items-center justify-center w-full sm:w-[260px] hover:bg-[#006D6D]">
-              Build My Trip
+            <button className="px-6 py-3 rounded-[8px] bg-[#01888E] text-white font-sans font-bold text-[13px] leading-[18px] uppercase tracking-wide whitespace-nowrap shadow-[0px_4px_12px_rgba(1,136,142,0.3)] transition-colors flex items-center justify-center w-full sm:w-[240px] hover:bg-[#006D6D]">
+              BUILD MY TRIP
             </button>
           </div>
         </div>
@@ -275,8 +320,8 @@ const Home = () => {
 
       {/* Categories Section */}
       <section className="py-8 bg-white max-w-7xl mx-auto text-center mt-2">
-        <p className="text-[17px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[28px] text-center px-4 font-normal">
-          We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
+        <p className="text-[13px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[18px] text-center px-4 font-normal whitespace-pre-line">
+          We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka.{'\n'}Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-8 px-2 md:px-4 max-w-[1100px] mx-auto justify-center">
           {themes.map((theme) => {
@@ -290,7 +335,7 @@ const Home = () => {
                 <div className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] md:w-[96px] md:h-[96px] flex items-center justify-center pt-1">
                   {renderThemeIcon(theme.id)}
                 </div>
-                <span className={`text-[11px] md:text-[12px] font-semibold text-center leading-[14px] text-[#003032] whitespace-pre-line`}>{theme.name}</span>
+                <span className={`text-[12px] md:text-[13px] font-bold text-center leading-[16px] text-[#003032] whitespace-pre-line`}>{theme.name}</span>
               </div>
             );
           })}
@@ -346,27 +391,27 @@ const Home = () => {
                 <span className="font-light">A Land of </span>
                 <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
               </h3>
-              <p className="text-[14px] leading-[22px] text-[#003032] font-normal" style={{ fontFamily: 'Inter' }}>
-                We offer seven extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
+              <p className="text-[13px] leading-[18px] text-[#003032] font-normal whitespace-pre-line" style={{ fontFamily: 'Inter' }}>
+                We offer <span className="font-bold">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka.{'\n'}Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
               </p>
             </div>
 
             {/* Carousel Navigation Buttons */}
-            <div className="flex justify-end mt-3">
-              <div className="flex gap-1 shrink-0 mr-0 md:mr-16">
-                <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-[34px] h-[28px] bg-[#01888E] rounded-[14px_0_0_14px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+            <div className="flex justify-end mt-3 md:mt-0">
+              <div className="flex gap-2 shrink-0 md:mr-4">
+                <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-8 h-8 bg-[#01888E] rounded-[8px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
-                <button onClick={scrollNextTours} aria-label="Next tours" className="w-[34px] h-[28px] bg-[#01888E] rounded-[0_14px_14px_0] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                <button onClick={scrollNextTours} aria-label="Next tours" className="w-8 h-8 bg-[#01888E] rounded-[8px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
                 </button>
               </div>
             </div>
           </div>
 
-          <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5">
+          <div ref={(el) => { toursRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {tours.map((tour) => (
-              <div key={tour.id} className="snap-start min-w-[280px] sm:min-w-[320px]  md:min-w-0 bg-white rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer flex flex-col flex-shrink-0">
+              <div key={tour.id} className="snap-start flex-shrink-0 w-[calc(25%-15px)] min-w-[260px] bg-white rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer flex flex-col">
                 {/* Image area */}
                 <div className="relative w-full h-[180px] bg-gray-100 shrink-0">
                   <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" />
@@ -379,8 +424,8 @@ const Home = () => {
                   </div>
 
                   {/* Heart top-right */}
-                  <button aria-label="favorite" className="absolute right-3 top-3 w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                    <Heart size={14} className="text-[#003032] fill-none" />
+                  <button aria-label="favorite" className="absolute right-3 top-3 w-7 h-7 bg-white/20 border border-white rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <Heart size={14} className="text-white fill-transparent" />
                   </button>
 
                   {/* Text overlay bottom-left */}
@@ -397,23 +442,23 @@ const Home = () => {
                 </div>
 
                 {/* Card content */}
-                <div className="p-4 flex flex-col justify-between flex-1">
+                <div className="p-4 flex flex-col justify-between flex-1 bg-white">
                   <div className="flex items-center gap-2 mb-2 text-[12px] font-bold" style={{ fontFamily: 'Inter' }}>
-                    <span className="text-[#01888E]">{tour.reviews} Ratings</span>
-                    <span className="text-gray-300">|</span>
+                    <span className="text-[#01888E]">14 Ratings</span>
+                    <span className="text-gray-300 font-light">|</span>
                     <span className="text-gray-600 font-normal">
-                      From <span className="text-[#FFA800] font-bold">{tour.price}</span>
+                      From <span className="text-[#FF2A2A] font-bold">5$ - 1000$</span>
                     </span>
                   </div>
 
-                  <p className="text-[12px] text-gray-500 leading-relaxed mb-4" style={{ fontFamily: 'Inter' }}>
+                  <p className="text-[12px] text-[#4A4A4A] leading-relaxed mb-4 tracking-wide" style={{ fontFamily: 'Inter' }}>
                     Lorem Ipsum is simply dummy text of the printing and type setting industry.
                   </p>
 
                   <div className="flex items-center justify-between mt-auto">
                     <div>
-                      <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>{tour.category}</div>
-                      <div className="text-[11px] text-gray-400 font-medium mt-0.5" style={{ fontFamily: 'Inter' }}>{tour.duration}</div>
+                      <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>Adventure</div>
+                      <div className="text-[11px] text-[#003032] font-bold mt-0.5" style={{ fontFamily: 'Inter' }}>3 days</div>
                     </div>
                     <button aria-label="share" className="text-gray-400 hover:text-[#01888E] transition-colors">
                       <CornerUpRight size={18} />
@@ -502,9 +547,9 @@ const Home = () => {
             </div>
           </div>
 
-          <div ref={(el) => { staysRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:gap-5 md:overflow-visible">
+          <div ref={(el) => { staysRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {stays.map((item) => (
-              <div key={item.id} className="snap-start min-w-[85%] sm:min-w-[48%] md:min-w-0 flex-shrink-0">
+              <div key={item.id} className="snap-start flex-shrink-0 w-[calc(25%-15px)] min-w-[260px]">
                 {item.featured ? (
                   <div className="relative rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group">
                     <div className="relative w-full h-[240px] bg-gray-200">
@@ -566,27 +611,37 @@ const Home = () => {
 
 
       {/* Customize CTA Section */}
-      <section className="relative w-full bg-white">
-        <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] bg-cover bg-center" style={{ backgroundImage: `url(${customize})` }}>
-          <div className="absolute top-0 left-0 w-full h-36 sm:h-44 bg-gradient-to-b from-white from-40% via-white/90 to-transparent pointer-events-none" />
+      <section className="relative w-full bg-white overflow-hidden">
+        {/* Full-width background image */}
+        <div
+          className="relative w-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${customize})`, height: '585px' }}
+        >
+          {/* White fade at top */}
+          <div className="absolute top-0 left-0 w-full h-[180px] bg-gradient-to-b from-white via-white/70 to-transparent pointer-events-none" />
 
-          <div className="absolute left-0 right-0 bottom-0 translate-y-[45%] flex justify-center px-4 sm:px-6 z-10">
-            <div className="bg-white max-w-3xl w-full md:max-w-[720px] mx-auto rounded-[24px] shadow-[0px_8px_32px_rgba(0,0,0,0.12)] px-4 sm:px6 py-8 md:px-12 md:py-12">
-              <h3 className="text-center text-[#003032] font-bold text-[24px] md:text-[28px] leading-tight mb-5" style={{ fontFamily: 'Inter' }}>
+          {/* White fade at sides */}
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+
+          {/* Floating card anchored to bottom of image */}
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center px-4 translate-y-[40%] z-10">
+            <div className="bg-white w-full max-w-[800px] mx-auto rounded-[20px] shadow-[0px_8px_40px_rgba(0,0,0,0.10)] px-8 py-10 text-center">
+              <h3 className="text-[#003032] font-bold text-[20px] md:text-[22px] leading-tight mb-4" style={{ fontFamily: 'Inter' }}>
                 Let's Customize Your <span className="text-[#01888E]">Dream Tour</span> Today!
               </h3>
-              <p className="text-center text-[13px] md:text-[14px] text-[#757575] leading-relaxed max-w-2xl mx-auto mb-8 px-2" style={{ fontFamily: 'Inter' }}>
+              <p className="text-[13px] md:text-[14px] text-[#757575] leading-relaxed max-w-[700px] mx-auto mb-7" style={{ fontFamily: 'Inter' }}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
               </p>
-              <div className="flex justify-center">
-                <button className="px-10 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.3)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
-                  Customize
-                </button>
-              </div>
+              <button className="px-12 py-3 bg-[#01888E] text-white rounded-[10px] text-[15px] font-bold shadow-[0px_4px_16px_rgba(1,136,142,0.35)] hover:bg-[#006D6D] transition-colors min-w-[180px]" style={{ fontFamily: 'Inter' }}>
+                Customize
+              </button>
             </div>
           </div>
         </div>
-        <div className="h-[100px] sm:h-[120px] md:h-[130px] bg-white" />
+
+        {/* Spacer so next section doesn't overlap the card */}
+        <div className="h-[220px] bg-white" />
       </section>
 
 
@@ -615,7 +670,7 @@ const Home = () => {
               if (position > 1) position -= testimonials.length;
 
               const isActive = position === 0;
-              const cardWidth = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 260 : window.innerWidth < 1024 ? 300 : 360) : 360;
+              const cardWidth = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 240 : window.innerWidth < 1024 ? 280 : 320) : 320;
               const translateX = `translateX(${position * cardWidth}px)`;
 
               return (
@@ -625,36 +680,37 @@ const Home = () => {
                   style={{
                     transform: `${translateX}${isActive ? ' translateY(-8px) scale(1.05)' : ' scale(0.92)'}`,
                     transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out`,
-                    opacity: isActive ? 1 : 0.55,
+                    opacity: isActive ? 1 : 0.6,
                   }}
                 >
                   <div
-                    className={`relative bg-white rounded-[24px] px-7 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${
-                      isActive
-                        ? 'w-[260px] sm:w-[300px] lg:w-[360px] min-h-[360px] shadow-[0px_8px_32px_rgba(1,136,142,0.18)]'
-                        : 'w-[240px] sm:w-[280px] lg:w-[320px] min-h-[320px] shadow-[0px_4px_16px_rgba(0,0,0,0.06)]'
-                    }`}
+                    className={`relative bg-white rounded-[24px] px-7 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${isActive
+                      ? 'w-[260px] sm:w-[300px] lg:w-[360px] min-h-[360px] shadow-[0px_8px_32px_rgba(1,136,142,0.18)]'
+                      : 'w-[240px] sm:w-[280px] lg:w-[320px] min-h-[320px] shadow-[0px_4px_16px_rgba(0,0,0,0.06)]'
+                      }`}
                   >
-                    <div className="absolute top-4 left-5 text-[#01888E] font-serif leading-none font-bold text-[56px] sm:text-[64px] pointer-events-none select-none">
-                      “
+                    <div className="absolute top-6 left-6 text-[#01888E] pointer-events-none select-none">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.039 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" />
+                      </svg>
                     </div>
 
                     <div
-                      className={`rounded-full bg-cover bg-center border-2 border-[#01888E] z-10 mt-2 ${isActive ? 'w-[80px] h-[80px] sm:w-[88px] sm:h-[88px]' : 'w-[68px] h-[68px] sm:w-[76px] sm:h-[76px]'}`}
-                      style={{ backgroundImage: `url(${testimonial.avatar})` }}
+                      className={`rounded-full bg-cover bg-center ring-[4px] ring-[#01888E]/20 border-2 border-[#01888E] z-10 mt-2 ${isActive ? 'w-[80px] h-[80px] sm:w-[88px] sm:h-[88px]' : 'w-[68px] h-[68px] sm:w-[76px] sm:h-[76px]'}`}
+                      style={{ backgroundImage: `url(${testimonial.avatar})`, boxShadow: '0 4px 14px rgba(1, 136, 142, 0.3)' }}
                     />
 
-                    <div className="flex justify-center gap-1 mt-4 mb-4">
+                    <div className="flex justify-center gap-1 mt-5 mb-5">
                       {[1, 2, 3, 4, 5].map((s) => (
                         <Star key={s} size={isActive ? 16 : 14} className="text-[#FFC600] fill-[#FFC600]" />
                       ))}
                     </div>
 
                     <p
-                      className={`italic text-[#003032]/80 mb-6 px-1 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px]'}`}
+                      className={`italic text-[#003032]/80 mb-6 px-4 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px]'}`}
                       style={{ fontFamily: 'Inter' }}
                     >
-                      {testimonial.text}
+                      “{testimonial.text}”
                     </p>
 
                     <div className="mt-auto">
@@ -671,19 +727,18 @@ const Home = () => {
             })}
           </div>
 
-          <div className="flex justify-center mt-6 gap-2.5">
+          <div className="flex justify-center mt-6 gap-3">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 aria-label={`Go to testimonial ${index + 1}`}
-                className={`rounded-full transition-all flex items-center justify-center ${
-                  currentSlide === index
-                    ? 'w-[18px] h-[18px] bg-[#01888E]'
-                    : 'w-[12px] h-[12px] bg-white border border-[#01888E] hover:opacity-100 opacity-80'
-                }`}
+                className={`rounded-full transition-all flex items-center justify-center ${currentSlide === index
+                  ? 'w-[18px] h-[18px] border-[2px] border-[#01888E] bg-white'
+                  : 'w-[14px] h-[14px] bg-white border border-[#01888E]/40 hover:border-[#01888E]/60'
+                  }`}
               >
-                {currentSlide === index && <div className="w-[6px] h-[6px] bg-white rounded-full" />}
+                {currentSlide === index && <div className="w-[10px] h-[10px] bg-[#01888E] rounded-full" />}
               </button>
             ))}
           </div>
