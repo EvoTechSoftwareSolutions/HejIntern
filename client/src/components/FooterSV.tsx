@@ -203,10 +203,10 @@ const FooterSV = () => {
           style={{ fontFamily: "Inter" }}
         >
           <p>
-            <span className="font-bold text-[#4B5563]">© HejCeylon (PVT) Ltd.</span> | Alla rättigheter förbehållna 2025
+            © <span className="font-bold text-[#4B5563]"> HejCeylon (PVT) Ltd.</span> | Alla rättigheter förbehållna 2025
           </p>
           <p className="text-[#4B5563]">
-            Design & utveckling av{" "}
+            Design & Utvecklad av{" "}
             <span className="font-bold text-[#1F2937]">Evon Technologies Software Solutions (PVT) Ltd.</span>
           </p>
         </div>

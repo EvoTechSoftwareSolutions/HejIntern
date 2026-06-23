@@ -58,8 +58,8 @@ const footerText = {
     sv: "Plats",
   },
   bottomCopy: {
-    en: "© HejCeylon (PVT) Ltd. | All rights reserved 2025",
-    sv: "© HejCeylon (PVT) Ltd. | Alla rättigheter förbehållna 2025",
+    en: "HejCeylon (PVT) Ltd. | All rights reserved 2025",
+    sv: "HejCeylon (PVT) Ltd. | Alla rättigheter förbehållna 2025",
   },
   designBy: {
     en: "Design & Develop by Evon Technologies Software Solutions (PVT) Ltd.",
