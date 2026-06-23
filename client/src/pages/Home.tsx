@@ -236,10 +236,10 @@ const Home = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="w-full font-sans text-dark bg-white overflow-hidden pt-[80px] md:pt-[100px] lg:pt-0">
+    <div className="w-full font-sans text-dark bg-white overflow-hidden pt-[110px] md:pt-[110px] lg:pt-0">
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-[520px] md:min-h-[640px] lg:min-h-screen flex flex-col justify-center items-center text-center text-secondary mt-0">
+      <section className="relative w-full h-[520px] md:h-[640px] flex flex-col justify-center items-center text-center text-secondary mt-0">
         <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBanner})` }} />
 
         <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
@@ -254,12 +254,12 @@ const Home = () => {
           </div>
 
         <div className="relative z-20 flex flex-col items-center mt-16 px-4">
-          <h1 className="font-kaisei text-[28px] md:text-[40px] lg:text-[56px] leading-tight font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
-          <p className="font-alex text-[20px] md:text-[30px] lg:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
+          <h1 className="font-kaisei text-[40px] md:text-[40px] leading-[48px] font-bold text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">FIND YOUR PERFECT GETAWAY</h1>
+          <p className="font-alex text-[28px] md:text-[34px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
 
           <div className="flex flex-col items-center mt-4 w-full">
             <p className="font-sans text-[14px] leading-[18px] text-white/90 font-normal drop-shadow-sm mb-4">Tailored Experiences, Unmatched Adventures</p>
-            <div className="w-full max-w-[300px] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-6" />
+            <div className="w-[300px] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-6" />
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-2 items-center w-full px-4 md:px-0">
@@ -278,13 +278,13 @@ const Home = () => {
         <p className="text-[17px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[28px] text-center px-4 font-normal">
           We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 pb-8 px-2 md:px-4 max-w-[1100px] mx-auto justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-8 px-2 md:px-4 max-w-[1100px] mx-auto justify-center">
           {themes.map((theme) => {
             return (
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`group flex flex-col items-center justify-start gap-2 rounded-[12px] p-3 w-full sm:w-[140px] bg-[#EAF5F5] cursor-pointer`}
+                className={`group flex flex-col items-center justify-start gap-2 rounded-[12px] p-3 w-[120px] sm:w-[140px] bg-[#EAF5F5] cursor-pointer`}
                 aria-pressed={activeTheme === theme.id}
               >
                 <div className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] md:w-[96px] md:h-[96px] flex items-center justify-center pt-1">
@@ -298,20 +298,20 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 w-full">
+      <section className="py-8 px-4 md:pl-[104px] md:pr-8 w-full relative">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
-            <h2 className="font-petemoss text-[40px] sm:text-[60px] md:text-[80px] lg:text-[96px] text-[#01888E]">Hello !</h2>
+            <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">Hello !</h2>
           </div>
 
-          <div className="flex flex-col md:flex-row items-start gap-6 md:gap-12">
+          <div className="flex flex-col md:flex-row items-start gap-12">
             {/* Left: framed image */}
-            <div className="w-full md:w-1/2 flex justify-center">
+            <div className="flex-shrink-0 w-full md:w-[420px]">
               <div className="bg-white rounded-[18px] p-4 inline-block">
                 <img
                   src={aboutus}
                   alt="About Hej Ceylon"
-                  className="w-full max-w-[400px] h-[280px] sm:h-[340px] md:h-[420px] object-cover rounded-[12px]"
+                  className="w-[360px] md:w-[392px] h-auto md:h-[420px] object-cover rounded-[12px]"
                 />
               </div>
             </div>
@@ -319,7 +319,7 @@ const Home = () => {
             {/* Right: Text */}
             <div className="flex flex-col max-w-[700px]">
               <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2" style={{ fontFamily: 'Inter' }}>ABOUT US</span>
-              <h3 className="text-[26px] sm:text-[30px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
                 Who We <span className="text-[#01888E]">Are</span>
               </h3>
 
@@ -336,12 +336,12 @@ const Home = () => {
       </section>
 
       {/* Tours Section (background: explorebg.png) */}
-      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-10 relative w-full overflow-hidden px-4 md:pl-[104px] md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
             <div className="max-w-[800px]">
-              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
+              <span className="text-[#01888E] text-[11px] font-normal uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
               <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
                 <span className="font-light">A Land of </span>
                 <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
@@ -592,7 +592,7 @@ const Home = () => {
 
 
       {/* Testimonials Section */}
-      <section className="relative py-14 mt-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="relative py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-8 text-center md:text-left">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>TESTIMONIALS</span>
