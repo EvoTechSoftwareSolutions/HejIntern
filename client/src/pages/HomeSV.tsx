@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Heart, Star, User, ChevronLeft, CornerUpRight, MapPin } from 'lucide-react';
+import { Heart, Star, User, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/aboutus.png';
@@ -281,24 +281,42 @@ const HomeSV = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="w-full font-sans text-dark bg-white overflow-hidden pt-[110px] md:pt-[110px] lg:pt-0">
+    <div className="w-full font-sans text-dark bg-white">
 
       {/* Hero Section */}
-      <section className="relative w-full h-[520px] md:h-[640px] flex flex-col justify-center items-center text-center text-secondary mt-0">
-        <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBanner})` }} />
+      <section className="relative w-full min-h-[100svh] lg:min-h-screen flex flex-col justify-center items-center text-center text-secondary">
+        <img
+          src={heroBanner}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[center_40%] sm:object-center"
+        />
 
-        <div className="absolute top-0 left-0 w-full h-[118px] bg-gradient-to-b from-white/90 to-transparent z-10" />
-        <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
+        <div className="absolute top-0 left-0 w-full h-14 md:h-24 lg:h-[118px] bg-gradient-to-b from-white/70 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
         <div className="absolute top-1/2 -translate-y-1/2 right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
-          {[1, 2, 3, 4, 5].map((_, index) => (
-            <button key={index} onClick={() => setHeroSlide(index)} className={`rounded-full transition-all flex items-center justify-center ${heroSlide === index ? 'w-[44px] h-[44px] border-[2px] border-[#01888E] p-[3px]' : 'w-[6px] h-[6px] bg-white hover:bg-gray-200'} cursor-pointer`}>
-              {heroSlide === index && <div className="w-full h-full rounded-full bg-cover ring-2 ring-white" style={{ backgroundImage: `url('/carousel-3.jpg')` }} />}
+          {[0, 1, 2, 3, 4, 5, 6].map((index) => (
+            <button
+              key={index}
+              onClick={() => setHeroSlide(index)}
+              className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${
+                heroSlide === index
+                  ? 'w-[48px] h-[48px] border-[2.5px] border-[#01888E]/80 p-[3px] bg-transparent'
+                  : 'w-[8px] h-[8px] bg-white/70 hover:bg-white'
+              } cursor-pointer`}
+            >
+              {heroSlide === index && (
+                <div
+                  className="w-full h-full rounded-full bg-cover bg-center ring-2 ring-white/80"
+                  style={{ backgroundImage: `url(${heroBanner})` }}
+                />
+              )}
             </button>
           ))}
         </div>
 
-        <div className="relative z-20 flex flex-col items-center mt-16 px-4">
+        <div className="relative z-20 flex flex-col items-center px-4 pt-[118px] pb-10 sm:pt-[128px] lg:pt-16 lg:pb-0">
           <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">Hitta Din Perfekta Semester</h1>
           <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Skräddarsydd bara för dig!</p>
 
@@ -307,11 +325,11 @@ const HomeSV = () => {
             <div className="w-[280px] h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mb-5" />
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-1 items-center w-full px-4 md:px-0">
-            <button className="px-6 py-3 rounded-[8px] bg-[#E2E8F0]/95 backdrop-blur-sm text-[#003032] font-sans font-bold text-[13px] leading-[18px] uppercase tracking-wide whitespace-nowrap shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-colors flex items-center justify-center w-full sm:w-[240px] hover:bg-white">
+          <div className="flex flex-row justify-center gap-2 sm:gap-4 mt-1 items-stretch w-full px-4 md:px-0">
+            <button className="flex-1 sm:flex-none px-2 sm:px-6 py-1.5 sm:py-3 rounded-[6px] sm:rounded-[8px] bg-[#E2E8F0]/95 backdrop-blur-sm text-[#003032] font-sans font-bold text-[8px] sm:text-[13px] leading-[10px] sm:leading-[18px] uppercase tracking-normal sm:tracking-wide whitespace-normal sm:whitespace-nowrap shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-colors flex items-center justify-center sm:w-[240px] hover:bg-white">
               BÖRJA DITT ÄVENTYR
             </button>
-            <button className="px-6 py-3 rounded-[8px] bg-[#01888E] text-white font-sans font-bold text-[13px] leading-[18px] uppercase tracking-wide whitespace-nowrap shadow-[0px_4px_12px_rgba(1,136,142,0.3)] transition-colors flex items-center justify-center w-full sm:w-[240px] hover:bg-[#006D6D]">
+            <button className="flex-1 sm:flex-none px-2 sm:px-6 py-1.5 sm:py-3 rounded-[6px] sm:rounded-[8px] bg-[#01888E] text-white font-sans font-bold text-[8px] sm:text-[13px] leading-[10px] sm:leading-[18px] uppercase tracking-normal sm:tracking-wide whitespace-normal sm:whitespace-nowrap shadow-[0px_4px_12px_rgba(1,136,142,0.3)] transition-colors flex items-center justify-center sm:w-[240px] hover:bg-[#006D6D]">
               SKAPA MIN RESA
             </button>
           </div>
@@ -319,23 +337,23 @@ const HomeSV = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-8 bg-white max-w-7xl mx-auto text-center mt-2">
+      <section className="py-8 bg-white max-w-7xl mx-auto text-center -mt-6 sm:-mt-8 lg:mt-2 relative z-20">
         <p className="text-[13px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[18px] text-center px-4 font-normal whitespace-pre-line">
           Vi erbjuder <span className="font-bold text-[#01888E]">sju</span> extraordinära resekategorier, var och en noggrant utvald för att ge dig det bästa av Sri Lanka.{'\n'}Oavsett om du söker kulturarv, spännande äventyr eller en lyxig reträtt, har vi dig täckt!
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-8 px-2 md:px-4 max-w-[1100px] mx-auto justify-center">
+        <div className="flex flex-row items-stretch justify-start gap-1 sm:gap-2 pb-8 px-4 sm:px-6 md:px-8 max-w-[1100px] mx-auto overflow-hidden">
           {themes.map((theme) => {
             return (
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`group flex flex-col items-center justify-start gap-2 rounded-[12px] p-3 w-[120px] sm:w-[140px] bg-[#EAF5F5] cursor-pointer`}
+                className={`group flex flex-col items-center justify-center gap-1 rounded-[10px] p-1 flex-shrink-0 w-[calc((100%_-_18px)/7)] max-w-[calc((100%_-_18px)/7)] min-w-0 bg-[#EAF5F5] cursor-pointer h-[96px] sm:h-[104px]`}
                 aria-pressed={activeTheme === theme.id}
               >
-                <div className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] md:w-[96px] md:h-[96px] flex items-center justify-center pt-1">
+                <div className="w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] flex items-center justify-center">
                   {renderThemeIcon(theme.id)}
                 </div>
-                <span className={`text-[12px] md:text-[13px] font-bold text-center leading-[16px] text-[#003032] whitespace-pre-line`}>{theme.name}</span>
+                <span className={`text-[7px] sm:text-[8px] md:text-[9px] font-bold text-center leading-[8.5px] sm:leading-[9.5px] md:leading-[11px] text-[#003032] whitespace-pre-line break-words max-w-full`}>{theme.name}</span>
               </div>
             );
           })}
@@ -398,12 +416,12 @@ const HomeSV = () => {
 
             {/* Carousel Navigation Buttons */}
             <div className="flex justify-end mt-3 md:mt-0">
-              <div className="flex gap-2 shrink-0 md:mr-4">
-                <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-8 h-8 bg-[#01888E] rounded-[8px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+              <div className="flex gap-[2px] md:mr-2">
+                <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                   <ChevronLeft size={16} />
                 </button>
-                <button onClick={scrollNextTours} aria-label="Next tours" className="w-8 h-8 bg-[#01888E] rounded-[8px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
-                  <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
+                <button onClick={scrollNextTours} aria-label="Next tours" className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <ChevronRight size={16} />
                 </button>
               </div>
             </div>
@@ -461,7 +479,7 @@ const HomeSV = () => {
                       <div className="text-[11px] text-[#003032] font-bold mt-0.5" style={{ fontFamily: 'Inter' }}>{tour.duration}</div>
                     </div>
                     <button aria-label="share" className="text-gray-400 hover:text-[#01888E] transition-colors">
-                      <CornerUpRight size={18} />
+                      <ChevronRight size={18} />
                     </button>
                   </div>
                 </div>
@@ -513,7 +531,7 @@ const HomeSV = () => {
           </div>
 
           <div className="flex justify-center mt-8">
-            <button className="px-8 py-3.5 bg-[#01888E] text-white rounded-full text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
+            <button className="px-8 py-3.5 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
               Börja ditt äventyr idag
             </button>
           </div>
@@ -550,52 +568,31 @@ const HomeSV = () => {
           <div ref={(el) => { staysRef.current = el; }} className="flex gap-5 mb-6 overflow-x-auto snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {stays.map((item) => (
               <div key={item.id} className="snap-start flex-shrink-0 w-[calc(25%-15px)] min-w-[260px]">
-                {item.featured ? (
-                  <div className="relative rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group">
-                    <div className="relative w-full h-[240px] bg-gray-200">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+                <div className="relative rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group h-[260px] bg-white">
+                  <div className="absolute inset-x-0 top-0 h-[180px] group-hover:h-full transition-all duration-500 ease-in-out bg-gray-200 overflow-hidden">
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
 
-                      <div className="absolute top-3 left-3 bg-[#01888E] text-white text-[11px] font-bold px-2 py-0.5 rounded-[6px] flex items-center gap-1">
-                        <Star className="fill-[#FFC600] text-[#FFC600]" size={11} />
-                        <span>{item.rating}</span>
-                      </div>
+                  <div className="absolute top-3 left-3 bg-[#01888E] text-white text-[11px] font-bold px-2 py-0.5 rounded-[6px] flex items-center gap-1 z-20">
+                    <Star className="fill-[#FFC600] text-[#FFC600]" size={11} />
+                    <span>{item.rating}</span>
+                  </div>
 
-                      <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition">
-                        <Heart size={14} className="stroke-[2.5]" />
-                      </button>
+                  <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition z-20">
+                    <Heart size={14} className="stroke-[2.5]" />
+                  </button>
 
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h4 className="text-[16px] font-bold text-white mb-1" style={{ fontFamily: 'Inter' }}>{item.name}</h4>
-                        <div className="flex items-center text-white/90 text-[12px]" style={{ fontFamily: 'Inter' }}>
-                          <MapPin size={12} className="mr-1 shrink-0" /> {item.location}
-                        </div>
-                      </div>
+                  <div className="absolute bottom-0 inset-x-0 p-4 bg-white group-hover:bg-transparent transition-all duration-500 ease-in-out flex flex-col justify-center h-[80px] z-10">
+                    <h4 className="text-[15px] font-bold text-[#003032] group-hover:text-white mb-1.5 transition-colors duration-500" style={{ fontFamily: 'Inter' }}>
+                      {item.name}
+                    </h4>
+                    <div className="flex items-center text-[#757575] group-hover:text-white/90 text-[12px] transition-colors duration-500" style={{ fontFamily: 'Inter' }}>
+                      <MapPin size={12} className="mr-1 text-[#01888E] group-hover:text-white shrink-0 transition-colors duration-500" />
+                      {item.location}
                     </div>
                   </div>
-                ) : (
-                  <div className="bg-white rounded-[12px] overflow-hidden shadow-[0px_4px_16px_rgba(0,0,0,0.08)] cursor-pointer group flex flex-col">
-                    <div className="relative w-full h-[180px] bg-gray-200 shrink-0">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-
-                      <div className="absolute top-3 left-3 bg-[#01888E] text-white text-[11px] font-bold px-2 py-0.5 rounded-[6px] flex items-center gap-1">
-                        <Star className="fill-[#FFC600] text-[#FFC600]" size={11} />
-                        <span>{item.rating}</span>
-                      </div>
-
-                      <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition">
-                        <Heart size={14} className="stroke-[2.5]" />
-                      </button>
-                    </div>
-
-                    <div className="p-4">
-                      <h4 className="text-[15px] font-bold text-[#003032] mb-1.5" style={{ fontFamily: 'Inter' }}>{item.name}</h4>
-                      <div className="flex items-center text-[#757575] text-[12px]" style={{ fontFamily: 'Inter' }}>
-                        <MapPin size={12} className="mr-1 text-[#01888E] shrink-0" /> {item.location}
-                      </div>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             ))}
           </div>

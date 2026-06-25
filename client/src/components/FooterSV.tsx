@@ -115,7 +115,7 @@ const FooterSV = () => {
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left max-w-md mx-auto lg:mx-0 lg:max-w-none">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left max-w-md mx-auto lg:mx-0 lg:max-w-none order-1">
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="Hej Ceylon" className="h-[38px] w-auto" />
               <div className="text-white font-bold text-[20px] sm:text-[22px] tracking-wide" style={{ fontFamily: "Inter" }}>
@@ -151,16 +151,16 @@ const FooterSV = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8">
-            <FooterLinkColumn title="Navigering" links={navigationLinks} className="col-span-1" />
-            <FooterLinkColumn title="Snabblänkar" links={quickLinks} className="col-span-1" />
-            <FooterLinkColumn title="Support" links={supportLinks} className="col-span-2 sm:col-span-1" />
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-1 gap-6 sm:gap-8">
+            <FooterLinkColumn title="Support" links={supportLinks} className="col-span-1 order-2 lg:order-4" />
+            <FooterLinkColumn title="Navigering" links={navigationLinks} className="col-span-1 order-3 lg:order-2" />
+            <FooterLinkColumn title="Snabblänkar" links={quickLinks} className="col-span-1 order-4 lg:order-3" />
           </div>
         </div>
 
         <hr className="border-white/30 my-8 sm:my-10" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6 order-5">
           <ContactBlock title="Hotline" icon={<Phone size={18} className="text-white" />}>
             +94 71 160 2095
           </ContactBlock>

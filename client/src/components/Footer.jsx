@@ -13,10 +13,10 @@ const Footer = () => {
     <footer className="bg-[#01888E] text-white rounded-t-[40px] overflow-hidden h-[370px] flex flex-col">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-6 items-start">
           
           {/* Logo & Description */}
-          <div className="flex flex-col">
+          <div className="flex flex-col order-1">
             <div className="flex items-center gap-3 mb-3">
               <img src={logo} alt="Hej Ceylon" className="h-11" />
               <div>
@@ -58,8 +58,21 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Support */}
+          <div className="flex flex-col">
+            <h3 className="font-bold text-base mb-3 uppercase tracking-wide">Support</h3>
+
+            <ul className="flex flex-col gap-3 text-[#E6F3F4] text-sm">
+              <li><Link to="/help-center">Help Center</Link></li>
+              <li><Link to="/account">My Hej Ceylon</Link></li>
+              <li><Link to="/favorites">My Favorites</Link></li>
+              <li><Link to="/my-tours">My Tours</Link></li>
+              <li><Link to="/profile">My Profile</Link></li>
+            </ul>
+          </div>
+
           {/* Navigation */}
-          <div className="flex flex-col ">
+          <div className="flex flex-col">
             <h3
               style={{ fontFamily: "'Poppins', sans-serif" }}
               className="font-bold text-sm leading-[20px] mb-3 uppercase tracking-wide text-[#E6F3F4] w-[99px] h-[20px]"
@@ -90,21 +103,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support */}
-          <div className="flex flex-col">
-            <h3 className="font-bold text-base mb-3 uppercase tracking-wide">Support</h3>
-
-            <ul className="flex flex-col gap-3 text-[#E6F3F4] text-sm">
-              <li><Link to="/help-center">Help Center</Link></li>
-              <li><Link to="/account">My Hej Ceylon</Link></li>
-              <li><Link to="/favorites">My Favorites</Link></li>
-              <li><Link to="/my-tours">My Tours</Link></li>
-              <li><Link to="/profile">My Profile</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Section */}
-          <div>
+          {/* Contact Section - Order 5 */}
+          <div className="order-5">
             {/* Hotline */}
             <h3 className="font-bold text-sm mb-2 uppercase">Hotline</h3>
 
