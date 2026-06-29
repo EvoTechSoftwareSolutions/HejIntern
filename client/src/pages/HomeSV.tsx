@@ -18,22 +18,29 @@ import icon6 from '../assets/6.png';
 import icon7 from '../assets/7.png';
 
 const renderThemeIcon = (id: number) => {
-  const iconClass = "w-full h-full object-contain transition-opacity duration-150 group-hover:opacity-95";
+  const baseClass = "object-contain transition-opacity duration-150 group-hover:opacity-95 mx-auto";
   switch (id) {
     case 1:
-      return <img src={icon1} alt="Theme 1" className={iconClass} />;
+      // Mask (wide)
+      return <img src={icon1} alt="Theme 1" className={`${baseClass} w-[95%] h-[95%]`} />;
     case 2:
-      return <img src={icon2} alt="Theme 2" className={iconClass} />;
+      // Palm tree (tall)
+      return <img src={icon2} alt="Theme 2" className={`${baseClass} w-[75%] h-[95%]`} />;
     case 3:
-      return <img src={icon3} alt="Theme 3" className={iconClass} />;
+      // Elephant (wide)
+      return <img src={icon3} alt="Theme 3" className={`${baseClass} w-[95%] h-[85%]`} />;
     case 4:
-      return <img src={icon4} alt="Theme 4" className={iconClass} />;
+      // Kayak (wide)
+      return <img src={icon4} alt="Theme 4" className={`${baseClass} w-[90%] h-[90%]`} />;
     case 5:
-      return <img src={icon5} alt="Theme 5" className={iconClass} />;
+      // Mortar (wide/compact)
+      return <img src={icon5} alt="Theme 5" className={`${baseClass} w-[80%] h-[80%]`} />;
     case 6:
-      return <img src={icon6} alt="Theme 6" className={iconClass} />;
+      // Spa bed (wide)
+      return <img src={icon6} alt="Theme 6" className={`${baseClass} w-[85%] h-[85%]`} />;
     case 7:
-      return <img src={icon7} alt="Theme 7" className={iconClass} />;
+      // Shield (tall/square)
+      return <img src={icon7} alt="Theme 7" className={`${baseClass} w-[80%] h-[90%]`} />;
     default:
       return null;
   }
@@ -48,13 +55,13 @@ const HomeSV = () => {
   const startXRef = useRef(0);
 
   const themes = [
-    { id: 1, name: 'Dyk ner i historia\noch traditioner' },
-    { id: 2, name: 'Koppla av vid\nturkosa\nvatten' },
-    { id: 3, name: 'Upplev\nnaturen i sin\nrenaste form' },
-    { id: 4, name: 'Få din\nadrenalinkick!' },
-    { id: 5, name: 'Återuppliva din\nsjäl' },
-    { id: 6, name: 'Skäm bort dig i\nexklusivitet' },
-    { id: 7, name: 'Fantastiska\nupplevelser till\nbra pris!' },
+    { id: 1, name: 'Dyk ner i historia och traditioner' },
+    { id: 2, name: 'Koppla av vid turkosa vatten' },
+    { id: 3, name: 'Upplev naturen i sin renaste form' },
+    { id: 4, name: 'Få din adrenalinkick!' },
+    { id: 5, name: 'Återuppliva din själ' },
+    { id: 6, name: 'Skäm bort dig i exklusivitet' },
+    { id: 7, name: 'Fantastiska upplevelser till bra pris!' },
   ];
   // responsive grid will handle layout on small screens
 
@@ -284,7 +291,7 @@ const HomeSV = () => {
     <div className="w-full font-sans text-dark bg-white">
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-[100svh] lg:min-h-screen flex flex-col justify-center items-center text-center text-secondary">
+      <section className="relative w-full min-h-[115svh] lg:min-h-[115vh] flex flex-col justify-center items-center text-center text-secondary">
         <img
           src={heroBanner}
           alt=""
@@ -295,15 +302,15 @@ const HomeSV = () => {
         <div className="absolute top-0 left-0 w-full h-14 md:h-24 lg:h-[118px] bg-gradient-to-b from-white/70 to-transparent z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
-        <div className="absolute top-1/2 -translate-y-1/2 right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
+        <div className="absolute top-1/2 -translate-y-1/2 right-2 sm:right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
           {[0, 1, 2, 3, 4, 5, 6].map((index) => (
             <button
               key={index}
               onClick={() => setHeroSlide(index)}
               className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${
                 heroSlide === index
-                  ? 'w-[48px] h-[48px] border-[2.5px] border-[#01888E]/80 p-[3px] bg-transparent'
-                  : 'w-[8px] h-[8px] bg-white/70 hover:bg-white'
+                  ? 'w-[36px] h-[36px] sm:w-[48px] sm:h-[48px] border-[2.5px] border-[#01888E]/80 p-[2px] sm:p-[3px] bg-transparent'
+                  : 'w-[6px] h-[6px] sm:w-[8px] sm:h-[8px] bg-white/70 hover:bg-white'
               } cursor-pointer`}
             >
               {heroSlide === index && (
@@ -341,19 +348,19 @@ const HomeSV = () => {
         <p className="text-[13px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[18px] text-center px-4 font-normal whitespace-pre-line">
           Vi erbjuder <span className="font-bold text-[#01888E]">sju</span> extraordinära resekategorier, var och en noggrant utvald för att ge dig det bästa av Sri Lanka.{'\n'}Oavsett om du söker kulturarv, spännande äventyr eller en lyxig reträtt, har vi dig täckt!
         </p>
-        <div className="flex flex-row items-stretch justify-start gap-1 sm:gap-2 pb-8 px-4 sm:px-6 md:px-8 max-w-[1100px] mx-auto overflow-hidden">
+        <div className="flex flex-row items-stretch justify-start lg:justify-center lg:gap-4 gap-1 sm:gap-2 pb-8 px-4 sm:px-6 md:px-8 max-w-[1100px] mx-auto overflow-hidden">
           {themes.map((theme) => {
             return (
               <div
                 key={theme.id}
                 onClick={() => setActiveTheme(theme.id)}
-                className={`group flex flex-col items-center justify-center gap-1 rounded-[10px] p-1 flex-shrink-0 w-[calc((100%_-_18px)/7)] max-w-[calc((100%_-_18px)/7)] min-w-0 bg-[#EAF5F5] cursor-pointer h-[96px] sm:h-[104px]`}
+                className={`group flex flex-col items-center justify-center gap-1 lg:gap-3 rounded-[10px] p-1 flex-shrink-0 w-[calc((100%_-_18px)/7)] max-w-[calc((100%_-_18px)/7)] min-w-0 bg-[#EAF5F5] cursor-pointer h-[96px] sm:h-[104px] lg:w-[109px] lg:max-w-[109px] lg:h-[171px]`}
                 aria-pressed={activeTheme === theme.id}
               >
-                <div className="w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] flex items-center justify-center">
+                <div className="w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] lg:w-[72px] lg:h-[72px] flex items-center justify-center">
                   {renderThemeIcon(theme.id)}
                 </div>
-                <span className={`text-[7px] sm:text-[8px] md:text-[9px] font-bold text-center leading-[8.5px] sm:leading-[9.5px] md:leading-[11px] text-[#003032] whitespace-pre-line break-words max-w-full`}>{theme.name}</span>
+                <span className={`text-[7px] sm:text-[8px] md:text-[9px] lg:text-[14px] font-bold text-center leading-[8.5px] sm:leading-[9.5px] md:leading-[11px] lg:leading-[18px] text-[#003032] whitespace-pre-line break-words max-w-full`}>{theme.name}</span>
               </div>
             );
           })}
@@ -540,27 +547,28 @@ const HomeSV = () => {
 
 
       {/* Stays Section (background: explorebg.png) */}
-      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-10 relative w-full overflow-hidden px-4 md:pl-[104px] md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
-            <div className="max-w-[800px]">
-              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>BOENDEN</span>
-              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
-                <span className="font-bold">Bo I</span> <span className="font-bold text-[#01888E]">Sri Lanka</span>
-              </h3>
-              <p className="text-[14px] leading-[22px] text-[#003032] font-normal max-w-[600px]" style={{ fontFamily: 'Inter' }}>
+          <div className="mb-6">
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>BOENDEN</span>
+            <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+              <span className="font-bold">Bo I</span> <span className="font-bold text-[#01888E]">Sri Lanka</span>
+            </h3>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <p className="text-[14px] leading-[22px] text-[#003032] font-normal max-w-[700px]" style={{ fontFamily: 'Inter' }}>
                 Lorem Ipsum är helt enkelt dummytext från tryckeri- och förlagsindustrin. Lorem Ipsum har varit branschens standarddummytext sedan 1500-talet.
               </p>
-            </div>
 
-            <div className="flex justify-end mt-3">
-              <div className="flex gap-1 shrink-0 mr-0 md:mr-16">
-                <button onClick={scrollPrevStays} aria-label="Previous stays" className="w-[34px] h-[28px] bg-[#01888E] rounded-[14px_0_0_14px] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
-                  <ChevronLeft size={16} />
-                </button>
-                <button onClick={scrollNextStays} aria-label="Next stays" className="w-[34px] h-[28px] bg-[#01888E] rounded-[0_14px_14px_0] flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
-                  <ChevronLeft size={16} style={{ transform: 'rotate(180deg)' }} />
-                </button>
+              {/* Carousel Navigation Buttons */}
+              <div className="flex justify-end mt-3 md:mt-0 shrink-0">
+                <div className="flex gap-[2px] md:mr-2">
+                  <button onClick={scrollPrevStays} aria-label="Previous stays" className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                    <ChevronLeft size={16} />
+                  </button>
+                  <button onClick={scrollNextStays} aria-label="Next stays" className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -654,7 +662,7 @@ const HomeSV = () => {
           </div>
 
           <div
-            className="relative flex justify-center items-center h-[420px] sm:h-[460px] cursor-grab touch-pan-y"
+            className="relative flex justify-center items-center h-[440px] sm:h-[480px] cursor-grab touch-pan-y overflow-hidden"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -667,24 +675,25 @@ const HomeSV = () => {
               if (position > 1) position -= testimonials.length;
 
               const isActive = position === 0;
-              const cardWidth = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 240 : window.innerWidth < 1024 ? 280 : 320) : 320;
-              const translateX = `translateX(${position * cardWidth}px)`;
+              const cardWidth = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 260 : window.innerWidth < 1024 ? 300 : 340) : 340;
+              const translateX = `translateX(${position * (cardWidth + (typeof window !== 'undefined' && window.innerWidth < 640 ? 12 : 24))}px)`;
 
               return (
                 <div
                   key={testimonial.id}
                   className={`absolute ease-in-out ${isActive ? 'z-30' : 'z-10'}`}
                   style={{
-                    transform: `${translateX}${isActive ? ' translateY(-8px) scale(1.05)' : ' scale(0.92)'}`,
+                    transform: `${translateX}${isActive ? ' translateY(-8px) scale(1.03)' : ' scale(0.92)'}`,
                     transition: `transform ${SLIDE_TRANSITION_MS}ms ease-in-out, opacity ${SLIDE_TRANSITION_MS}ms ease-in-out`,
-                    opacity: isActive ? 1 : 0.6,
+                    opacity: isActive ? 1 : 0.55,
                   }}
                 >
                   <div
-                    className={`relative bg-white rounded-[24px] px-7 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${isActive
-                      ? 'w-[260px] sm:w-[300px] lg:w-[360px] min-h-[360px] shadow-[0px_8px_32px_rgba(1,136,142,0.18)]'
-                      : 'w-[240px] sm:w-[280px] lg:w-[320px] min-h-[320px] shadow-[0px_4px_16px_rgba(0,0,0,0.06)]'
-                      }`}
+                    className={`relative bg-white rounded-[24px] px-6 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${
+                      isActive
+                        ? 'w-[260px] sm:w-[300px] lg:w-[360px] min-h-[380px] shadow-[0px_8px_32px_rgba(1,136,142,0.18)]'
+                        : 'w-[240px] sm:w-[280px] lg:w-[320px] min-h-[320px] shadow-[0px_4px_16px_rgba(0,0,0,0.06)]'
+                    }`}
                   >
                     <div className="absolute top-6 left-6 text-[#01888E] pointer-events-none select-none">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
@@ -697,17 +706,17 @@ const HomeSV = () => {
                       style={{ backgroundImage: `url(${testimonial.avatar})`, boxShadow: '0 4px 14px rgba(1, 136, 142, 0.3)' }}
                     />
 
-                    <div className="flex justify-center gap-1 mt-5 mb-5">
+                    <div className="flex justify-center gap-1 mt-5 mb-4">
                       {[1, 2, 3, 4, 5].map((s) => (
                         <Star key={s} size={isActive ? 16 : 14} className="text-[#FFC600] fill-[#FFC600]" />
                       ))}
                     </div>
 
                     <p
-                      className={`italic text-[#003032]/80 mb-6 px-4 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px]'}`}
+                      className={`italic text-[#003032]/80 mb-6 px-2 sm:px-4 ${isActive ? 'text-[12px] leading-[20px]' : 'text-[11px] leading-[18px]'}`}
                       style={{ fontFamily: 'Inter' }}
                     >
-                      “{testimonial.text}”
+                      "{testimonial.text}"
                     </p>
 
                     <div className="mt-auto">

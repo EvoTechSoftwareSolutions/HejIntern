@@ -63,10 +63,10 @@ const ContactBlock = ({
       {title}
     </h3>
     <div className="flex items-center gap-3">
-      <div className="w-[42px] h-[42px] rounded-full border-[1.5px] border-white flex items-center justify-center shrink-0">
+      <div className="w-[36px] h-[36px] rounded-full border-[1.5px] border-white flex items-center justify-center shrink-0">
         {icon}
       </div>
-      <div className="text-white text-[14px] font-medium text-left" style={{ fontFamily: "Inter" }}>
+      <div className="text-white text-[12px] font-medium text-left" style={{ fontFamily: "Inter" }}>
         {children}
       </div>
     </div>
@@ -161,15 +161,15 @@ const FooterSV = () => {
         <hr className="border-white/30 my-8 sm:my-10" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6 order-5">
-          <ContactBlock title="Hotline" icon={<Phone size={18} className="text-white" />}>
+          <ContactBlock title="Hotline" icon={<Phone size={16} className="text-white" />}>
             +94 71 160 2095
           </ContactBlock>
 
-          <ContactBlock title="Kontakt" icon={<Mail size={18} className="text-white" />}>
+          <ContactBlock title="Kontakt" icon={<Mail size={16} className="text-white" />}>
             info@elegantdecos.lk
           </ContactBlock>
 
-          <ContactBlock title="Adress" icon={<MapPin size={18} className="text-white" />}>
+          <ContactBlock title="Adress" icon={<MapPin size={16} className="text-white" />}>
             <span>
               New Puttalam Rd,
               <br />

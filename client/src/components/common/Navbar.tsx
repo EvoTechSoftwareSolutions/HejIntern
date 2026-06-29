@@ -81,7 +81,7 @@ const Navbar = () => {
     (to !== '/' && location.pathname.startsWith(to.replace('/sv', '')));
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 font-sans">
+    <header className="absolute top-0 left-0 w-full z-50 font-sans bg-gradient-to-b from-white via-white/80 to-transparent pb-8">
 
       {/* ── Top bar ────────────────────────────────────────────────────── */}
       <div className="w-full bg-[#E6F3F4] py-1.5 px-4 sm:px-8">
@@ -160,7 +160,7 @@ const Navbar = () => {
       </div>
 
       {/* ── Main nav bar ───────────────────────────────────────────────── */}
-      <div className="w-full bg-[#f0f0f0]/30 backdrop-blur-[7.5px] shadow-[0_4px_24px_rgba(0,0,0,0.05)] border-b border-white/60 relative z-40">
+      <div className="w-full bg-transparent relative z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[75px] md:h-[85px] relative flex items-center justify-between">
 
           {/* Logo */}
