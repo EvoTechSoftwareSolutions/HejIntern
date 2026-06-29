@@ -2,51 +2,61 @@ import prisma from "../lib/prisma.js";
 
 export const createTourPackage = async (req, res, next) => {
   try {
-    console.log("hit createTourPackage");
-
     const {
       package_name,
+      package_name_sv,
       package_slug,
       short_description,
+      short_description_sv,
       full_description,
+      full_description_sv,
       theme_id,
       duration_days,
       base_price,
       is_featured,
       status,
+      location,
+      category,
+      rating,
+      reviews,
+      image,
     } = req.body;
 
-    // 1. VALIDATION
-    if (
-      !package_name ||
-      !package_slug ||
-      !short_description ||
-      !full_description ||
-      !theme_id ||
-      !duration_days ||
-      !base_price
-    ) {
+    if (!package_name || !package_slug || !short_description || !full_description || !duration_days || !base_price) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
 
-    // 2. CHECK THEME EXISTS
-    const theme = await prisma.theme.findUnique({
-      where: {
-        id: theme_id,
-      },
-    });
+    let resolvedThemeId = theme_id;
 
-    if (!theme) {
-      return res.status(404).json({
-        success: false,
-        message: "Theme not found",
+    if (!resolvedThemeId) {
+      const fallbackTheme = await prisma.theme.findFirst({
+        orderBy: { created_at: "asc" },
       });
+
+      if (!fallbackTheme) {
+        return res.status(404).json({
+          success: false,
+          message: "No theme available for tour creation",
+        });
+      }
+
+      resolvedThemeId = fallbackTheme.id;
+    } else {
+      const theme = await prisma.theme.findUnique({
+        where: { id: resolvedThemeId },
+      });
+
+      if (!theme) {
+        return res.status(404).json({
+          success: false,
+          message: "Theme not found",
+        });
+      }
     }
 
-    // 3. CHECK DUPLICATE SLUG
     const existingPackage = await prisma.tourPackage.findUnique({
       where: {
         package_slug,
@@ -60,16 +70,23 @@ export const createTourPackage = async (req, res, next) => {
       });
     }
 
-    // 4. CREATE PACKAGE
     const tourPackage = await prisma.tourPackage.create({
       data: {
         package_name,
+        package_name_sv,
         package_slug,
         short_description,
+        short_description_sv,
         full_description,
-        theme_id,
+        full_description_sv,
+        theme_id: resolvedThemeId,
         duration_days: parseInt(duration_days),
         base_price: parseFloat(base_price),
+        location: location ?? "Sri Lanka",
+        category: category ?? "Adventure",
+        rating: rating ? parseFloat(rating) : 4.5,
+        reviews: reviews ? parseInt(reviews) : 0,
+        image: image ?? "sigiriya",
         is_featured: is_featured ?? false,
         status: status ?? "ACTIVE",
       },
@@ -78,7 +95,6 @@ export const createTourPackage = async (req, res, next) => {
       },
     });
 
-    // 5. RESPONSE
     return res.status(201).json({
       success: true,
       message: "Tour package created successfully",
@@ -203,17 +219,24 @@ export const updateTourPackage = async (req, res, next) => {
 
     const {
       package_name,
+      package_name_sv,
       package_slug,
       short_description,
+      short_description_sv,
       full_description,
+      full_description_sv,
       theme_id,
       duration_days,
       base_price,
       is_featured,
       status,
+      location,
+      category,
+      rating,
+      reviews,
+      image,
     } = req.body;
 
-    // 1. CHECK EXIST
     const existing = await prisma.tourPackage.findUnique({
       where: { id },
     });
@@ -225,7 +248,6 @@ export const updateTourPackage = async (req, res, next) => {
       });
     }
 
-    // 2. SLUG DUPLICATE CHECK (if changing)
     if (package_slug && package_slug !== existing.package_slug) {
       const slugExists = await prisma.tourPackage.findUnique({
         where: { package_slug },
@@ -239,10 +261,13 @@ export const updateTourPackage = async (req, res, next) => {
       }
     }
 
-    // 3. THEME VALIDATION (if updating theme)
-    if (theme_id) {
+    let resolvedThemeId = theme_id;
+
+    if (resolvedThemeId === undefined || resolvedThemeId === null || resolvedThemeId === "") {
+      resolvedThemeId = existing.theme_id;
+    } else {
       const theme = await prisma.theme.findUnique({
-        where: { id: theme_id },
+        where: { id: resolvedThemeId },
       });
 
       if (!theme) {
@@ -253,21 +278,25 @@ export const updateTourPackage = async (req, res, next) => {
       }
     }
 
-    // 4. UPDATE PACKAGE
     const updated = await prisma.tourPackage.update({
       where: { id },
       data: {
         package_name: package_name ?? existing.package_name,
+        package_name_sv: package_name_sv !== undefined ? package_name_sv : existing.package_name_sv,
         package_slug: package_slug ?? existing.package_slug,
         short_description: short_description ?? existing.short_description,
+        short_description_sv: short_description_sv !== undefined ? short_description_sv : existing.short_description_sv,
         full_description: full_description ?? existing.full_description,
-        theme_id: theme_id ?? existing.theme_id,
-        duration_days: duration_days
-          ? parseInt(duration_days)
-          : existing.duration_days,
+        full_description_sv: full_description_sv !== undefined ? full_description_sv : existing.full_description_sv,
+        theme_id: resolvedThemeId,
+        duration_days: duration_days ? parseInt(duration_days) : existing.duration_days,
         base_price: base_price ? parseFloat(base_price) : existing.base_price,
-        is_featured:
-          is_featured !== undefined ? is_featured : existing.is_featured,
+        location: location ?? existing.location,
+        category: category ?? existing.category,
+        rating: rating !== undefined ? parseFloat(rating) : existing.rating,
+        reviews: reviews !== undefined ? parseInt(reviews) : existing.reviews,
+        image: image ?? existing.image,
+        is_featured: is_featured !== undefined ? is_featured : existing.is_featured,
         status: status ?? existing.status,
       },
       include: {
@@ -279,6 +308,30 @@ export const updateTourPackage = async (req, res, next) => {
       success: true,
       message: "Tour package updated successfully",
       data: updated,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteTourPackage = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await prisma.tourPackage.findUnique({ where: { id } });
+
+    if (!existing) {
+      return res.status(404).json({
+        success: false,
+        message: "Tour package not found",
+      });
+    }
+
+    await prisma.tourPackage.delete({ where: { id } });
+
+    return res.status(200).json({
+      success: true,
+      message: "Tour package deleted successfully",
     });
   } catch (error) {
     next(error);

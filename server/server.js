@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config.js";
 
 import express from "express";
 import cors from "cors";
@@ -15,6 +14,7 @@ import customizationRoutes from "./routes/customization.routes.js"
 import contactRoutes from "./routes/contact.routes.js"
 import bookingsRoutes from "./routes/booking.routes.js"
 import uploadRoutes from "./routes/upload.routes.js"
+import stayRoutes from "./routes/stay.routes.js"
 import { errorHandler } from "./utils/errorHandler.js";
 import { apiLimiter } from "./middleware/rateLimit.js";
 
@@ -50,6 +50,7 @@ app.use("/api/v1/packages", tourPackagesRoutes)
 app.use("/api/v1/customization", customizationRoutes)
 app.use("/api/v1/bookings", bookingsRoutes)
 app.use("/api/v1/contact", contactRoutes)
+app.use("/api/v1/stays", stayRoutes)
 
 // Error handler LAST middleware
 app.use(errorHandler);

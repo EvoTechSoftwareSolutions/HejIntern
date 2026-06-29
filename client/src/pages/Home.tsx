@@ -22,6 +22,37 @@ import icon5 from '../assets/5.png';
 import icon6 from '../assets/6.png';
 import icon7 from '../assets/7.png';
 
+// Image map: backend image slug -> local imported asset
+const tourImageMap: Record<string, string> = { sigiriya };
+const stayImageMap: Record<string, string> = { stay };
+const resolveImage = (slug: string, map: Record<string, string>, fallback: string) => {
+  if (slug && slug.startsWith('http')) return slug;
+  return map[slug] ?? fallback;
+};
+
+// Types
+interface Tour {
+  id: string;
+  title: string;
+  short_description?: string;
+  location: string;
+  price: string;
+  rating: number;
+  reviews: number;
+  duration: string;
+  category: string;
+  image: string;
+}
+
+interface StayItem {
+  id: string;
+  name: string;
+  location: string;
+  rating: number;
+  image: string;
+  featured: boolean;
+}
+
 const renderThemeIcon = (id: number) => {
   const baseClass = "object-contain transition-opacity duration-150 group-hover:opacity-95 mx-auto";
   switch (id) {
@@ -59,6 +90,10 @@ const Home = () => {
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
 
+  // API state
+  const [tours, setTours] = useState<Tour[]>([]);
+  const [stays, setStays] = useState<StayItem[]>([]);
+
   const themes = [
     { id: 1, name: 'Dive into history and traditions' },
     { id: 2, name: 'Unwind by turquoise waters' },
@@ -70,98 +105,39 @@ const Home = () => {
   ];
   // responsive grid will handle layout on small screens
 
-  const tours = [
-    {
-      id: 1,
-      title: 'Kandy Spice Villa',
-      location: 'Kandy, Sri Lanka',
-      price: '5$ - 1000$',
-      rating: 4.5,
-      reviews: 14,
-      duration: '3 days',
-      category: 'Adventure',
-      image: sigiriya
-    },
-    {
-      id: 2,
-      title: 'Nine Arch Retreat',
-      location: 'Ella, Sri Lanka',
-      price: '50$ - 300$',
-      rating: 4.8,
-      reviews: 42,
-      duration: '2 days',
-      category: 'Nature',
-      image: sigiriya
-    },
-    {
-      id: 3,
-      title: 'Thalpe Beach Hut',
-      location: 'Thalpe, Sri Lanka',
-      price: '30$ - 200$',
-      rating: 4.6,
-      reviews: 31,
-      duration: '4 days',
-      category: 'Relax',
-      image: sigiriya
-    },
-    {
-      id: 4,
-      title: 'Sigiriya Sunrise Stay',
-      location: 'Sigiriya, Sri Lanka',
-      price: '40$ - 250$',
-      rating: 4.7,
-      reviews: 28,
-      duration: '3 days',
-      category: 'Heritage',
-      image: sigiriya
-    },
-    {
-      id: 5,
-      title: 'Galle Fort Explorer',
-      location: 'Galle, Sri Lanka',
-      price: '20$ - 150$',
-      rating: 4.9,
-      reviews: 56,
-      duration: '2 days',
-      category: 'Heritage',
-      image: sigiriya
-    },
-    {
-      id: 6,
-      title: 'Nuwara Eliya Tea Trail',
-      location: 'Nuwara Eliya, Sri Lanka',
-      price: '35$ - 220$',
-      rating: 4.6,
-      reviews: 38,
-      duration: '3 days',
-      category: 'Nature',
-      image: sigiriya
-    },
-    {
-      id: 7,
-      title: 'Mirissa Whale Watch',
-      location: 'Mirissa, Sri Lanka',
-      price: '25$ - 180$',
-      rating: 4.5,
-      reviews: 22,
-      duration: '1 day',
-      category: 'Adventure',
-      image: sigiriya
-    },
-    {
-      id: 8,
-      title: 'Yala Safari Jeep',
-      location: 'Yala, Sri Lanka',
-      price: '60$ - 400$',
-      rating: 4.8,
-      reviews: 47,
-      duration: '2 days',
-      category: 'Wildlife',
-      image: sigiriya
-    },
-  ];
-
-  // (removed unused uniform stay constants)
+  // Fetch tours from backend
+  useEffect(() => {
+    fetch('http://localhost:5000/api/v1/packages')
+      .then((r) => r.json())
+      .then((json) => {
+        if (json.success && Array.isArray(json.data)) {
+          setTours(json.data.map((pkg: any) => ({
+            id: pkg.id,
+            title: pkg.package_name,
+            short_description: pkg.short_description,
+            location: pkg.location,
+            price: `5$ - ${pkg.base_price}$`,
+            rating: pkg.rating,
+            reviews: pkg.reviews,
+            duration: `${pkg.duration_days} day${pkg.duration_days !== 1 ? 's' : ''}`,
+            category: pkg.category,
+            image: resolveImage(pkg.image, tourImageMap, sigiriya),
+          })));
+        }
+      })
+      .catch(() => {
+        setTours([
+          { id: '1', title: 'Kandy Spice Villa', location: 'Kandy, Sri Lanka', price: '5$ - 1000$', rating: 4.5, reviews: 14, duration: '3 days', category: 'Adventure', image: sigiriya },
+          { id: '2', title: 'Nine Arch Retreat', location: 'Ella, Sri Lanka', price: '50$ - 300$', rating: 4.8, reviews: 42, duration: '2 days', category: 'Nature', image: sigiriya },
+          { id: '3', title: 'Thalpe Beach Hut', location: 'Thalpe, Sri Lanka', price: '30$ - 200$', rating: 4.6, reviews: 31, duration: '4 days', category: 'Relax', image: sigiriya },
+          { id: '4', title: 'Sigiriya Sunrise Stay', location: 'Sigiriya, Sri Lanka', price: '40$ - 250$', rating: 4.7, reviews: 28, duration: '3 days', category: 'Heritage', image: sigiriya },
+          { id: '5', title: 'Galle Fort Explorer', location: 'Galle, Sri Lanka', price: '20$ - 150$', rating: 4.9, reviews: 56, duration: '2 days', category: 'Heritage', image: sigiriya },
+          { id: '6', title: 'Nuwara Eliya Tea Trail', location: 'Nuwara Eliya, Sri Lanka', price: '35$ - 220$', rating: 4.6, reviews: 38, duration: '3 days', category: 'Nature', image: sigiriya },
+          { id: '7', title: 'Mirissa Whale Watch', location: 'Mirissa, Sri Lanka', price: '25$ - 180$', rating: 4.5, reviews: 22, duration: '1 day', category: 'Adventure', image: sigiriya },
+          { id: '8', title: 'Yala Safari Jeep', location: 'Yala, Sri Lanka', price: '60$ - 400$', rating: 4.8, reviews: 47, duration: '2 days', category: 'Wildlife', image: sigiriya },
+        ]);
+      });
+  }, []);
 
   const testimonials = [
     {
@@ -260,16 +236,35 @@ const Home = () => {
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
 
-  const stays = [
-    { id: 1, name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: true },
-    { id: 2, name: 'Heritance Kandalama', location: 'Dambulla, Central Province', rating: 4.8, image: stay, featured: false },
-    { id: 3, name: 'Cape Weligama', location: 'Weligama, Southern Province', rating: 4.7, image: stay, featured: false },
-    { id: 4, name: 'Jetwing Surf', location: 'Arugam Bay, Eastern Province', rating: 4.6, image: stay, featured: false },
-    { id: 5, name: 'Wild Coast Tented Lodge', location: 'Yala, Southern Province', rating: 4.9, image: stay, featured: false },
-    { id: 6, name: 'Santani Wellness Resort', location: 'Kandy, Central Province', rating: 4.7, image: stay, featured: false },
-    { id: 7, name: 'Tri Lanka', location: 'Koggala Lake, Southern Province', rating: 4.8, image: stay, featured: false },
-    { id: 8, name: 'The Fortress Resort', location: 'Koggala, Southern Province', rating: 4.6, image: stay, featured: false },
-  ];
+  // Fetch stays from backend
+  useEffect(() => {
+    fetch('http://localhost:5000/api/v1/stays')
+      .then((r) => r.json())
+      .then((json) => {
+        if (json.success && Array.isArray(json.data)) {
+          setStays(json.data.map((s: any) => ({
+            id: s.id,
+            name: s.name,
+            location: s.location,
+            rating: s.rating,
+            image: resolveImage(s.image, stayImageMap, stay),
+            featured: s.featured,
+          })));
+        }
+      })
+      .catch(() => {
+        setStays([
+          { id: '1', name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: true },
+          { id: '2', name: 'Heritance Kandalama', location: 'Dambulla, Central Province', rating: 4.8, image: stay, featured: false },
+          { id: '3', name: 'Cape Weligama', location: 'Weligama, Southern Province', rating: 4.7, image: stay, featured: false },
+          { id: '4', name: 'Jetwing Surf', location: 'Arugam Bay, Eastern Province', rating: 4.6, image: stay, featured: false },
+          { id: '5', name: 'Wild Coast Tented Lodge', location: 'Yala, Southern Province', rating: 4.9, image: stay, featured: false },
+          { id: '6', name: 'Santani Wellness Resort', location: 'Kandy, Central Province', rating: 4.7, image: stay, featured: false },
+          { id: '7', name: 'Tri Lanka', location: 'Koggala Lake, Southern Province', rating: 4.8, image: stay, featured: false },
+          { id: '8', name: 'The Fortress Resort', location: 'Koggala, Southern Province', rating: 4.6, image: stay, featured: false },
+        ]);
+      });
+  }, []);
 
   const destinationDescription = 'Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.';
 
@@ -450,7 +445,7 @@ const Home = () => {
                   {/* Rating badge top-left */}
                   <div className="absolute left-3 top-3 bg-[#0BA77A] text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
                     <span className="text-[#FFC600] text-[12px]">★</span>
-                    <span>4.5</span>
+                    <span>{tour.rating}</span>
                   </div>
 
                   {/* Heart top-right */}
@@ -462,11 +457,11 @@ const Home = () => {
                   <div className="absolute left-3 bottom-3 flex flex-col gap-1">
                     <div className="flex items-center gap-1.5 text-white text-[12px] font-semibold">
                       <User size={13} className="text-white fill-white/20" />
-                      <span>Lorem Ipsum Is Simply</span>
+                      <span>{tour.title}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-white/90 text-[10px] font-medium">
-                      <Star size={11} className="text-white fill-white/20" />
-                      <span>Lorem Ipsum Is Simply</span>
+                      <MapPin size={11} className="text-white fill-white/20" />
+                      <span>{tour.location}</span>
                     </div>
                   </div>
                 </div>
@@ -474,21 +469,21 @@ const Home = () => {
                 {/* Card content */}
                 <div className="p-4 flex flex-col justify-between flex-1 bg-white">
                   <div className="flex items-center gap-2 mb-2 text-[12px] font-bold" style={{ fontFamily: 'Inter' }}>
-                    <span className="text-[#01888E]">14 Ratings</span>
+                    <span className="text-[#01888E]">{tour.reviews} Ratings</span>
                     <span className="text-gray-300 font-light">|</span>
                     <span className="text-gray-600 font-normal">
-                      From <span className="text-[#FF2A2A] font-bold">5$ - 1000$</span>
+                      From <span className="text-[#FF2A2A] font-bold">{tour.price}</span>
                     </span>
                   </div>
 
                   <p className="text-[12px] text-[#4A4A4A] leading-relaxed mb-4 tracking-wide" style={{ fontFamily: 'Inter' }}>
-                    Lorem Ipsum is simply dummy text of the printing and type setting industry.
+                    {tour.short_description ?? 'Discover the beauty of Sri Lanka with this exclusive tour package.'}
                   </p>
 
                   <div className="flex items-center justify-between mt-auto">
                     <div>
-                      <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>Adventure</div>
-                      <div className="text-[11px] text-[#003032] font-bold mt-0.5" style={{ fontFamily: 'Inter' }}>3 days</div>
+                      <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>{tour.category}</div>
+                      <div className="text-[11px] text-[#003032] font-bold mt-0.5" style={{ fontFamily: 'Inter' }}>{tour.duration}</div>
                     </div>
                     <button aria-label="share" className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400 transition-colors hover:text-[#01888E]">
                       <img src={backwardarrow} alt="Backward arrow" className="h-4 w-4 object-contain" />
@@ -497,6 +492,7 @@ const Home = () => {
                 </div>
               </div>
             ))}
+
           </div>
 
           <div className="flex justify-center mt-6">

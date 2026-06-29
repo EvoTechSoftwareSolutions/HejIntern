@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
 
 export const generateToken = (user) => {
-  console.log("JWT SECRET:", process.env.JWT_SECRET); // DEBUG
-
   return jwt.sign(
     {
       id: user.id,
