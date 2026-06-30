@@ -91,9 +91,9 @@ async function main() {
   console.log("Seeding Tour Packages...");
   const tourData = [
     {
-      package_name: "Kandy Spice Villa",
-      package_name_sv: "Kandy Kryddvilla",
-      package_slug: "kandy-spice-villa",
+      package_name: "Temple of the Tooth",
+      package_name_sv: "Tandtemplet",
+      package_slug: "temple-of-the-tooth",
       short_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",
       short_description_sv: "Utforska Sri Lankas skönhet med detta exklusiva turistpaket.",
       full_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",
@@ -108,9 +108,9 @@ async function main() {
       category: "Adventure",
     },
     {
-      package_name: "Nine Arch Retreat",
-      package_name_sv: "Nine Arch Tillflyktsort",
-      package_slug: "nine-arch-retreat",
+      package_name: "Nine Arch Bridge",
+      package_name_sv: "Nine Arch Bridge",
+      package_slug: "nine-arch-bridge",
       short_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",
       short_description_sv: "Njut av en underbar tillflyktsort i naturen.",
       full_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",
@@ -125,9 +125,9 @@ async function main() {
       category: "Nature",
     },
     {
-      package_name: "Thalpe Beach Hut",
-      package_name_sv: "Thalpe Strandhydda",
-      package_slug: "thalpe-beach-hut",
+      package_name: "Thalpe Beach",
+      package_name_sv: "Thalpe Strand",
+      package_slug: "thalpe-beach",
       short_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",
       short_description_sv: "Koppla av vid det turkosa vattnet på Sri Lankas sydkust.",
       full_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",
@@ -142,9 +142,9 @@ async function main() {
       category: "Relax",
     },
     {
-      package_name: "Sigiriya Sunrise Stay",
-      package_name_sv: "Sigiriya Soluppgång",
-      package_slug: "sigiriya-sunrise-stay",
+      package_name: "Sigiriya Rock Fortress",
+      package_name_sv: "Sigiriya Klippfästning",
+      package_slug: "sigiriya-rock-fortress",
       short_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",
       short_description_sv: "Se soluppgången över den antika lejoklippan.",
       full_description: "Lorem Ipsum is simply dummy text of the printing and type setting industry.",

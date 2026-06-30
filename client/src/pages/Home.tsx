@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Heart, Star, User, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
-import aboutus from '../assets/aboutus.png';
+import aboutus from '../assets/welcomeimage.jpg';
 import explorebg from '../assets/explorebg.png';
 import sigiriya from '../assets/sigiriya.png';
 import tour1 from '../assets/tour 1.png';
@@ -127,14 +127,14 @@ const Home = () => {
       })
       .catch(() => {
         setTours([
-          { id: '1', title: 'Kandy Spice Villa', location: 'Kandy, Sri Lanka', price: '5$ - 1000$', rating: 4.5, reviews: 14, duration: '3 days', category: 'Adventure', image: sigiriya },
-          { id: '2', title: 'Nine Arch Retreat', location: 'Ella, Sri Lanka', price: '50$ - 300$', rating: 4.8, reviews: 42, duration: '2 days', category: 'Nature', image: sigiriya },
-          { id: '3', title: 'Thalpe Beach Hut', location: 'Thalpe, Sri Lanka', price: '30$ - 200$', rating: 4.6, reviews: 31, duration: '4 days', category: 'Relax', image: sigiriya },
-          { id: '4', title: 'Sigiriya Sunrise Stay', location: 'Sigiriya, Sri Lanka', price: '40$ - 250$', rating: 4.7, reviews: 28, duration: '3 days', category: 'Heritage', image: sigiriya },
-          { id: '5', title: 'Galle Fort Explorer', location: 'Galle, Sri Lanka', price: '20$ - 150$', rating: 4.9, reviews: 56, duration: '2 days', category: 'Heritage', image: sigiriya },
-          { id: '6', title: 'Nuwara Eliya Tea Trail', location: 'Nuwara Eliya, Sri Lanka', price: '35$ - 220$', rating: 4.6, reviews: 38, duration: '3 days', category: 'Nature', image: sigiriya },
-          { id: '7', title: 'Mirissa Whale Watch', location: 'Mirissa, Sri Lanka', price: '25$ - 180$', rating: 4.5, reviews: 22, duration: '1 day', category: 'Adventure', image: sigiriya },
-          { id: '8', title: 'Yala Safari Jeep', location: 'Yala, Sri Lanka', price: '60$ - 400$', rating: 4.8, reviews: 47, duration: '2 days', category: 'Wildlife', image: sigiriya },
+          { id: '1', title: 'Temple of the Tooth', location: 'Kandy, Sri Lanka', price: '10$ - 50$', rating: 4.8, reviews: 142, duration: '1 day', category: 'Heritage', image: sigiriya },
+          { id: '2', title: 'Nine Arch Bridge', location: 'Ella, Sri Lanka', price: '5$ - 20$', rating: 4.9, reviews: 320, duration: '1 day', category: 'Nature', image: sigiriya },
+          { id: '3', title: 'Thalpe Beach', location: 'Thalpe, Sri Lanka', price: '10$ - 40$', rating: 4.7, reviews: 215, duration: '2 days', category: 'Relax', image: sigiriya },
+          { id: '4', title: 'Sigiriya Rock Fortress', location: 'Sigiriya, Sri Lanka', price: '30$ - 150$', rating: 4.9, reviews: 450, duration: '1 day', category: 'Heritage', image: sigiriya },
+          { id: '5', title: 'Galle Dutch Fort', location: 'Galle, Sri Lanka', price: '15$ - 80$', rating: 4.8, reviews: 290, duration: '1 day', category: 'Heritage', image: sigiriya },
+          { id: '6', title: 'Nuwara Eliya Tea Estates', location: 'Nuwara Eliya, Sri Lanka', price: '20$ - 100$', rating: 4.6, reviews: 180, duration: '2 days', category: 'Nature', image: sigiriya },
+          { id: '7', title: 'Mirissa Whale Watching', location: 'Mirissa, Sri Lanka', price: '40$ - 120$', rating: 4.5, reviews: 260, duration: '1 day', category: 'Adventure', image: sigiriya },
+          { id: '8', title: 'Yala National Park Safari', location: 'Yala, Sri Lanka', price: '50$ - 200$', rating: 4.8, reviews: 380, duration: '1 day', category: 'Wildlife', image: sigiriya },
         ]);
       });
   }, []);

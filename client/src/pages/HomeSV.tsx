@@ -136,14 +136,14 @@ const HomeSV = () => {
       })
       .catch(() => {
         setTours([
-          { id: '1', title: 'Kandy Spice Villa', location: 'Kandy, Sri Lanka', price: '5$ - 1000$', rating: 4.5, reviews: 14, duration: '3 dagar', category: 'Äventyr', image: sigiriya },
-          { id: '2', title: 'Nine Arch Retreat', location: 'Ella, Sri Lanka', price: '50$ - 300$', rating: 4.8, reviews: 42, duration: '2 dagar', category: 'Natur', image: sigiriya },
-          { id: '3', title: 'Thalpe Beach Hut', location: 'Thalpe, Sri Lanka', price: '30$ - 200$', rating: 4.6, reviews: 31, duration: '4 dagar', category: 'Avslappning', image: sigiriya },
-          { id: '4', title: 'Sigiriya Sunrise Stay', location: 'Sigiriya, Sri Lanka', price: '40$ - 250$', rating: 4.7, reviews: 28, duration: '3 dagar', category: 'Kulturarv', image: sigiriya },
-          { id: '5', title: 'Galle Fort Explorer', location: 'Galle, Sri Lanka', price: '20$ - 150$', rating: 4.9, reviews: 56, duration: '2 dagar', category: 'Kulturarv', image: sigiriya },
-          { id: '6', title: 'Nuwara Eliya Tea Trail', location: 'Nuwara Eliya, Sri Lanka', price: '35$ - 220$', rating: 4.6, reviews: 38, duration: '3 dagar', category: 'Natur', image: sigiriya },
-          { id: '7', title: 'Mirissa Whale Watch', location: 'Mirissa, Sri Lanka', price: '25$ - 180$', rating: 4.5, reviews: 22, duration: '1 dag', category: 'Äventyr', image: sigiriya },
-          { id: '8', title: 'Yala Safari Jeep', location: 'Yala, Sri Lanka', price: '60$ - 400$', rating: 4.8, reviews: 47, duration: '2 dagar', category: 'Vilda Djur', image: sigiriya },
+          { id: '1', title: 'Temple of the Tooth', package_name_sv: 'Tandtemplet', location: 'Kandy, Sri Lanka', price: '10$ - 50$', rating: 4.8, reviews: 142, duration: '1 dag', category: 'Kulturarv', image: sigiriya },
+          { id: '2', title: 'Nine Arch Bridge', package_name_sv: 'Nine Arch Bridge', location: 'Ella, Sri Lanka', price: '5$ - 20$', rating: 4.9, reviews: 320, duration: '1 dag', category: 'Natur', image: sigiriya },
+          { id: '3', title: 'Thalpe Beach', package_name_sv: 'Thalpe Strand', location: 'Thalpe, Sri Lanka', price: '10$ - 40$', rating: 4.7, reviews: 215, duration: '2 dagar', category: 'Avslappning', image: sigiriya },
+          { id: '4', title: 'Sigiriya Rock Fortress', package_name_sv: 'Sigiriya Klippfästning', location: 'Sigiriya, Sri Lanka', price: '30$ - 150$', rating: 4.9, reviews: 450, duration: '1 dag', category: 'Kulturarv', image: sigiriya },
+          { id: '5', title: 'Galle Dutch Fort', package_name_sv: 'Galle Holländska Fort', location: 'Galle, Sri Lanka', price: '15$ - 80$', rating: 4.8, reviews: 290, duration: '1 dag', category: 'Kulturarv', image: sigiriya },
+          { id: '6', title: 'Nuwara Eliya Tea Estates', package_name_sv: 'Nuwara Eliya Teodlingar', location: 'Nuwara Eliya, Sri Lanka', price: '20$ - 100$', rating: 4.6, reviews: 180, duration: '2 dagar', category: 'Natur', image: sigiriya },
+          { id: '7', title: 'Mirissa Whale Watching', package_name_sv: 'Mirissa Valsafari', location: 'Mirissa, Sri Lanka', price: '40$ - 120$', rating: 4.5, reviews: 260, duration: '1 dag', category: 'Äventyr', image: sigiriya },
+          { id: '8', title: 'Yala National Park Safari', package_name_sv: 'Yala Nationalpark Safari', location: 'Yala, Sri Lanka', price: '50$ - 200$', rating: 4.8, reviews: 380, duration: '1 dag', category: 'Vilda Djur', image: sigiriya },
         ]);
       });
   }, []);
