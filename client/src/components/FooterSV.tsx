@@ -33,14 +33,12 @@ const TikTokIcon = ({ size = 16 }: { size?: number }) => (
 type LinkItem = { to: string; label: string };
 
 const FooterLinkColumn = ({ title, links, className = "" }: { title: string; links: LinkItem[]; className?: string }) => (
-  <div className={`flex flex-col items-center lg:items-start text-center lg:text-left ${className}`}>
-    <h3 className="font-bold text-[13px] mb-4 sm:mb-5 uppercase tracking-wider text-white" style={{ fontFamily: "Inter" }}>
-      {title}
-    </h3>
-    <ul className="flex flex-col gap-3 sm:gap-4 text-white text-[13px] font-medium" style={{ fontFamily: "Inter" }}>
+  <div className={`flex flex-col ${className}`}>
+    <h3 className="font-bold text-[13px] mb-4 uppercase tracking-wider text-white">{title}</h3>
+    <ul className="flex flex-col gap-3 text-[#E6F3F4] text-[13px]">
       {links.map((link) => (
         <li key={link.to + link.label}>
-          <Link to={link.to} className="hover:text-white/80 transition-colors">
+          <Link to={link.to} className="hover:text-white transition-colors">
             {link.label}
           </Link>
         </li>
@@ -58,17 +56,13 @@ const ContactBlock = ({
   icon: React.ReactNode;
   children: React.ReactNode;
 }) => (
-  <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-    <h3 className="font-bold text-[13px] mb-4 uppercase text-white tracking-wider" style={{ fontFamily: "Inter" }}>
-      {title}
-    </h3>
+  <div className="mb-6 last:mb-0">
+    <h4 className="font-bold text-[13px] mb-3 uppercase tracking-wider text-white">{title}</h4>
     <div className="flex items-center gap-3">
-      <div className="w-[36px] h-[36px] rounded-full border-[1.5px] border-white flex items-center justify-center shrink-0">
+      <div className="w-[36px] h-[36px] rounded-full border-[1.5px] border-white/80 flex items-center justify-center shrink-0">
         {icon}
       </div>
-      <div className="text-white text-[12px] font-medium text-left" style={{ fontFamily: "Inter" }}>
-        {children}
-      </div>
+      <div className="text-white text-[12px] font-medium leading-snug">{children}</div>
     </div>
   </div>
 );
@@ -99,12 +93,19 @@ const FooterSV = () => {
     { to: "/sv/profile", label: "Min profil" },
   ];
 
+  const socialLinks = [
+    { href: "#", label: "WhatsApp", Icon: WhatsAppIcon },
+    { href: "#", label: "Facebook", Icon: FacebookIcon },
+    { href: "#", label: "Instagram", Icon: InstagramIcon },
+    { href: "#", label: "TikTok", Icon: TikTokIcon },
+  ];
+
   return (
-    <footer className="relative text-white rounded-t-[24px] sm:rounded-t-[28px] overflow-hidden flex flex-col bg-[#01888E]">
+    <footer className="relative bg-[#01888E] text-white rounded-t-[40px] overflow-hidden flex flex-col">
       <div
         className="absolute bottom-0 left-0 right-0 z-0 pointer-events-none"
         style={{
-          height: "58%",
+          height: "55%",
           backgroundImage: `url(${footerbg})`,
           backgroundSize: "cover",
           backgroundPosition: "center top",
@@ -113,33 +114,30 @@ const FooterSV = () => {
         }}
       />
 
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left max-w-md mx-auto lg:mx-0 lg:max-w-none order-1">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12 relative z-10 w-full">
+        <div className="grid grid-cols-6 sm:grid-cols-6 lg:grid-cols-12 gap-6 items-start">
+          <div className="col-span-6 lg:col-span-4 flex flex-col">
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="Hej Ceylon" className="h-[38px] w-auto" />
-              <div className="text-white font-bold text-[20px] sm:text-[22px] tracking-wide" style={{ fontFamily: "Inter" }}>
-                HejCeylon.com
-              </div>
+              <div className="text-white font-bold text-[20px] tracking-wide">HejCeylon.com</div>
             </div>
 
-            <p className="text-[13px] text-white leading-[22px] mb-5 sm:mb-6" style={{ fontFamily: "Inter" }}>
+            <p className="text-[13px] text-white leading-[22px] mb-5 max-w-[360px]">
               <span className="font-bold">Hej Ceylon</span>, vi förverkligar dina drömevenemang med fantastisk dekoration,
               professionell planering och smidig genomförande. Oavsett om det är ett bröllop, en födelsedag, ett företagsevent
               eller en särskild fest.
             </p>
 
-            <h4 className="font-bold text-[13px] mb-3 w-full" style={{ fontFamily: "Inter" }}>
+            <h4 className="font-semibold text-[13px] mb-3 text-white/95">
               Håll dig uppdaterad — anmäl dig till Wardiere-nyhetsbrevet:
             </h4>
 
-            <div className="flex items-center w-full max-w-[360px] bg-transparent rounded-full border-[1.5px] border-white overflow-hidden">
+            <div className="flex items-center w-full max-w-[320px] bg-transparent rounded-full border-[1.5px] border-white/80 overflow-hidden mb-6">
               <input
                 type="email"
-                placeholder="Ange din e-postadress"
-                aria-label="E-postadress"
-                className="flex-1 min-w-0 bg-transparent pl-4 sm:pl-5 py-2.5 outline-none text-white placeholder:text-white/80 text-[13px] sm:text-[14px]"
-                style={{ fontFamily: "Inter" }}
+                placeholder="Ange din e-post"
+                aria-label="Ange din e-post"
+                className="flex-1 min-w-0 bg-transparent pl-4 py-2.5 outline-none text-white placeholder:text-white/70 text-[13px]"
               />
               <button
                 type="button"
@@ -149,63 +147,55 @@ const FooterSV = () => {
                 <ArrowRight size={18} strokeWidth={2.5} />
               </button>
             </div>
+
+            <div className="flex gap-3">
+              {socialLinks.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-[36px] h-[36px] rounded-full border-[1.5px] border-white/80 flex items-center justify-center text-white hover:bg-white/20 transition"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-1 gap-6 sm:gap-8">
-            <FooterLinkColumn title="Support" links={supportLinks} className="col-span-1 order-2 lg:order-4" />
-            <FooterLinkColumn title="Navigering" links={navigationLinks} className="col-span-1 order-3 lg:order-2" />
-            <FooterLinkColumn title="Snabblänkar" links={quickLinks} className="col-span-1 order-4 lg:order-3" />
+          <div className="col-span-2 lg:col-span-2">
+            <FooterLinkColumn title="Navigering" links={navigationLinks} />
           </div>
-        </div>
 
-        <hr className="border-white/30 my-8 sm:my-10" />
+          <div className="col-span-2 lg:col-span-2">
+            <FooterLinkColumn title="Support" links={supportLinks} />
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6 order-5">
-          <ContactBlock title="Hotline" icon={<Phone size={16} className="text-white" />}>
-            +94 71 160 2095
-          </ContactBlock>
+          <div className="col-span-2 lg:col-span-2">
+            <FooterLinkColumn title="Snabblänkar" links={quickLinks} />
+          </div>
 
-          <ContactBlock title="Kontakt" icon={<Mail size={16} className="text-white" />}>
-            info@elegantdecos.lk
-          </ContactBlock>
-
-          <ContactBlock title="Adress" icon={<MapPin size={16} className="text-white" />}>
-            <span>
-              New Puttalam Rd,
-              <br />
-              Pandulagama, Anuradhapura
-            </span>
-          </ContactBlock>
-        </div>
-
-        <div className="flex justify-center gap-3 mt-8 sm:mt-10">
-          {[
-            { href: "#", label: "WhatsApp", Icon: WhatsAppIcon },
-            { href: "#", label: "Facebook", Icon: FacebookIcon },
-            { href: "#", label: "Instagram", Icon: InstagramIcon },
-            { href: "#", label: "TikTok", Icon: TikTokIcon },
-          ].map(({ href, label, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              aria-label={label}
-              className="w-[36px] h-[36px] rounded-full border-[1.5px] border-white flex items-center justify-center text-white hover:bg-white hover:text-[#01888E] transition"
-            >
-              <Icon size={16} />
-            </a>
-          ))}
+          <div className="col-span-6 lg:col-span-2">
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 lg:gap-0">
+              <ContactBlock title="Hotline" icon={<Phone size={16} className="text-white" />}>
+                +94 71 160 2095
+              </ContactBlock>
+              <ContactBlock title="Kontakt" icon={<Mail size={16} className="text-white" />}>
+                info@elegantdecos.lk
+              </ContactBlock>
+            </div>
+            <ContactBlock title="Adress" icon={<MapPin size={16} className="text-white" />}>
+              New Puttalam Rd, Pandulagama, Anuradhapura
+            </ContactBlock>
+          </div>
         </div>
       </div>
 
-      <div className="bg-white text-[#0F172A] relative z-20 py-3 sm:py-0 sm:min-h-[44px] flex items-center">
-        <div
-          className="max-w-[1200px] mx-auto flex flex-col sm:flex-row justify-between items-center w-full px-4 sm:px-6 lg:px-8 gap-2 sm:gap-4 text-[11px] sm:text-[12px] text-center sm:text-left"
-          style={{ fontFamily: "Inter" }}
-        >
-          <p>
-            © <span className="font-bold text-[#4B5563]"> HejCeylon (PVT) Ltd.</span> | Alla rättigheter förbehållna 2025
+      <div className="bg-white text-[#4B5563] relative z-20 py-3 min-h-[44px] flex items-center">
+        <div className="max-w-[1200px] mx-auto flex flex-col sm:flex-row justify-between items-center w-full px-4 sm:px-6 lg:px-8 gap-2 text-[11px] sm:text-[12px]">
+          <p className="text-center sm:text-left">
+            © <span className="font-bold">HejCeylon (PVT) Ltd.</span> | Alla rättigheter förbehållna 2025
           </p>
-          <p className="text-[#4B5563]">
+          <p className="text-center sm:text-right">
             Design & Utvecklad av{" "}
             <span className="font-bold text-[#1F2937]">Evon Technologies Software Solutions (PVT) Ltd.</span>
           </p>

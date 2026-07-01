@@ -302,29 +302,31 @@ const Home = () => {
         <div className="absolute top-0 left-0 w-full h-14 md:h-24 lg:h-[118px] bg-gradient-to-b from-white/40 to-transparent z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-full h-[28%] min-h-[180px] bg-gradient-to-t from-white from-15% via-white/45 via-70% to-transparent z-10 pointer-events-none" />
 
-        <div className="absolute top-1/2 -translate-y-1/2 right-0 sm:right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
-          {[0, 1, 2, 3, 4, 5, 6].map((index) => (
-            <button
-              key={index}
-              onClick={() => setHeroSlide(index)}
-              className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${
-                heroSlide === index
-                  ? 'w-[36px] h-[33px] sm:w-[48px] sm:h-[48px] border-[2.5px] border-[#01888E]/80 p-[2px] sm:p-[3px] bg-transparent'
-                  : 'w-[6px] h-[6px] sm:w-[8px] sm:h-[8px] bg-white/70 hover:bg-white'
-              } cursor-pointer`}
-            >
-              {heroSlide === index && (
-                <div
-                  className="w-full h-full rounded-full bg-cover bg-center ring-2 ring-white/80"
-                  style={{ backgroundImage: `url(${heroBanner})` }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
+        <div className="relative z-20 flex flex-col items-center px-4 pt-[110px] pb-36 sm:pb-40 md:pb-44 w-full max-w-5xl mx-auto">
+          <div className="w-full flex justify-end mb-4 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-right-4 xl:-right-12 lg:mb-0 lg:w-auto z-30">
+            <div className="flex flex-row lg:flex-col gap-3 items-center">
+              {[0, 1, 2, 3, 4, 5, 6].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => setHeroSlide(index)}
+                  className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${
+                    heroSlide === index
+                      ? 'w-[36px] h-[33px] sm:w-[48px] sm:h-[48px] border-[2.5px] border-[#01888E]/80 p-[2px] sm:p-[3px] bg-transparent'
+                      : 'w-[6px] h-[6px] sm:w-[8px] sm:h-[8px] bg-white/70 hover:bg-white'
+                  } cursor-pointer`}
+                >
+                  {heroSlide === index && (
+                    <div
+                      className="w-full h-full rounded-full bg-cover bg-center ring-2 ring-white/80"
+                      style={{ backgroundImage: `url(${heroBanner})` }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        <div className="relative z-20 flex flex-col items-center px-4 pt-[110px] pb-36 sm:pb-40 md:pb-44">
-          <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.20)]">Find Your Perfect Gateway</h1>
+          <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.20)] text-center">Find Your Perfect Gateway</h1>
           <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
 
           <div className="flex flex-col items-center mt-4 w-full">
@@ -506,7 +508,7 @@ const Home = () => {
       {/* Destinations Section */}
       <section className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-8 text-center md:text-left">
+          <div className="mb-8 text-left">
             <span className="text-[13px] font-medium text-[#01888E] mb-2 block">Reach Your Dream Destination</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-4 font-bold">
               <span className="font-bold">Your Adventure</span>{' '}
@@ -531,8 +533,8 @@ const Home = () => {
                   <h4 className={`font-bold text-[#003032] ${card.wide ? 'text-[22px]' : 'text-[18px] md:text-[20px]'}`}>
                     {card.name}
                   </h4>
+                  <div className="w-20 h-[1px] rounded-full bg-gradient-to-r from-[#01888E] via-[#01888E] to-white mt-1.5 mb-2" />
                   <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-28 group-hover:opacity-100 transition-all duration-500 ease-out">
-                    <div className="w-20 h-0.5 bg-[#01888E]/60 mt-1.5 mb-2" />
                     <p className={`text-[#003032]/75 leading-snug ${card.wide ? 'text-[12px] md:text-[13px] max-w-[92%]' : 'text-[11px] md:text-[12px]'}`}>
                       {card.description}
                     </p>
@@ -663,7 +665,7 @@ const Home = () => {
       {/* Testimonials Section */}
       <section className="relative py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-8 text-center md:text-left">
+          <div className="mb-8 text-left">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>TESTIMONIALS</span>
             <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
               <span className="font-bold">What Our</span> <span className="font-bold text-[#01888E]">Clients Say</span>

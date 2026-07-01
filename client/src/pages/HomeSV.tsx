@@ -9,6 +9,7 @@ import ninearch from '../assets/ninearch.png';
 import thalpe from '../assets/thalpe.png';
 import stay from '../assets/stayimage.jpg';
 import customize from '../assets/customize.png';
+import backwardarrow from '../assets/backwardarrow.jpg';
 import icon1 from '../assets/1.png';
 import icon2 from '../assets/2.png';
 import icon3 from '../assets/3.png';
@@ -302,44 +303,46 @@ const HomeSV = () => {
     <div className="w-full font-sans text-dark bg-white">
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-[115svh] lg:min-h-[115vh] flex flex-col justify-center items-center text-center text-secondary">
+      <section className="relative w-full h-[100svh] min-h-[560px] flex flex-col justify-center items-center text-center text-secondary overflow-hidden">
         <img
           src={heroBanner}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 z-0 h-full w-full object-cover object-[center_40%] sm:object-center"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[center_45%] sm:object-[center_50%]"
         />
 
-        <div className="absolute top-0 left-0 w-full h-14 md:h-24 lg:h-[118px] bg-gradient-to-b from-white/70 to-transparent z-10 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-full h-[272px] bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-14 md:h-24 lg:h-[118px] bg-gradient-to-b from-white/40 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-[28%] min-h-[180px] bg-gradient-to-t from-white from-15% via-white/45 via-70% to-transparent z-10 pointer-events-none" />
 
-        <div className="absolute top-1/2 -translate-y-1/2 right-2 sm:right-6 md:right-12 z-20 flex flex-col gap-3 items-center">
-          {[0, 1, 2, 3, 4, 5, 6].map((index) => (
-            <button
-              key={index}
-              onClick={() => setHeroSlide(index)}
-              className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${
-                heroSlide === index
-                  ? 'w-[36px] h-[36px] sm:w-[48px] sm:h-[48px] border-[2.5px] border-[#01888E]/80 p-[2px] sm:p-[3px] bg-transparent'
-                  : 'w-[6px] h-[6px] sm:w-[8px] sm:h-[8px] bg-white/70 hover:bg-white'
-              } cursor-pointer`}
-            >
-              {heroSlide === index && (
-                <div
-                  className="w-full h-full rounded-full bg-cover bg-center ring-2 ring-white/80"
-                  style={{ backgroundImage: `url(${heroBanner})` }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
+        <div className="relative z-20 flex flex-col items-center px-4 pt-[110px] pb-36 sm:pb-40 md:pb-44 w-full max-w-5xl mx-auto">
+          <div className="w-full flex justify-end mb-4 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-right-4 xl:-right-12 lg:mb-0 lg:w-auto z-30">
+            <div className="flex flex-row lg:flex-col gap-3 items-center">
+              {[0, 1, 2, 3, 4, 5, 6].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => setHeroSlide(index)}
+                  className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${
+                    heroSlide === index
+                      ? 'w-[36px] h-[33px] sm:w-[48px] sm:h-[48px] border-[2.5px] border-[#01888E]/80 p-[2px] sm:p-[3px] bg-transparent'
+                      : 'w-[6px] h-[6px] sm:w-[8px] sm:h-[8px] bg-white/70 hover:bg-white'
+                  } cursor-pointer`}
+                >
+                  {heroSlide === index && (
+                    <div
+                      className="w-full h-full rounded-full bg-cover bg-center ring-2 ring-white/80"
+                      style={{ backgroundImage: `url(${heroBanner})` }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        <div className="relative z-20 flex flex-col items-center px-4 pt-[118px] pb-10 sm:pt-[128px] lg:pt-16 lg:pb-0">
-          <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.45)]">Hitta Din Perfekta Semester</h1>
-          <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Skräddarsydd bara för dig!</p>
+          <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.20)] text-center">Hitta Din Perfekta Semester</h1>
+          <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)] text-center">Skräddarsydd bara för dig!</p>
 
           <div className="flex flex-col items-center mt-4 w-full">
-            <p className="font-sans text-[14px] md:text-[15px] leading-[20px] text-white/95 font-medium drop-shadow-sm mb-3">Skräddarsydda upplevelser, oslagbara äventyr</p>
+            <p className="font-sans text-[14px] md:text-[15px] leading-[20px] text-white/95 font-medium drop-shadow-sm mb-3 text-center">Skräddarsydda upplevelser, oslagbara äventyr</p>
             <div className="w-[280px] h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mb-5" />
           </div>
 
@@ -355,11 +358,11 @@ const HomeSV = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-8 bg-white max-w-7xl mx-auto text-center -mt-6 sm:-mt-8 lg:mt-2 relative z-20">
-        <p className="text-[13px] text-[#003032] font-sans max-w-[800px] mx-auto mb-6 leading-[18px] text-center px-4 font-normal whitespace-pre-line">
+      <section className="pt-16 sm:pt-20 md:pt-24 pb-0 bg-white max-w-7xl mx-auto text-center relative z-20">
+        <p className="text-[13px] text-[#003032] font-sans max-w-[800px] mx-auto leading-[18px] text-center px-4 font-normal whitespace-pre-line mb-8 sm:mb-10">
           Vi erbjuder <span className="font-bold text-[#01888E]">sju</span> extraordinära resekategorier, var och en noggrant utvald för att ge dig det bästa av Sri Lanka.{'\n'}Oavsett om du söker kulturarv, spännande äventyr eller en lyxig reträtt, har vi dig täckt!
         </p>
-        <div className="flex flex-row items-stretch justify-start lg:justify-center lg:gap-4 gap-1 sm:gap-2 pb-8 px-4 sm:px-6 md:px-8 max-w-[1100px] mx-auto overflow-hidden">
+        <div className="flex flex-row items-stretch justify-start lg:justify-center lg:gap-4 gap-1 sm:gap-2 pb-0 px-4 sm:px-6 md:px-8 max-w-[1100px] mx-auto overflow-hidden">
           {themes.map((theme) => {
             return (
               <div
@@ -379,7 +382,7 @@ const HomeSV = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-8 px-4 md:pl-[104px] md:pr-8 w-full relative">
+      <section className="pt-2 pb-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 w-full relative">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
             <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">Hej !</h2>
@@ -392,7 +395,7 @@ const HomeSV = () => {
                 <img
                   src={aboutus}
                   alt="About Hej Ceylon"
-                  className="w-[360px] md:w-[392px] h-auto md:h-[420px] object-cover rounded-[12px]"
+                  className="w-[360px] md:w-[392px] h-auto md:h-[352px] object-cover rounded-[12px]"
                 />
               </div>
             </div>
@@ -417,10 +420,10 @@ const HomeSV = () => {
       </section>
 
       {/* Tours Section (background: explorebg.png) */}
-      <section className="py-10 relative w-full overflow-hidden px-4 md:pl-[104px] md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+          <div className="mb-6">
             <div className="max-w-[800px]">
               <span className="text-[#01888E] text-[11px] font-normal uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Utforska Sri Lanka</span>
               <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
@@ -498,8 +501,8 @@ const HomeSV = () => {
                       <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>{tour.category}</div>
                       <div className="text-[11px] text-[#003032] font-bold mt-0.5" style={{ fontFamily: 'Inter' }}>{tour.duration}</div>
                     </div>
-                    <button aria-label="share" className="text-gray-400 hover:text-[#01888E] transition-colors">
-                      <ChevronRight size={18} />
+                    <button aria-label="share" className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400 transition-colors hover:text-[#01888E]">
+                      <img src={backwardarrow} alt="Backward arrow" className="h-4 w-4 object-contain" />
                     </button>
                   </div>
                 </div>
@@ -516,32 +519,34 @@ const HomeSV = () => {
       </section>
 
       {/* Destinations Section */}
-      <section className="py-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
+      <section className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-6">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Nå Din Drömdestination</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
               <span className="font-bold">Ditt Äventyr</span> <span className="font-bold text-[#01888E]">Börjar Här!</span>
             </h3>
+            <div className="mx-auto mb-4 h-[1px] w-[78px] rounded-full" style={{ backgroundImage: 'linear-gradient(90deg, #01888E 51%, #FFFFFF 81%)' }} />
             <p className="text-[14px] leading-[22px] text-[#757575] font-normal max-w-[800px]" style={{ fontFamily: 'Inter' }}>
               Föreställ dig att stå på ett dimmigt berg, promenera genom uråldriga ruiner eller känna havsbrisen på en gyllene strand. Med oss reser du inte bara—du upplever Sri Lanka som aldrig förr.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mt-2">
             {destinationCards.map((card) => (
               <div
                 key={card.id}
-                className={`group ${card.wide ? 'md:col-span-2' : 'md:col-span-1'} h-[200px] sm:h-[240px] md:h-[260px] lg:h-[300px] rounded-[14px] overflow-hidden relative cursor-pointer`}
+                className={`${card.wide ? 'md:col-span-2' : 'md:col-span-1'} h-[220px] sm:h-[240px] md:h-[260px] lg:h-[300px] rounded-[12px] overflow-hidden relative cursor-pointer group`}
               >
-                <img src={card.image} alt={card.name} className="w-full h-full object-cover" />
-                <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none" />
-                <div className="absolute left-5 bottom-5 right-5 z-10 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                  <h4 className={`font-bold text-[#003032] ${card.wide ? 'text-[22px]' : 'text-[20px]'}`} style={{ fontFamily: 'Inter' }}>
+                <img src={card.image} alt={card.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-white from-15% via-white/45 via-55% to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-[48%] bg-gradient-to-t from-white from-20% via-white/55 via-70% to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute left-5 bottom-5 right-5 z-10">
+                  <h4 className={`font-bold text-[#003032] ${card.wide ? 'text-[22px]' : 'text-[18px] md:text-[20px]'}`} style={{ fontFamily: 'Inter' }}>
                     {card.name}
                   </h4>
-                  <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                    <p className={`text-[#003032]/75 leading-snug pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150 ${card.wide ? 'text-[13px] max-w-[90%]' : 'text-[11px]'}`} style={{ fontFamily: 'Inter' }}>
+                  <div className="w-20 h-[1px] rounded-full bg-gradient-to-r from-[#01888E] via-[#01888E] to-white mt-1.5 mb-2" />
+                  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-28 group-hover:opacity-100 transition-all duration-500 ease-out">
+                    <p className={`text-[#003032]/75 leading-snug ${card.wide ? 'text-[12px] md:text-[13px] max-w-[92%]' : 'text-[11px] md:text-[12px]'}`}>
                       {card.description}
                     </p>
                   </div>
@@ -560,16 +565,16 @@ const HomeSV = () => {
 
 
       {/* Stays Section (background: explorebg.png) */}
-      <section className="py-10 relative w-full overflow-hidden px-4 md:pl-[104px] md:pr-8" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-6">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>BOENDEN</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
               <span className="font-bold">Bo I</span> <span className="font-bold text-[#01888E]">Sri Lanka</span>
             </h3>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <p className="text-[14px] leading-[22px] text-[#003032] font-normal max-w-[700px]" style={{ fontFamily: 'Inter' }}>
-                Lorem Ipsum är helt enkelt dummytext från tryckeri- och förlagsindustrin. Lorem Ipsum har varit branschens standarddummytext sedan 1500-talet.
+            <div className="flex flex-col items-stretch gap-6">
+              <p className="text-[13px] leading-[18px] text-[#003032] font-normal max-w-[1500px] mt-4" style={{ fontFamily: 'Inter' }}>
+                Lorem Ipsum är helt enkelt dummytext från tryckeri- och förlagsindustrin. Lorem Ipsum har varit branschens standarddummytext sedan 1500-talet, när en okänd tryckare tog en typgalleri och blandade den.
               </p>
 
               {/* Carousel Navigation Buttons */}
@@ -667,7 +672,7 @@ const HomeSV = () => {
       {/* Testimonials Section */}
       <section className="relative py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-8 text-center md:text-left">
+          <div className="mb-8 text-left">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>KUNDRECENSIONER</span>
             <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
               <span className="font-bold">Vad Våra</span> <span className="font-bold text-[#01888E]">Kunder Säger</span>

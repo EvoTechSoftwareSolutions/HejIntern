@@ -159,9 +159,9 @@ const Footer = () => {
       />
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12 relative z-10 w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
-          {/* Brand, newsletter & social */}
-          <div className="sm:col-span-2 lg:col-span-4 flex flex-col">
+        <div className="grid grid-cols-6 sm:grid-cols-6 lg:grid-cols-12 gap-6 items-start">
+          {/* Brand, newsletter & social — full width on mobile */}
+          <div className="col-span-6 lg:col-span-4 flex flex-col">
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="Hej Ceylon" className="h-[38px] w-auto" />
               <div className="text-white font-bold text-[20px] tracking-wide">
@@ -208,7 +208,7 @@ const Footer = () => {
           </div>
 
           {/* Navigations */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <FooterLinkColumn
               title={t(footerText.navigationTitle)}
               links={footerText.navigationLinks}
@@ -217,18 +217,8 @@ const Footer = () => {
             />
           </div>
 
-          {/* Quick Links */}
-          <div className="lg:col-span-2">
-            <FooterLinkColumn
-              title={t(footerText.quickLinksTitle)}
-              links={footerText.quickLinks}
-              prefixed={prefixed}
-              t={t}
-            />
-          </div>
-
           {/* Support */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <FooterLinkColumn
               title={t(footerText.supportTitle)}
               links={footerText.supportLinks}
@@ -237,14 +227,26 @@ const Footer = () => {
             />
           </div>
 
+          {/* Quick Links */}
+          <div className="col-span-2 lg:col-span-2">
+            <FooterLinkColumn
+              title={t(footerText.quickLinksTitle)}
+              links={footerText.quickLinks}
+              prefixed={prefixed}
+              t={t}
+            />
+          </div>
+
           {/* Contact details */}
-          <div className="sm:col-span-2 lg:col-span-2">
-            <ContactBlock title={t(footerText.hotlineTitle)} icon={<Phone size={16} className="text-white" />}>
-              +94 71 160 2095
-            </ContactBlock>
-            <ContactBlock title={t(footerText.contactTitle)} icon={<Mail size={16} className="text-white" />}>
-              info@elegantdecos.lk
-            </ContactBlock>
+          <div className="col-span-6 lg:col-span-2">
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 lg:gap-0">
+              <ContactBlock title={t(footerText.hotlineTitle)} icon={<Phone size={16} className="text-white" />}>
+                +94 71 160 2095
+              </ContactBlock>
+              <ContactBlock title={t(footerText.contactTitle)} icon={<Mail size={16} className="text-white" />}>
+                info@elegantdecos.lk
+              </ContactBlock>
+            </div>
             <ContactBlock title={t(footerText.locationTitle)} icon={<MapPin size={16} className="text-white" />}>
               New Puttalam Rd, Pandulagama, Anuradhapura
             </ContactBlock>
