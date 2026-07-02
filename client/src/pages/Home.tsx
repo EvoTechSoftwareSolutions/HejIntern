@@ -64,19 +64,19 @@ const renderThemeIcon = (id: number) => {
       return <img src={icon2} alt="Theme 2" className={`${baseClass} w-[75%] h-[95%]`} />;
     case 3:
       // Elephant (wide)
-      return <img src={icon3} alt="Theme 3" className={`${baseClass} w-[160%] h-[140%]`} />;
+      return <img src={icon3} alt="Theme 3" className={`${baseClass} w-[95%] h-[85%]`} />;
     case 4:
       // Kayak (wide)
-      return <img src={icon4} alt="Theme 4" className={`${baseClass} w-[110%] h-[110%]`} />;
+      return <img src={icon4} alt="Theme 4" className={`${baseClass} w-[90%] h-[90%]`} />;
     case 5:
       // Mortar (wide/compact)
-      return <img src={icon5} alt="Theme 5" className={`${baseClass} w-[100%] h-[100%]`} />;
+      return <img src={icon5} alt="Theme 5" className={`${baseClass} w-[80%] h-[80%]`} />;
     case 6:
       // Spa bed (wide)
-      return <img src={icon6} alt="Theme 6" className={`${baseClass} w-[200%] h-[200%]`} />;
+      return <img src={icon6} alt="Theme 6" className={`${baseClass} w-[85%] h-[85%]`} />;
     case 7:
       // Shield (tall/square)
-      return <img src={icon7} alt="Theme 7" className={`${baseClass} w-[100%] h-[110%]`} />;
+      return <img src={icon7} alt="Theme 7" className={`${baseClass} w-[80%] h-[90%]`} />;
     default:
       return null;
   }
@@ -296,7 +296,7 @@ const Home = () => {
           src={heroBanner}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 z-0 h-full w-full object-cover object-[center_45%] sm:object-[center_50%]"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[center_25%] sm:object-[center_40%] md:object-[center_50%] lg:object-[center_45%]"
         />
 
         <div className="absolute top-0 left-0 w-full h-14 md:h-24 lg:h-[118px] bg-gradient-to-b from-white/40 to-transparent z-10 pointer-events-none" />
@@ -327,10 +327,10 @@ const Home = () => {
           </div>
 
           <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide drop-shadow-[0_6px_14px_rgba(0,0,0,0.20)] text-center">Find Your Perfect Gateway</h1>
-          <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]">Crafted Just for You!</p>
+          <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)] text-center">Crafted Just for You!</p>
 
           <div className="flex flex-col items-center mt-4 w-full">
-            <p className="font-sans text-[14px] md:text-[15px] leading-[20px] text-white/95 font-medium drop-shadow-sm mb-3">Tailored Experiences, Unmatched Adventures</p>
+            <p className="font-sans text-[14px] md:text-[15px] leading-[20px] text-white/95 font-medium drop-shadow-sm mb-3 text-center">Tailored Experiences, Unmatched Adventures</p>
             <div className="w-[280px] h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mb-5" />
           </div>
 
@@ -362,7 +362,7 @@ const Home = () => {
                 <div className="w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] lg:w-[72px] lg:h-[72px] flex items-center justify-center">
                   {renderThemeIcon(theme.id)}
                 </div>
-                <span className={`text-[7px] sm:text-[8px] md:text-[9px] lg:text-[12px] font-bold text-center leading-[8.5px] sm:leading-[9.5px] md:leading-[11px] lg:leading-[18px] text-[#003032] whitespace-pre-line break-words max-w-full`}>{theme.name}</span>
+                <span className={`text-[7px] sm:text-[8px] md:text-[9px] lg:text-[14px] font-bold text-center leading-[8.5px] sm:leading-[9.5px] md:leading-[11px] lg:leading-[18px] text-[#003032] whitespace-pre-line break-words max-w-full`}>{theme.name}</span>
               </div>
             );
           })}
@@ -398,8 +398,8 @@ const Home = () => {
               <div className="text-[16px] font-bold text-[#003032] mb-4" style={{ fontFamily: 'Inter' }}>Your Trusted Travel Companion</div>
 
               <div className="text-[14px] font-normal text-[#003032] leading-[22px] space-y-4" style={{ fontFamily: 'Inter' }}>
-                <p>At <strong>Hej Ceylon</strong>, we don't just plan trips—we create memories that last a lifetime!</p>
-                <p>We are a <strong >Sri Lanka &amp; Sweden-based</strong> travel service, built on trust, care, and an unshakable commitment to <strong>hospitality, customer satisfaction, and safety</strong>. Whether you're exploring breathtaking landscapes or diving into rich culture, we ensure a <strong>seamless, secure, and heartfelt travel experience</strong>.</p>
+                <p>At <strong className="text-[#01888E]">Hej Ceylon</strong>, we don't just plan trips—we create memories that last a lifetime!</p>
+                <p>We are a <strong className="text-[#01888E]">Sri Lanka &amp; Sweden-based</strong> travel service, built on trust, care, and an unshakable commitment to <strong>hospitality, customer satisfaction, and safety</strong>. Whether you're exploring breathtaking landscapes or diving into rich culture, we ensure a <strong>seamless, secure, and heartfelt travel experience</strong>.</p>
                 <p><strong>Let us take you beyond the ordinary—because your journey matters!</strong></p>
               </div>
             </div>
@@ -412,26 +412,26 @@ const Home = () => {
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-6">
-            <span className="text-[#01888E] text-[11px] font-normal uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
-            <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
-              <span className="font-light">A Land of </span>
-              <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
-            </h3>
-            <div className="flex flex-col items-stretch gap-6">
-              <p className="text-[13px] leading-[18px] text-[#003032] font-normal max-w-[1500px] mt-4" style={{ fontFamily: 'Inter' }}>
+            <div className="max-w-[800px]">
+              <span className="text-[#01888E] text-[11px] font-normal uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
+              <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
+                <span className="font-light">A Land of </span>
+                <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
+              </h3>
+              <p className="text-[13px] leading-[18px] text-[#003032] font-normal whitespace-pre-line" style={{ fontFamily: 'Inter' }}>
                 We offer <span className="font-bold">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
               </p>
+            </div>
 
-              {/* Carousel Navigation Buttons */}
-              <div className="flex justify-end mt-3 md:mt-0 shrink-0">
-                <div className="flex gap-[2px] md:mr-2">
-                  <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
-                    <ChevronLeft size={16} />
-                  </button>
-                  <button onClick={scrollNextTours} aria-label="Next tours" className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
+            {/* Carousel Navigation Buttons */}
+            <div className="flex justify-end mt-3 md:mt-0">
+              <div className="flex gap-[2px] md:mr-2">
+                <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <ChevronLeft size={16} />
+                </button>
+                <button onClick={scrollNextTours} aria-label="Next tours" className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <ChevronRight size={16} />
+                </button>
               </div>
             </div>
           </div>
@@ -508,13 +508,14 @@ const Home = () => {
       {/* Destinations Section */}
       <section className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-8 text-left">
-            <span className="text-[13px] font-medium text-[#01888E] mb-2 block">Reach Your Dream Destination</span>
-            <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-4 font-bold">
+          <div className="mb-6">
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Reach Your Dream Destination</span>
+            <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
               <span className="font-bold">Your Adventure</span>{' '}
               <span className="font-bold text-[#01888E]">Starts Here!</span>
             </h3>
-            <p className="text-[14px] leading-[22px] text-[#757575] font-normal max-w-[1000px] mx-auto md:mx-0">
+            <div className="mx-auto mb-4 h-[1px] w-[78px] rounded-full" style={{ backgroundImage: 'linear-gradient(90deg, #01888E 51%, #FFFFFF 81%)' }} />
+            <p className="text-[14px] leading-[22px] text-[#757575] font-normal max-w-[800px]" style={{ fontFamily: 'Inter' }}>
               Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach. With us, you don't just travel—you{' '}
               <span className="font-bold text-[#003032]">experience Sri Lanka like never before</span>.
             </p>
@@ -544,8 +545,8 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="flex justify-center mt-10">
-            <button className="px-10 py-3.5 bg-[#01888E] text-white rounded-full text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors">
+          <div className="flex justify-center mt-8">
+            <button className="px-8 py-3.5 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
               Start Your Adventure Today
             </button>
           </div>

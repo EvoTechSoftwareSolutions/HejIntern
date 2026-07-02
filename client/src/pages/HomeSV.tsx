@@ -308,7 +308,7 @@ const HomeSV = () => {
           src={heroBanner}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 z-0 h-full w-full object-cover object-[center_45%] sm:object-[center_50%]"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[center_25%] sm:object-[center_40%] md:object-[center_50%] lg:object-[center_45%]"
         />
 
         <div className="absolute top-0 left-0 w-full h-14 md:h-24 lg:h-[118px] bg-gradient-to-b from-white/40 to-transparent z-10 pointer-events-none" />
