@@ -12,6 +12,7 @@
   --font-kaisei: "Kaisei Decol", serif;
   --font-alex: "Alex Brush", cursive;
   --font-petemoss: "Petemoss", cursive;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
 @layer base {

@@ -568,7 +568,7 @@ useEffect(() => {
       {/* Destinations Section */}
       <section className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-8 text-center md:text-left">
+          <div className="mb-8 text-left">
             <span className="text-[13px] font-medium text-[#01888E] mb-2 block">Reach Your Dream Destination</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-4 font-bold">
               <span className="font-bold">Your Adventure</span>{' '}
@@ -593,8 +593,8 @@ useEffect(() => {
                   <h4 className={`font-bold text-[#003032] ${card.wide ? 'text-[22px]' : 'text-[18px] md:text-[20px]'}`}>
                     {card.name}
                   </h4>
+                  <div className="w-20 h-[1px] rounded-full bg-gradient-to-r from-[#01888E] via-[#01888E] to-white mt-1.5 mb-2" />
                   <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-28 group-hover:opacity-100 transition-all duration-500 ease-out">
-                    <div className="w-20 h-0.5 bg-[#01888E]/60 mt-1.5 mb-2" />
                     <p className={`text-[#003032]/75 leading-snug ${card.wide ? 'text-[12px] md:text-[13px] max-w-[92%]' : 'text-[11px] md:text-[12px]'}`}>
                       {card.description}
                     </p>
@@ -725,7 +725,7 @@ useEffect(() => {
       {/* Testimonials Section */}
       <section className="relative py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-8 text-center md:text-left">
+          <div className="mb-8 text-left">
             <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>TESTIMONIALS</span>
             <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
               <span className="font-bold">What Our</span> <span className="font-bold text-[#01888E]">Clients Say</span>

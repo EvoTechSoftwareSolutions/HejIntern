@@ -164,17 +164,26 @@ model Activity {
 model TourPackage {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  package_name String
-  package_slug String @unique
+  package_name    String
+  package_name_sv String?
+  package_slug    String @unique
 
-  short_description String
-  full_description  String
+  short_description    String
+  short_description_sv String?
+  full_description     String
+  full_description_sv  String?
 
   theme_id String @db.ObjectId
   theme    Theme  @relation(fields: [theme_id], references: [id])
 
   duration_days Int
   base_price    Float
+
+  rating      Float    @default(4.5)
+  reviews     Int      @default(0)
+  image       String   @default("sigiriya")
+  location    String   @default("Sri Lanka")
+  category    String   @default("Adventure")
 
   is_featured Boolean @default(false)
 
@@ -324,4 +333,17 @@ enum ContactStatus {
   IN_PROGRESS
   RESOLVED
   REJECTED
+}
+
+model Stay {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  name_sv    String?
+  location   String
+  location_sv String?
+  rating     Float    @default(4.5)
+  image      String   @default("stay")
+  featured   Boolean  @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
