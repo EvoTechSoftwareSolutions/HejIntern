@@ -127,7 +127,7 @@ const Footer = () => {
             </div>
 
             {/* Location */}
-            <h3 className="font-bold text-sm mb-2 uppercase">Location</h3>
+            <h3 className="font-bold text-sm mb-3 uppercase">Location</h3>
 
             <div className="flex items-start gap-3">
               <div className="w-12 h-12 rounded-full border border-[#E6F3F4] flex items-center justify-center shrink-0">

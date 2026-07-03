@@ -237,20 +237,33 @@ const Footer = () => {
             />
           </div>
 
-          {/* Contact details */}
-          <div className="col-span-6 lg:col-span-2">
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 lg:gap-0">
-              <ContactBlock title={t(footerText.hotlineTitle)} icon={<Phone size={16} className="text-white" />}>
-                +94 71 160 2095
-              </ContactBlock>
-              <ContactBlock title={t(footerText.contactTitle)} icon={<Mail size={16} className="text-white" />}>
-                info@elegantdecos.lk
-              </ContactBlock>
-            </div>
-            <ContactBlock title={t(footerText.locationTitle)} icon={<MapPin size={16} className="text-white" />}>
-              New Puttalam Rd, Pandulagama, Anuradhapura
-            </ContactBlock>
-          </div>
+       {/* Contact details */}
+<div className="col-span-6 lg:col-span-2">
+  <div className="flex flex-col gap-2 sm:gap-3">
+    
+    <ContactBlock
+      title={t(footerText.hotlineTitle)}
+      icon={<Phone size={16} className="text-white" />}
+    >
+      +94 71 160 2095
+    </ContactBlock>
+
+    <ContactBlock
+      title={t(footerText.contactTitle)}
+      icon={<Mail size={16} className="text-white" />}
+    >
+      info@elegantdecos.lk
+    </ContactBlock>
+
+    <ContactBlock
+      title={t(footerText.locationTitle)}
+      icon={<MapPin size={16} className="text-white" />}
+    >
+      New Puttalam Rd, Pandulagama, Anuradhapura
+    </ContactBlock>
+
+  </div>
+</div>
         </div>
       </div>
 
