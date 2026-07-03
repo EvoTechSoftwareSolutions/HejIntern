@@ -61,22 +61,22 @@ const renderThemeIcon = (id: number) => {
       return <img src={icon1} alt="Theme 1" className={`${baseClass} w-[95%] h-[95%]`} />;
     case 2:
       // Palm tree (tall)
-      return <img src={icon2} alt="Theme 2" className={`${baseClass} w-[75%] h-[95%]`} />;
+      return <img src={icon2} alt="Theme 2" className={`${baseClass} w-[75%] h-[130%]`} />;
     case 3:
       // Elephant (wide)
-      return <img src={icon3} alt="Theme 3" className={`${baseClass} w-[95%] h-[85%]`} />;
+      return <img src={icon3} alt="Theme 3" className={`${baseClass} w-[250%] h-[200%]`} />;
     case 4:
       // Kayak (wide)
-      return <img src={icon4} alt="Theme 4" className={`${baseClass} w-[90%] h-[90%]`} />;
+      return <img src={icon4} alt="Theme 4" className={`${baseClass} w-[110%] h-[110%]`} />;
     case 5:
       // Mortar (wide/compact)
-      return <img src={icon5} alt="Theme 5" className={`${baseClass} w-[80%] h-[80%]`} />;
+      return <img src={icon5} alt="Theme 5" className={`${baseClass} w-[100%] h-[100%]`} />;
     case 6:
       // Spa bed (wide)
-      return <img src={icon6} alt="Theme 6" className={`${baseClass} w-[85%] h-[85%]`} />;
+      return <img src={icon6} alt="Theme 6" className={`${baseClass} w-[200%] h-[200%]`} />;
     case 7:
       // Shield (tall/square)
-      return <img src={icon7} alt="Theme 7" className={`${baseClass} w-[80%] h-[90%]`} />;
+      return <img src={icon7} alt="Theme 7" className={`${baseClass} w-[100%] h-[110%]`} />;
     default:
       return null;
   }
@@ -303,17 +303,16 @@ const Home = () => {
         <div className="absolute bottom-0 left-0 w-full h-[28%] min-h-[180px] bg-gradient-to-t from-white from-15% via-white/45 via-70% to-transparent z-10 pointer-events-none" />
 
         <div className="relative z-20 flex flex-col items-center px-4 pt-[110px] pb-36 sm:pb-40 md:pb-44 w-full max-w-5xl mx-auto">
-          <div className="w-full flex justify-end mb-4 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-right-4 xl:-right-12 lg:mb-0 lg:w-auto z-30">
+          <div className="absolute top-14 sm:top-12 md:top-2 lg:top-1/2 lg:-translate-y-1/2 right-4 md:right-6 lg:-right-4 xl:-right-12 z-30 w-auto lg:mb-0">
             <div className="flex flex-row lg:flex-col gap-3 items-center">
               {[0, 1, 2, 3, 4, 5, 6].map((index) => (
                 <button
                   key={index}
                   onClick={() => setHeroSlide(index)}
-                  className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${
-                    heroSlide === index
+                  className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 ${heroSlide === index
                       ? 'w-[36px] h-[33px] sm:w-[48px] sm:h-[48px] border-[2.5px] border-[#01888E]/80 p-[2px] sm:p-[3px] bg-transparent'
                       : 'w-[6px] h-[6px] sm:w-[8px] sm:h-[8px] bg-white/70 hover:bg-white'
-                  } cursor-pointer`}
+                    } cursor-pointer`}
                 >
                   {heroSlide === index && (
                     <div
@@ -701,11 +700,10 @@ const Home = () => {
                   }}
                 >
                   <div
-                    className={`relative bg-white rounded-[24px] px-6 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${
-                      isActive
+                    className={`relative bg-white rounded-[24px] px-6 py-8 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700 flex flex-col items-center ${isActive
                         ? 'w-[260px] sm:w-[300px] lg:w-[360px] min-h-[380px] shadow-[0px_8px_32px_rgba(1,136,142,0.18)]'
                         : 'w-[240px] sm:w-[280px] lg:w-[320px] min-h-[320px] shadow-[0px_4px_16px_rgba(0,0,0,0.06)]'
-                    }`}
+                      }`}
                   >
                     <div className="absolute top-6 left-6 text-[#01888E] pointer-events-none select-none">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
