@@ -1,0 +1,123 @@
+{
+  "hero": {
+    "title": "Find Your Perfect Gateway",
+    "subtitle": "Crafted Just for You!",
+    "tagline": "Tailored Experiences, Unmatched Adventures",
+    "primaryButton": "LET'S START YOUR JOURNEY",
+    "secondaryButton": "BUILD MY TRIP",
+    "slideAriaLabel": "Go to slide {{number}}"
+  },
+  "categories": {
+    "description": "We offer <1>seven</1> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka.\nWhether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!",
+    "themeIconAlt": "Theme {{number}}",
+    "themes": {
+      "1": "Dive into history and traditions",
+      "2": "Unwind by turquoise waters",
+      "3": "Witness nature in its purest form",
+      "4": "Get your adrenaline rush!",
+      "5": "Rejuvenate your soul",
+      "6": "Indulge in exclusivity",
+      "7": "Amazing experiences at great value!"
+    }
+  },
+  "about": {
+    "greeting": "Hello !",
+    "label": "ABOUT US",
+    "titlePrefix": "Who We ",
+    "titleHighlight": "Are",
+    "subtitle": "Your Trusted Travel Companion",
+    "imageAlt": "About Hej Ceylon",
+    "paragraph1Html": "At <strong>Hej Ceylon</strong>, we don't just plan trips—we create memories that last a lifetime!",
+    "paragraph2Html": "We are a <strong>Sri Lanka &amp; Sweden-based</strong> travel service, built on trust, care, and an unshakable commitment to <strong>hospitality, customer satisfaction, and safety</strong>. Whether you're exploring breathtaking landscapes or diving into rich culture, we ensure a <strong>seamless, secure, and heartfelt travel experience</strong>.",
+    "paragraph3Html": "<strong>Let us take you beyond the ordinary—because your journey matters!</strong>"
+  },
+  "tours": {
+    "label": "Explore Sri Lanka",
+    "titlePrefix": "A Land of ",
+    "titleHighlight": "Diverse Wonders!",
+    "description": "We offer <1>seven</1> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!",
+    "prevAriaLabel": "Previous tours",
+    "nextAriaLabel": "Next tours",
+    "favoriteAriaLabel": "favorite",
+    "shareAriaLabel": "share",
+    "backwardArrowAlt": "Backward arrow",
+    "ratingsCount": "{{count}} Ratings",
+    "fromLabel": "From",
+    "fallbackDescription": "Discover the beauty of Sri Lanka with this exclusive tour package.",
+    "exploreAllButton": "Explore All Tours",
+    "durationDay_one": "{{count}} day",
+    "durationDay_other": "{{count}} days",
+    "fallbackData": {
+      "1": { "title": "Temple of the Tooth", "location": "Kandy, Sri Lanka", "category": "Heritage" },
+      "2": { "title": "Nine Arch Bridge", "location": "Ella, Sri Lanka", "category": "Nature" },
+      "3": { "title": "Thalpe Beach", "location": "Thalpe, Sri Lanka", "category": "Relax" },
+      "4": { "title": "Sigiriya Rock Fortress", "location": "Sigiriya, Sri Lanka", "category": "Heritage" },
+      "5": { "title": "Galle Dutch Fort", "location": "Galle, Sri Lanka", "category": "Heritage" },
+      "6": { "title": "Nuwara Eliya Tea Estates", "location": "Nuwara Eliya, Sri Lanka", "category": "Nature" },
+      "7": { "title": "Mirissa Whale Watching", "location": "Mirissa, Sri Lanka", "category": "Adventure" },
+      "8": { "title": "Yala National Park Safari", "location": "Yala, Sri Lanka", "category": "Wildlife" }
+    }
+  },
+  "destinations": {
+    "label": "Reach Your Dream Destination",
+    "titlePrefix": "Your Adventure",
+    "titleHighlight": "Starts Here!",
+    "descriptionHtml": "Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach. With us, you don't just travel—you <strong>experience Sri Lanka like never before</strong>.",
+    "cardDescription": "Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.",
+    "cardNames": {
+      "nineArch": "Nine Arch",
+      "thalpe": "Thalpe"
+    },
+    "ctaButton": "Start Your Adventure Today"
+  },
+  "stays": {
+    "label": "STAYS",
+    "titlePrefix": "Stay In",
+    "titleHighlight": "Sri Lanka",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "prevAriaLabel": "Previous stays",
+    "nextAriaLabel": "Next stays",
+    "wishlistAriaLabel": "Add to wishlist",
+    "viewAllButton": "View All",
+    "fallbackData": {
+      "1": { "name": "Amanwella Resort", "location": "Tangalle, Southern Province" },
+      "2": { "name": "Heritance Kandalama", "location": "Dambulla, Central Province" },
+      "3": { "name": "Cape Weligama", "location": "Weligama, Southern Province" },
+      "4": { "name": "Jetwing Surf", "location": "Arugam Bay, Eastern Province" },
+      "5": { "name": "Wild Coast Tented Lodge", "location": "Yala, Southern Province" },
+      "6": { "name": "Santani Wellness Resort", "location": "Kandy, Central Province" },
+      "7": { "name": "Tri Lanka", "location": "Koggala Lake, Southern Province" },
+      "8": { "name": "The Fortress Resort", "location": "Koggala, Southern Province" }
+    }
+  },
+  "customize": {
+    "titlePrefix": "Let's Customize Your ",
+    "titleHighlight": "Dream Tour",
+    "titleSuffix": " Today!",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "button": "Customize"
+  },
+  "testimonials": {
+    "label": "TESTIMONIALS",
+    "titlePrefix": "What Our",
+    "titleHighlight": "Clients Say",
+    "slideAriaLabel": "Go to testimonial {{number}}",
+    "items": {
+      "1": {
+        "name": "Ethan Wilson",
+        "country": "Sweden",
+        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      "2": {
+        "name": "Ethan Wilson",
+        "country": "Sweden",
+        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      "3": {
+        "name": "Ethan Wilson",
+        "country": "Sweden",
+        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      }
+    }
+  }
+}

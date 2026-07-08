@@ -1,0 +1,123 @@
+{
+  "hero": {
+    "title": "Hitta Ditt Perfekta Äventyr",
+    "subtitle": "Skapat Bara För Dig!",
+    "tagline": "Skräddarsydda Upplevelser, Oöverträffade Äventyr",
+    "primaryButton": "STARTA DIN RESA",
+    "secondaryButton": "BYGG MIN RESA",
+    "slideAriaLabel": "Gå till bild {{number}}"
+  },
+  "categories": {
+    "description": "Vi erbjuder <1>sju</1> extraordinära resekategorier, var och en noggrant utvald för att ge dig det bästa av Sri Lanka.\nOavsett om du söker kulturarv, spännande äventyr eller en lyxig avkoppling, har vi det du behöver!",
+    "themeIconAlt": "Tema {{number}}",
+    "themes": {
+      "1": "Upptäck historia och traditioner",
+      "2": "Koppla av vid turkosa vatten",
+      "3": "Upplev naturen i dess renaste form",
+      "4": "Få din adrenalinkick!",
+      "5": "Föryngra din själ",
+      "6": "Njut av exklusivitet",
+      "7": "Fantastiska upplevelser till bra pris!"
+    }
+  },
+  "about": {
+    "greeting": "Hej !",
+    "label": "OM OSS",
+    "titlePrefix": "Vilka Vi ",
+    "titleHighlight": "Är",
+    "subtitle": "Din Pålitliga Resekompanjon",
+    "imageAlt": "Om Hej Ceylon",
+    "paragraph1Html": "På <strong>Hej Ceylon</strong> planerar vi inte bara resor—vi skapar minnen som varar livet ut!",
+    "paragraph2Html": "Vi är en <strong>Sri Lanka- och Sverigebaserad</strong> resetjänst, byggd på förtroende, omtanke och ett orubbligt engagemang för <strong>gästfrihet, kundnöjdhet och säkerhet</strong>. Oavsett om du utforskar hisnande landskap eller dyker in i rik kultur, säkerställer vi en <strong>smidig, trygg och personlig reseupplevelse</strong>.",
+    "paragraph3Html": "<strong>Låt oss ta dig bortom det vanliga—för din resa är viktig!</strong>"
+  },
+  "tours": {
+    "label": "Utforska Sri Lanka",
+    "titlePrefix": "Ett Land Av ",
+    "titleHighlight": "Mångfaldiga Underverk!",
+    "description": "Vi erbjuder <1>sju</1> extraordinära resekategorier, var och en noggrant utvald för att ge dig det bästa av Sri Lanka. Oavsett om du söker kulturarv, spännande äventyr eller en lyxig avkoppling, har vi det du behöver!",
+    "prevAriaLabel": "Föregående turer",
+    "nextAriaLabel": "Nästa turer",
+    "favoriteAriaLabel": "favorit",
+    "shareAriaLabel": "dela",
+    "backwardArrowAlt": "Bakåtpil",
+    "ratingsCount": "{{count}} Betyg",
+    "fromLabel": "Från",
+    "fallbackDescription": "Upptäck Sri Lankas skönhet med detta exklusiva turpaket.",
+    "exploreAllButton": "Utforska Alla Turer",
+    "durationDay_one": "{{count}} dag",
+    "durationDay_other": "{{count}} dagar",
+    "fallbackData": {
+      "1": { "title": "Tandtemplet", "location": "Kandy, Sri Lanka", "category": "Kulturarv" },
+      "2": { "title": "Nine Arch-bron", "location": "Ella, Sri Lanka", "category": "Natur" },
+      "3": { "title": "Thalpe Beach", "location": "Thalpe, Sri Lanka", "category": "Avkoppling" },
+      "4": { "title": "Sigiriya klippfästning", "location": "Sigiriya, Sri Lanka", "category": "Kulturarv" },
+      "5": { "title": "Galle nederländska fort", "location": "Galle, Sri Lanka", "category": "Kulturarv" },
+      "6": { "title": "Nuwara Eliyas teplantager", "location": "Nuwara Eliya, Sri Lanka", "category": "Natur" },
+      "7": { "title": "Valskådning i Mirissa", "location": "Mirissa, Sri Lanka", "category": "Äventyr" },
+      "8": { "title": "Safari i Yala nationalpark", "location": "Yala, Sri Lanka", "category": "Vilda djur" }
+    }
+  },
+  "destinations": {
+    "label": "Nå Din Drömdestination",
+    "titlePrefix": "Ditt Äventyr",
+    "titleHighlight": "Börjar Här!",
+    "descriptionHtml": "Föreställ dig att stå på ett dimmigt berg, promenera bland forntida ruiner eller känna havsbrisen på en gyllene strand. Med oss reser du inte bara—du <strong>upplever Sri Lanka som aldrig förr</strong>.",
+    "cardDescription": "Föreställ dig att stå på ett dimmigt berg, promenera bland forntida ruiner eller känna havsbrisen på en gyllene strand.",
+    "cardNames": {
+      "nineArch": "Nine Arch",
+      "thalpe": "Thalpe"
+    },
+    "ctaButton": "Starta Ditt Äventyr Idag"
+  },
+  "stays": {
+    "label": "BOENDEN",
+    "titlePrefix": "Bo På",
+    "titleHighlight": "Sri Lanka",
+    "description": "Lorem Ipsum är helt enkelt utfyllnadstext från tryck- och sättningsindustrin. Lorem Ipsum har varit branschens standardutfyllnadstext ända sedan 1500-talet, då en okänd tryckare tog ett antal typsnitt och blandade dem för att skapa en typsnittskatalog.",
+    "prevAriaLabel": "Föregående boenden",
+    "nextAriaLabel": "Nästa boenden",
+    "wishlistAriaLabel": "Lägg till i önskelista",
+    "viewAllButton": "Visa Alla",
+    "fallbackData": {
+      "1": { "name": "Amanwella Resort", "location": "Tangalle, Southern Province" },
+      "2": { "name": "Heritance Kandalama", "location": "Dambulla, Central Province" },
+      "3": { "name": "Cape Weligama", "location": "Weligama, Southern Province" },
+      "4": { "name": "Jetwing Surf", "location": "Arugam Bay, Eastern Province" },
+      "5": { "name": "Wild Coast Tented Lodge", "location": "Yala, Southern Province" },
+      "6": { "name": "Santani Wellness Resort", "location": "Kandy, Central Province" },
+      "7": { "name": "Tri Lanka", "location": "Koggala Lake, Southern Province" },
+      "8": { "name": "The Fortress Resort", "location": "Koggala, Southern Province" }
+    }
+  },
+  "customize": {
+    "titlePrefix": "Låt Oss Skräddarsy Din ",
+    "titleHighlight": "Drömresa",
+    "titleSuffix": " Idag!",
+    "description": "Lorem Ipsum är helt enkelt utfyllnadstext från tryck- och sättningsindustrin. Lorem Ipsum har varit branschens standardutfyllnadstext ända sedan 1500-talet, då en okänd tryckare tog ett antal typsnitt och blandade dem för att skapa en typsnittskatalog.",
+    "button": "Anpassa"
+  },
+  "testimonials": {
+    "label": "OMDÖMEN",
+    "titlePrefix": "Vad Våra",
+    "titleHighlight": "Kunder Säger",
+    "slideAriaLabel": "Gå till omdöme {{number}}",
+    "items": {
+      "1": {
+        "name": "Ethan Wilson",
+        "country": "Sverige",
+        "text": "Lorem Ipsum är helt enkelt utfyllnadstext från tryck- och sättningsindustrin. Lorem Ipsum har varit branschens standardutfyllnadstext ända sedan 1500-talet, då en okänd tryckare tog ett antal typsnitt och blandade dem för att skapa en typsnittskatalog."
+      },
+      "2": {
+        "name": "Ethan Wilson",
+        "country": "Sverige",
+        "text": "Lorem Ipsum är helt enkelt utfyllnadstext från tryck- och sättningsindustrin. Lorem Ipsum har varit branschens standardutfyllnadstext ända sedan 1500-talet, då en okänd tryckare tog ett antal typsnitt och blandade dem för att skapa en typsnittskatalog."
+      },
+      "3": {
+        "name": "Ethan Wilson",
+        "country": "Sverige",
+        "text": "Lorem Ipsum är helt enkelt utfyllnadstext från tryck- och sättningsindustrin. Lorem Ipsum har varit branschens standardutfyllnadstext ända sedan 1500-talet, då en okänd tryckare tog ett antal typsnitt och blandade dem för att skapa en typsnittskatalog."
+      }
+    }
+  }
+}

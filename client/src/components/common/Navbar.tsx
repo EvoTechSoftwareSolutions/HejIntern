@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import usa from '../../assets/usa.png';
 import sweden from '../../assets/sweden.svg';
 import logo from '../../assets/logo.png';
+import LanguageSwitcher from "../LanguageSwitcher";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen]   = useState(false);
@@ -130,31 +131,8 @@ const Navbar = () => {
           {/* Divider */}
           <div className="h-4 w-px bg-[#003032]/30 mx-1" />
 
-          {/* Language flags */}
-          <div className="flex items-center gap-2">
-            <Link to="/" className="flex items-center justify-center">
-              <img
-                src={usa}
-                alt="USA"
-                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
-                  !isSwedish
-                    ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10'
-                    : 'opacity-70 hover:opacity-100 border-2 border-transparent'
-                }`}
-              />
-            </Link>
-            <Link to="/sv" className="flex items-center justify-center">
-              <img
-                src={sweden}
-                alt="Sweden"
-                className={`w-[22px] h-[22px] object-cover rounded-full transition-all cursor-pointer ${
-                  isSwedish
-                    ? 'border-2 border-[#01888E] shadow-sm scale-105 z-10'
-                    : 'opacity-70 hover:opacity-100 border-2 border-transparent'
-                }`}
-              />
-            </Link>
-          </div>
+          {/* Language switcher */}
+          <LanguageSwitcher />
 
         </div>
       </div>
@@ -246,7 +224,7 @@ const Navbar = () => {
         </nav>
 
         {/* Panel footer: account actions */}
-        <div className="border-t border-gray-100 px-4 py-4 space-y-2">
+        <div className="border-t border-gray-00 px-4 py-4 space-y-2">
           <button
             onClick={() => { handleWishlist(); setIsMobileMenuOpen(false); }}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-[10px] text-[#003032] hover:bg-gray-50 transition-colors text-[14px] font-medium"

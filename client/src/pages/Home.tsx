@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Heart, Star, User, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 import heroBanner from '../assets/herobanner.png';
 import React from "react";
 import aboutus from '../assets/welcomeimage.jpg';
@@ -29,66 +30,49 @@ import icon6 from '../assets/6.png';
 import icon7 from '../assets/7.png';
 
 // Image map: backend image slug -> local imported asset
-const tourImageMap: Record<string, string> = { sigiriya };
-const stayImageMap: Record<string, string> = { stay };
-const resolveImage = (slug: string, map: Record<string, string>, fallback: string) => {
+const tourImageMap = { sigiriya };
+const stayImageMap = { stay };
+const resolveImage = (slug, map, fallback) => {
   if (slug && slug.startsWith('http')) return slug;
   return map[slug] ?? fallback;
 };
 
-// Types
-interface Tour {
-  id: string;
-  title: string;
-  short_description?: string;
-  location: string;
-  price: string;
-  rating: number;
-  reviews: number;
-  duration: string;
-  category: string;
-  image: string;
-}
-
-interface StayItem {
-  id: string;
-  name: string;
-  location: string;
-  rating: number;
-  image: string;
-  featured: boolean;
-}
-
-const renderThemeIcon = (id: number) => {
+// Renders the theme icon for a given theme id.
+// `t` is passed in explicitly since this is a module-level helper (outside
+// the component), so it can't call the useTranslation() hook itself.
+const renderThemeIcon = (id, t) => {
   const baseClass = "object-contain transition-opacity duration-150 group-hover:opacity-95 mx-auto";
+  const alt = t('categories.themeIconAlt', { number: id });
   switch (id) {
     case 1:
       // Mask (wide)
-      return <img src={icon1} alt="Theme 1" className={`${baseClass} w-[95%] h-[95%]`} />;
+      return <img src={icon1} alt={alt} className={`${baseClass} w-[95%] h-[95%]`} />;
     case 2:
       // Palm tree (tall)
-      return <img src={icon2} alt="Theme 2" className={`${baseClass} w-[75%] h-[95%]`} />;
+      return <img src={icon2} alt={alt} className={`${baseClass} w-[75%] h-[95%]`} />;
     case 3:
       // Elephant (wide)
-      return <img src={icon3} alt="Theme 3" className={`${baseClass} w-[160%] h-[140%]`} />;
+      return <img src={icon3} alt={alt} className={`${baseClass} w-[160%] h-[140%]`} />;
     case 4:
       // Kayak (wide)
-      return <img src={icon4} alt="Theme 4" className={`${baseClass} w-[110%] h-[110%]`} />;
+      return <img src={icon4} alt={alt} className={`${baseClass} w-[110%] h-[110%]`} />;
     case 5:
       // Mortar (wide/compact)
-      return <img src={icon5} alt="Theme 5" className={`${baseClass} w-[100%] h-[100%]`} />;
+      return <img src={icon5} alt={alt} className={`${baseClass} w-[100%] h-[100%]`} />;
     case 6:
       // Spa bed (wide)
-      return <img src={icon6} alt="Theme 6" className={`${baseClass} w-[200%] h-[200%]`} />;
+      return <img src={icon6} alt={alt} className={`${baseClass} w-[200%] h-[200%]`} />;
     case 7:
       // Shield (tall/square)
-      return <img src={icon7} alt="Theme 7" className={`${baseClass} w-[100%] h-[110%]`} />;
+      return <img src={icon7} alt={alt} className={`${baseClass} w-[100%] h-[110%]`} />;
     default:
       return null;
   }
 };
 
 const Home = () => {
+  const { t } = useTranslation('home');
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTheme, setActiveTheme] = useState(1);
   const [_dragOffset, setDragOffset] = useState(0);
@@ -96,8 +80,8 @@ const Home = () => {
   const startXRef = useRef(0);
 
   // API state
-  const [tours, setTours] = useState<Tour[]>([]);
-  const [stays, setStays] = useState<StayItem[]>([]);
+  const [tours, setTours] = useState([]);
+  const [stays, setStays] = useState([]);
 
 const heroSlides = [
   heroBanner,
@@ -109,7 +93,7 @@ const heroSlides = [
   sigiriyaBanner
 ];
   const [heroSlide, setHeroSlide] = useState(0);
-const [loadedSlides, setLoadedSlides] = useState<boolean[]>(
+const [loadedSlides, setLoadedSlides] = useState(
   new Array(heroSlides.length).fill(false)
 ); 
 useEffect(() => {
@@ -134,13 +118,13 @@ useEffect(() => {
 }, []);
 
   const themes = [
-    { id: 1, name: 'Dive into history and traditions' },
-    { id: 2, name: 'Unwind by turquoise waters' },
-    { id: 3, name: 'Witness nature in its purest form' },
-    { id: 4, name: 'Get your adrenaline rush!' },
-    { id: 5, name: 'Rejuvenate your soul' },
-    { id: 6, name: 'Indulge in exclusivity' },
-    { id: 7, name: 'Amazing experiences at great value!' },
+    { id: 1, name: t('categories.themes.1') },
+    { id: 2, name: t('categories.themes.2') },
+    { id: 3, name: t('categories.themes.3') },
+    { id: 4, name: t('categories.themes.4') },
+    { id: 5, name: t('categories.themes.5') },
+    { id: 6, name: t('categories.themes.6') },
+    { id: 7, name: t('categories.themes.7') },
   ];
 
   // responsive grid will handle layout on small screens
@@ -151,7 +135,7 @@ useEffect(() => {
       .then((r) => r.json())
       .then((json) => {
         if (json.success && Array.isArray(json.data)) {
-          setTours(json.data.map((pkg: any) => ({
+          setTours(json.data.map((pkg) => ({
             id: pkg.id,
             title: pkg.package_name,
             short_description: pkg.short_description,
@@ -159,7 +143,7 @@ useEffect(() => {
             price: `5$ - ${pkg.base_price}$`,
             rating: pkg.rating,
             reviews: pkg.reviews,
-            duration: `${pkg.duration_days} day${pkg.duration_days !== 1 ? 's' : ''}`,
+            duration: t('tours.durationDay', { count: pkg.duration_days }),
             category: pkg.category,
             image: resolveImage(pkg.image, tourImageMap, sigiriya),
           })));
@@ -167,38 +151,38 @@ useEffect(() => {
       })
       .catch(() => {
         setTours([
-          { id: '1', title: 'Temple of the Tooth', location: 'Kandy, Sri Lanka', price: '10$ - 50$', rating: 4.8, reviews: 142, duration: '1 day', category: 'Heritage', image: sigiriya },
-          { id: '2', title: 'Nine Arch Bridge', location: 'Ella, Sri Lanka', price: '5$ - 20$', rating: 4.9, reviews: 320, duration: '1 day', category: 'Nature', image: sigiriya },
-          { id: '3', title: 'Thalpe Beach', location: 'Thalpe, Sri Lanka', price: '10$ - 40$', rating: 4.7, reviews: 215, duration: '2 days', category: 'Relax', image: sigiriya },
-          { id: '4', title: 'Sigiriya Rock Fortress', location: 'Sigiriya, Sri Lanka', price: '30$ - 150$', rating: 4.9, reviews: 450, duration: '1 day', category: 'Heritage', image: sigiriya },
-          { id: '5', title: 'Galle Dutch Fort', location: 'Galle, Sri Lanka', price: '15$ - 80$', rating: 4.8, reviews: 290, duration: '1 day', category: 'Heritage', image: sigiriya },
-          { id: '6', title: 'Nuwara Eliya Tea Estates', location: 'Nuwara Eliya, Sri Lanka', price: '20$ - 100$', rating: 4.6, reviews: 180, duration: '2 days', category: 'Nature', image: sigiriya },
-          { id: '7', title: 'Mirissa Whale Watching', location: 'Mirissa, Sri Lanka', price: '40$ - 120$', rating: 4.5, reviews: 260, duration: '1 day', category: 'Adventure', image: sigiriya },
-          { id: '8', title: 'Yala National Park Safari', location: 'Yala, Sri Lanka', price: '50$ - 200$', rating: 4.8, reviews: 380, duration: '1 day', category: 'Wildlife', image: sigiriya },
+          { id: '1', title: t('tours.fallbackData.1.title'), location: t('tours.fallbackData.1.location'), price: '10$ - 50$', rating: 4.8, reviews: 142, duration: t('tours.durationDay', { count: 1 }), category: t('tours.fallbackData.1.category'), image: sigiriya },
+          { id: '2', title: t('tours.fallbackData.2.title'), location: t('tours.fallbackData.2.location'), price: '5$ - 20$', rating: 4.9, reviews: 320, duration: t('tours.durationDay', { count: 1 }), category: t('tours.fallbackData.2.category'), image: sigiriya },
+          { id: '3', title: t('tours.fallbackData.3.title'), location: t('tours.fallbackData.3.location'), price: '10$ - 40$', rating: 4.7, reviews: 215, duration: t('tours.durationDay', { count: 2 }), category: t('tours.fallbackData.3.category'), image: sigiriya },
+          { id: '4', title: t('tours.fallbackData.4.title'), location: t('tours.fallbackData.4.location'), price: '30$ - 150$', rating: 4.9, reviews: 450, duration: t('tours.durationDay', { count: 1 }), category: t('tours.fallbackData.4.category'), image: sigiriya },
+          { id: '5', title: t('tours.fallbackData.5.title'), location: t('tours.fallbackData.5.location'), price: '15$ - 80$', rating: 4.8, reviews: 290, duration: t('tours.durationDay', { count: 1 }), category: t('tours.fallbackData.5.category'), image: sigiriya },
+          { id: '6', title: t('tours.fallbackData.6.title'), location: t('tours.fallbackData.6.location'), price: '20$ - 100$', rating: 4.6, reviews: 180, duration: t('tours.durationDay', { count: 2 }), category: t('tours.fallbackData.6.category'), image: sigiriya },
+          { id: '7', title: t('tours.fallbackData.7.title'), location: t('tours.fallbackData.7.location'), price: '40$ - 120$', rating: 4.5, reviews: 260, duration: t('tours.durationDay', { count: 1 }), category: t('tours.fallbackData.7.category'), image: sigiriya },
+          { id: '8', title: t('tours.fallbackData.8.title'), location: t('tours.fallbackData.8.location'), price: '50$ - 200$', rating: 4.8, reviews: 380, duration: t('tours.durationDay', { count: 1 }), category: t('tours.fallbackData.8.category'), image: sigiriya },
         ]);
       });
-  }, []);
+  }, [t]);
 
   const testimonials = [
     {
       id: 1,
-      name: 'Ethan Wilson',
-      country: 'Sweden',
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      name: t('testimonials.items.1.name'),
+      country: t('testimonials.items.1.country'),
+      text: t('testimonials.items.1.text'),
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'
     },
     {
       id: 2,
-      name: 'Ethan Wilson',
-      country: 'Sweden',
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      name: t('testimonials.items.2.name'),
+      country: t('testimonials.items.2.country'),
+      text: t('testimonials.items.2.text'),
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'
     },
     {
       id: 3,
-      name: 'Ethan Wilson',
-      country: 'Sweden',
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      name: t('testimonials.items.3.name'),
+      country: t('testimonials.items.3.country'),
+      text: t('testimonials.items.3.text'),
       avatar: 'https://images.unsplash.com/photo-1517849845537-1d51a20414de?q=80&w=200&auto=format&fit=crop'
     },
   ];
@@ -215,19 +199,19 @@ useEffect(() => {
     setCurrentSlide((s) => (s + 1) % testimonials.length);
   };
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerDown = (e) => {
     isDraggingRef.current = true;
     startXRef.current = e.clientX;
     try { e.currentTarget.setPointerCapture?.(e.pointerId); } catch (err) { }
   };
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerMove = (e) => {
     if (!isDraggingRef.current) return;
     const dx = e.clientX - startXRef.current;
     setDragOffset(dx);
   };
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerUp = (e) => {
     if (!isDraggingRef.current) return;
     isDraggingRef.current = false;
     const dx = e.clientX - startXRef.current;
@@ -238,40 +222,40 @@ useEffect(() => {
     else if (dx > threshold) prevTestimonial();
   };
 
-  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerCancel = (e) => {
     isDraggingRef.current = false;
     setDragOffset(0);
     try { e.currentTarget.releasePointerCapture?.(e.pointerId); } catch (err) { }
   };
 
-  const toursRef = useRef<HTMLDivElement | null>(null);
+  const toursRef = useRef(null);
   const scrollPrevTours = () => {
     const el = toursRef.current;
     if (!el) return;
-    const card = el.firstElementChild as HTMLElement;
+    const card = el.firstElementChild;
     const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: -amount, behavior: 'smooth' });
   };
   const scrollNextTours = () => {
     const el = toursRef.current;
     if (!el) return;
-    const card = el.firstElementChild as HTMLElement;
+    const card = el.firstElementChild;
     const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
 
-  const staysRef = useRef<HTMLDivElement | null>(null);
+  const staysRef = useRef(null);
   const scrollPrevStays = () => {
     const el = staysRef.current;
     if (!el) return;
-    const card = el.firstElementChild as HTMLElement;
+    const card = el.firstElementChild;
     const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: -amount, behavior: 'smooth' });
   };
   const scrollNextStays = () => {
     const el = staysRef.current;
     if (!el) return;
-    const card = el.firstElementChild as HTMLElement;
+    const card = el.firstElementChild;
     const amount = card ? card.offsetWidth + 20 : 280;
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
@@ -282,7 +266,7 @@ useEffect(() => {
       .then((r) => r.json())
       .then((json) => {
         if (json.success && Array.isArray(json.data)) {
-          setStays(json.data.map((s: any) => ({
+          setStays(json.data.map((s) => ({
             id: s.id,
             name: s.name,
             location: s.location,
@@ -294,27 +278,27 @@ useEffect(() => {
       })
       .catch(() => {
         setStays([
-          { id: '1', name: 'Amanwella Resort', location: 'Tangalle, Southern Province', rating: 4.5, image: stay, featured: true },
-          { id: '2', name: 'Heritance Kandalama', location: 'Dambulla, Central Province', rating: 4.8, image: stay, featured: false },
-          { id: '3', name: 'Cape Weligama', location: 'Weligama, Southern Province', rating: 4.7, image: stay, featured: false },
-          { id: '4', name: 'Jetwing Surf', location: 'Arugam Bay, Eastern Province', rating: 4.6, image: stay, featured: false },
-          { id: '5', name: 'Wild Coast Tented Lodge', location: 'Yala, Southern Province', rating: 4.9, image: stay, featured: false },
-          { id: '6', name: 'Santani Wellness Resort', location: 'Kandy, Central Province', rating: 4.7, image: stay, featured: false },
-          { id: '7', name: 'Tri Lanka', location: 'Koggala Lake, Southern Province', rating: 4.8, image: stay, featured: false },
-          { id: '8', name: 'The Fortress Resort', location: 'Koggala, Southern Province', rating: 4.6, image: stay, featured: false },
+          { id: '1', name: t('stays.fallbackData.1.name'), location: t('stays.fallbackData.1.location'), rating: 4.5, image: stay, featured: true },
+          { id: '2', name: t('stays.fallbackData.2.name'), location: t('stays.fallbackData.2.location'), rating: 4.8, image: stay, featured: false },
+          { id: '3', name: t('stays.fallbackData.3.name'), location: t('stays.fallbackData.3.location'), rating: 4.7, image: stay, featured: false },
+          { id: '4', name: t('stays.fallbackData.4.name'), location: t('stays.fallbackData.4.location'), rating: 4.6, image: stay, featured: false },
+          { id: '5', name: t('stays.fallbackData.5.name'), location: t('stays.fallbackData.5.location'), rating: 4.9, image: stay, featured: false },
+          { id: '6', name: t('stays.fallbackData.6.name'), location: t('stays.fallbackData.6.location'), rating: 4.7, image: stay, featured: false },
+          { id: '7', name: t('stays.fallbackData.7.name'), location: t('stays.fallbackData.7.location'), rating: 4.8, image: stay, featured: false },
+          { id: '8', name: t('stays.fallbackData.8.name'), location: t('stays.fallbackData.8.location'), rating: 4.6, image: stay, featured: false },
         ]);
       });
-  }, []);
+  }, [t]);
 
-  const destinationDescription = 'Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach.';
+  const destinationDescription = t('destinations.cardDescription');
 
   const destinationCards = [
-    { id: 1, name: 'Nine Arch', image: tour1, wide: true, description: destinationDescription },
-    { id: 2, name: 'Thalpe', image: tour2, wide: false, description: destinationDescription },
-    { id: 3, name: 'Nine Arch', image: tour3, wide: false, description: destinationDescription },
-    { id: 4, name: 'Nine Arch', image: tour4, wide: false, description: destinationDescription },
-    { id: 5, name: 'Thalpe', image: tour5, wide: false, description: destinationDescription },
-    { id: 6, name: 'Thalpe', image: tour6, wide: true, description: destinationDescription },
+    { id: 1, name: t('destinations.cardNames.nineArch'), image: tour1, wide: true, description: destinationDescription },
+    { id: 2, name: t('destinations.cardNames.thalpe'), image: tour2, wide: false, description: destinationDescription },
+    { id: 3, name: t('destinations.cardNames.nineArch'), image: tour3, wide: false, description: destinationDescription },
+    { id: 4, name: t('destinations.cardNames.nineArch'), image: tour4, wide: false, description: destinationDescription },
+    { id: 5, name: t('destinations.cardNames.thalpe'), image: tour5, wide: false, description: destinationDescription },
+    { id: 6, name: t('destinations.cardNames.thalpe'), image: tour6, wide: true, description: destinationDescription },
   ];
 
   // Autoplay: advance testimonial every AUTO_SLIDE_MS, but pause while dragging
@@ -359,25 +343,25 @@ useEffect(() => {
 
     <div className="relative z-20 flex flex-col items-center px-4 pt-[110px] pb-28 sm:pb-32 md:pb-36">
       <h1 className="font-kaisei text-[36px] md:text-[44px] leading-[48px] text-white tracking-wide [text-shadow:0_2px_4px_rgba(0,0,0,0.9),0_6px_18px_rgba(0,0,0,0.6)]">
-        Find Your Perfect Gateway
+        {t('hero.title')}
       </h1>
       <p className="font-alex text-[28px] md:text-[36px] leading-[40px] text-white mt-2 [text-shadow:0_2px_4px_rgba(0,0,0,0.9),0_6px_18px_rgba(0,0,0,0.6)]">
-        Crafted Just for You!
+        {t('hero.subtitle')}
       </p>
 
       <div className="flex flex-col items-center mt-4 w-full">
         <p className="font-sans text-[14px] md:text-[15px] leading-[20px] text-white font-medium [text-shadow:0_1px_3px_rgba(0,0,0,0.85)] mb-3">
-          Tailored Experiences, Unmatched Adventures
+          {t('hero.tagline')}
         </p>
         <div className="w-[280px] h-px bg-gradient-to-r from-transparent via-white/60 to-transparent mb-5" />
       </div>
 
       <div className="flex flex-row justify-center gap-2 sm:gap-4 mt-1 items-stretch w-full px-4 md:px-0">
         <button className="flex-1 sm:flex-none px-2 sm:px-6 py-1.5 sm:py-3 rounded-[6px] sm:rounded-[8px] bg-[#E2E8F0]/95 backdrop-blur-sm text-[#003032] font-sans font-bold text-[8px] sm:text-[13px] leading-[10px] sm:leading-[18px] uppercase tracking-normal sm:tracking-wide whitespace-normal sm:whitespace-nowrap shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-colors flex items-center justify-center sm:w-[240px] hover:bg-white">
-          LET'S START YOUR JOURNEY
+          {t('hero.primaryButton')}
         </button>
         <button className="flex-1 sm:flex-none px-2 sm:px-6 py-1.5 sm:py-3 rounded-[6px] sm:rounded-[8px] bg-[#01888E] text-white font-sans font-bold text-[8px] sm:text-[13px] leading-[10px] sm:leading-[18px] uppercase tracking-normal sm:tracking-wide whitespace-normal sm:whitespace-nowrap shadow-[0px_4px_12px_rgba(1,136,142,0.3)] transition-colors flex items-center justify-center sm:w-[240px] hover:bg-[#006D6D]">
-          BUILD MY TRIP
+          {t('hero.secondaryButton')}
         </button>
       </div>
     </div>
@@ -387,7 +371,7 @@ useEffect(() => {
         <button
           key={index}
           onClick={() => setHeroSlide(index)}
-          aria-label={`Go to slide ${index + 1}`}
+          aria-label={t('hero.slideAriaLabel', { number: index + 1 })}
           className={`rounded-full transition-all duration-300 flex items-center justify-center shrink-0 cursor-pointer ${
             heroSlide === index
               ? "w-9 h-9 sm:w-11 sm:h-11 border-2 border-[#fff] p-[2px] bg-transparent shadow-md"
@@ -408,7 +392,11 @@ useEffect(() => {
       {/* Categories Section */}
       <section className="pt-16 sm:pt-20 md:pt-24 pb-0 bg-white max-w-7xl mx-auto text-center relative z-20">
         <p className="text-[13px] text-[#003032] font-sans max-w-[800px] mx-auto leading-[18px] text-center px-4 font-normal whitespace-pre-line mb-8 sm:mb-10">
-          We offer <span className="font-bold text-[#01888E]">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka.{'\n'}Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
+          <Trans
+            i18nKey="categories.description"
+            ns="home"
+            components={{ 1: <span className="font-bold text-[#01888E]" /> }}
+          />
         </p>
         <div className="flex flex-row items-stretch justify-start lg:justify-center lg:gap-4 gap-1 sm:gap-2 pb-0 px-4 sm:px-6 md:px-8 max-w-[1100px] mx-auto overflow-hidden">
           {themes.map((theme) => {
@@ -420,7 +408,7 @@ useEffect(() => {
                 aria-pressed={activeTheme === theme.id}
               >
                 <div className="w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] lg:w-[72px] lg:h-[72px] flex items-center justify-center">
-                  {renderThemeIcon(theme.id)}
+                  {renderThemeIcon(theme.id, t)}
                 </div>
                 <span className={`text-[7px] sm:text-[8px] md:text-[9px] lg:text-[12px] font-bold text-center leading-[8.5px] sm:leading-[9.5px] md:leading-[11px] lg:leading-[18px] text-[#003032] whitespace-pre-line break-words max-w-full`}>{theme.name}</span>
               </div>
@@ -433,7 +421,7 @@ useEffect(() => {
       <section className="pt-2 pb-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 w-full relative">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-6">
-            <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">Hello !</h2>
+            <h2 className="font-petemoss text-[56px] md:text-[96px] text-[#01888E]">{t('about.greeting')}</h2>
           </div>
 
           <div className="flex flex-col md:flex-row items-start gap-12">
@@ -442,7 +430,7 @@ useEffect(() => {
               <div className="bg-white rounded-[18px] p-4 inline-block">
                 <img
                   src={aboutus}
-                  alt="About Hej Ceylon"
+                  alt={t('about.imageAlt')}
                   className="w-[360px] md:w-[392px] h-auto md:h-[352px] object-cover rounded-[12px]"
                 />
               </div>
@@ -450,17 +438,17 @@ useEffect(() => {
 
             {/* Right: Text */}
             <div className="flex flex-col max-w-[700px]">
-              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2" style={{ fontFamily: 'Inter' }}>ABOUT US</span>
+              <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2" style={{ fontFamily: 'Inter' }}>{t('about.label')}</span>
               <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
-                Who We <span className="text-[#01888E]">Are</span>
+                {t('about.titlePrefix')}<span className="text-[#01888E]">{t('about.titleHighlight')}</span>
               </h3>
 
-              <div className="text-[16px] font-bold text-[#003032] mb-4" style={{ fontFamily: 'Inter' }}>Your Trusted Travel Companion</div>
+              <div className="text-[16px] font-bold text-[#003032] mb-4" style={{ fontFamily: 'Inter' }}>{t('about.subtitle')}</div>
 
               <div className="text-[14px] font-normal text-[#003032] leading-[22px] space-y-4" style={{ fontFamily: 'Inter' }}>
-                <p>At <strong>Hej Ceylon</strong>, we don't just plan trips—we create memories that last a lifetime!</p>
-                <p>We are a <strong >Sri Lanka &amp; Sweden-based</strong> travel service, built on trust, care, and an unshakable commitment to <strong>hospitality, customer satisfaction, and safety</strong>. Whether you're exploring breathtaking landscapes or diving into rich culture, we ensure a <strong>seamless, secure, and heartfelt travel experience</strong>.</p>
-                <p><strong>Let us take you beyond the ordinary—because your journey matters!</strong></p>
+                <p dangerouslySetInnerHTML={{ __html: t('about.paragraph1Html') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('about.paragraph2Html') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('about.paragraph3Html') }} />
               </div>
             </div>
           </div>
@@ -472,23 +460,27 @@ useEffect(() => {
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-6">
-            <span className="text-[#01888E] text-[11px] font-normal uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>Explore Sri Lanka</span>
+            <span className="text-[#01888E] text-[11px] font-normal uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>{t('tours.label')}</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
-              <span className="font-light">A Land of </span>
-              <span className="font-bold text-[#01888E]">Diverse Wonders!</span>
+              <span className="font-light">{t('tours.titlePrefix')}</span>
+              <span className="font-bold text-[#01888E]">{t('tours.titleHighlight')}</span>
             </h3>
             <div className="flex flex-col items-stretch gap-6">
               <p className="text-[13px] leading-[18px] text-[#003032] font-normal max-w-[1500px] mt-4" style={{ fontFamily: 'Inter' }}>
-                We offer <span className="font-bold">seven</span> extraordinary travel categories, each carefully curated to bring you the best of Sri Lanka. Whether you seek cultural heritage, thrilling adventures, or a luxury retreat, we've got you covered!
+                <Trans
+                  i18nKey="tours.description"
+                  ns="home"
+                  components={{ 1: <span className="font-bold" /> }}
+                />
               </p>
 
               {/* Carousel Navigation Buttons */}
               <div className="flex justify-end mt-3 md:mt-0 shrink-0">
                 <div className="flex gap-[2px] md:mr-2">
-                  <button onClick={scrollPrevTours} aria-label="Previous tours" className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <button onClick={scrollPrevTours} aria-label={t('tours.prevAriaLabel')} className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                     <ChevronLeft size={16} />
                   </button>
-                  <button onClick={scrollNextTours} aria-label="Next tours" className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <button onClick={scrollNextTours} aria-label={t('tours.nextAriaLabel')} className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                     <ChevronRight size={16} />
                   </button>
                 </div>
@@ -511,7 +503,7 @@ useEffect(() => {
                   </div>
 
                   {/* Heart top-right */}
-                  <button aria-label="favorite" className="absolute right-3 top-3 w-7 h-7 bg-white/20 border border-white rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <button aria-label={t('tours.favoriteAriaLabel')} className="absolute right-3 top-3 w-7 h-7 bg-white/20 border border-white rounded-full flex items-center justify-center backdrop-blur-sm">
                     <Heart size={14} className="text-white fill-transparent" />
                   </button>
 
@@ -531,15 +523,15 @@ useEffect(() => {
                 {/* Card content */}
                 <div className="p-4 flex flex-col justify-between flex-1 bg-white">
                   <div className="flex items-center gap-2 mb-2 text-[12px] font-bold" style={{ fontFamily: 'Inter' }}>
-                    <span className="text-[#01888E]">{tour.reviews} Ratings</span>
+                    <span className="text-[#01888E]">{t('tours.ratingsCount', { count: tour.reviews })}</span>
                     <span className="text-gray-300 font-light">|</span>
                     <span className="text-gray-600 font-normal">
-                      From <span className="text-[#FF2A2A] font-bold">{tour.price}</span>
+                      {t('tours.fromLabel')} <span className="text-[#FF2A2A] font-bold">{tour.price}</span>
                     </span>
                   </div>
 
                   <p className="text-[12px] text-[#4A4A4A] leading-relaxed mb-4 tracking-wide" style={{ fontFamily: 'Inter' }}>
-                    {tour.short_description ?? 'Discover the beauty of Sri Lanka with this exclusive tour package.'}
+                    {tour.short_description ?? t('tours.fallbackDescription')}
                   </p>
 
                   <div className="flex items-center justify-between mt-auto">
@@ -547,8 +539,8 @@ useEffect(() => {
                       <div className="text-[13px] text-[#01888E] font-bold" style={{ fontFamily: 'Inter' }}>{tour.category}</div>
                       <div className="text-[11px] text-[#003032] font-bold mt-0.5" style={{ fontFamily: 'Inter' }}>{tour.duration}</div>
                     </div>
-                    <button aria-label="share" className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400 transition-colors hover:text-[#01888E]">
-                      <img src={backwardarrow} alt="Backward arrow" className="h-4 w-4 object-contain" />
+                    <button aria-label={t('tours.shareAriaLabel')} className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400 transition-colors hover:text-[#01888E]">
+                      <img src={backwardarrow} alt={t('tours.backwardArrowAlt')} className="h-4 w-4 object-contain" />
                     </button>
                   </div>
                 </div>
@@ -559,7 +551,7 @@ useEffect(() => {
 
           <div className="flex justify-center mt-6">
             <button className="px-8 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
-              Explore All Tours
+              {t('tours.exploreAllButton')}
             </button>
           </div>
         </div>
@@ -568,16 +560,16 @@ useEffect(() => {
       {/* Destinations Section */}
       <section className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-white w-full">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-8 text-left">
-            <span className="text-[13px] font-medium text-[#01888E] mb-2 block">Reach Your Dream Destination</span>
+          <div className="mb-8 text-center md:text-left">
+            <span className="text-[13px] font-medium text-[#01888E] mb-2 block">{t('destinations.label')}</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-4 font-bold">
-              <span className="font-bold">Your Adventure</span>{' '}
-              <span className="font-bold text-[#01888E]">Starts Here!</span>
+              <span className="font-bold">{t('destinations.titlePrefix')}</span>{' '}
+              <span className="font-bold text-[#01888E]">{t('destinations.titleHighlight')}</span>
             </h3>
-            <p className="text-[14px] leading-[22px] text-[#757575] font-normal max-w-[1000px] mx-auto md:mx-0">
-              Imagine standing atop a misty mountain, strolling through ancient ruins, or feeling the ocean breeze on a golden beach. With us, you don't just travel—you{' '}
-              <span className="font-bold text-[#003032]">experience Sri Lanka like never before</span>.
-            </p>
+            <p
+              className="text-[14px] leading-[22px] text-[#757575] font-normal max-w-[1000px] mx-auto md:mx-0"
+              dangerouslySetInnerHTML={{ __html: t('destinations.descriptionHtml') }}
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mt-2">
@@ -593,8 +585,8 @@ useEffect(() => {
                   <h4 className={`font-bold text-[#003032] ${card.wide ? 'text-[22px]' : 'text-[18px] md:text-[20px]'}`}>
                     {card.name}
                   </h4>
-                  <div className="w-20 h-[1px] rounded-full bg-gradient-to-r from-[#01888E] via-[#01888E] to-white mt-1.5 mb-2" />
                   <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-28 group-hover:opacity-100 transition-all duration-500 ease-out">
+                    <div className="w-20 h-0.5 bg-[#01888E]/60 mt-1.5 mb-2" />
                     <p className={`text-[#003032]/75 leading-snug ${card.wide ? 'text-[12px] md:text-[13px] max-w-[92%]' : 'text-[11px] md:text-[12px]'}`}>
                       {card.description}
                     </p>
@@ -606,7 +598,7 @@ useEffect(() => {
 
           <div className="flex justify-center mt-10">
             <button className="px-10 py-3.5 bg-[#01888E] text-white rounded-full text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors">
-              Start Your Adventure Today
+              {t('destinations.ctaButton')}
             </button>
           </div>
         </div>
@@ -617,22 +609,22 @@ useEffect(() => {
       <section className="py-10 relative w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="mb-6">
-            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>STAYS</span>
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>{t('stays.label')}</span>
             <h3 className="text-[34px] md:text-[40px] leading-[44px] text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
-              <span className="font-bold">Stay In</span> <span className="font-bold text-[#01888E]">Sri Lanka</span>
+              <span className="font-bold">{t('stays.titlePrefix')}</span> <span className="font-bold text-[#01888E]">{t('stays.titleHighlight')}</span>
             </h3>
             <div className="flex flex-col items-stretch gap-6">
               <p className="text-[13px] leading-[18px] text-[#003032] font-normal max-w-[1500px] mt-4" style={{ fontFamily: 'Inter' }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                {t('stays.description')}
               </p>
 
               {/* Carousel Navigation Buttons */}
               <div className="flex justify-end mt-3 md:mt-0 shrink-0">
                 <div className="flex gap-[2px] md:mr-2">
-                  <button onClick={scrollPrevStays} aria-label="Previous stays" className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <button onClick={scrollPrevStays} aria-label={t('stays.prevAriaLabel')} className="w-10 h-8 bg-[#01888E] rounded-l-full rounded-r-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                     <ChevronLeft size={16} />
                   </button>
-                  <button onClick={scrollNextStays} aria-label="Next stays" className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
+                  <button onClick={scrollNextStays} aria-label={t('stays.nextAriaLabel')} className="w-10 h-8 bg-[#01888E] rounded-r-full rounded-l-none flex items-center justify-center text-white hover:bg-[#003032] transition-colors">
                     <ChevronRight size={16} />
                   </button>
                 </div>
@@ -657,7 +649,7 @@ useEffect(() => {
                   </div>
 
                   {/* Wishlist button top-right */}
-                  <button aria-label="Add to wishlist" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition z-20">
+                  <button aria-label={t('stays.wishlistAriaLabel')} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/50 transition z-20">
                     <Heart size={14} className="stroke-[2.5]" />
                   </button>
 
@@ -678,7 +670,7 @@ useEffect(() => {
 
           <div className="flex justify-center mt-6">
             <button className="px-8 py-3 bg-[#01888E] text-white rounded-[12px] text-[15px] font-bold shadow-[0px_4px_12px_rgba(1,136,142,0.25)] hover:bg-[#006D6D] transition-colors" style={{ fontFamily: 'Inter' }}>
-              View All
+              {t('stays.viewAllButton')}
             </button>
           </div>
         </div>
@@ -704,13 +696,13 @@ useEffect(() => {
           <div className="absolute bottom-0 left-0 right-0 flex justify-center px-4 translate-y-[40%] z-10">
             <div className="bg-white w-full max-w-[800px] mx-auto rounded-[20px] shadow-[0px_8px_40px_rgba(0,0,0,0.10)] px-8 py-10 text-center">
               <h3 className="text-[#003032] font-bold text-[20px] md:text-[22px] leading-tight mb-4" style={{ fontFamily: 'Inter' }}>
-                Let's Customize Your <span className="text-[#01888E]">Dream Tour</span> Today!
+                {t('customize.titlePrefix')}<span className="text-[#01888E]">{t('customize.titleHighlight')}</span>{t('customize.titleSuffix')}
               </h3>
               <p className="text-[13px] md:text-[14px] text-[#757575] leading-relaxed max-w-[700px] mx-auto mb-7" style={{ fontFamily: 'Inter' }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                {t('customize.description')}
               </p>
               <button className="px-12 py-3 bg-[#01888E] text-white rounded-[10px] text-[15px] font-bold shadow-[0px_4px_16px_rgba(1,136,142,0.35)] hover:bg-[#006D6D] transition-colors min-w-[180px]" style={{ fontFamily: 'Inter' }}>
-                Customize
+                {t('customize.button')}
               </button>
             </div>
           </div>
@@ -725,10 +717,10 @@ useEffect(() => {
       {/* Testimonials Section */}
       <section className="relative py-14 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 overflow-hidden" style={{ backgroundImage: `url(${explorebg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <div className="mb-8 text-left">
-            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>TESTIMONIALS</span>
+          <div className="mb-8 text-center md:text-left">
+            <span className="text-[11px] font-normal text-[#01888E] uppercase tracking-[0.15em] mb-2 block" style={{ fontFamily: 'Inter' }}>{t('testimonials.label')}</span>
             <h2 className="text-[28px] md:text-[34px] leading-tight text-[#003032] mb-3 font-bold" style={{ fontFamily: 'Inter' }}>
-              <span className="font-bold">What Our</span> <span className="font-bold text-[#01888E]">Clients Say</span>
+              <span className="font-bold">{t('testimonials.titlePrefix')}</span> <span className="font-bold text-[#01888E]">{t('testimonials.titleHighlight')}</span>
             </h2>
           </div>
 
@@ -809,7 +801,7 @@ useEffect(() => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={t('testimonials.slideAriaLabel', { number: index + 1 })}
                 className={`rounded-full transition-all flex items-center justify-center ${currentSlide === index
                   ? 'w-[18px] h-[18px] border-[2px] border-[#01888E] bg-white'
                   : 'w-[14px] h-[14px] bg-white border border-[#01888E]/40 hover:border-[#01888E]/60'
