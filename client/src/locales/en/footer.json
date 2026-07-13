@@ -1,0 +1,62 @@
+{
+  "brand": {
+    "name": "HejCeylon.com",
+    "logoAlt": "Hej Ceylon",
+    "description": "Hej Ceylon, we bring your dream events to life with stunning décor, expert planning, and seamless execution. Whether it's a wedding, birthday, corporate event, or any special celebration."
+  },
+  "newsletter": {
+    "title": "Stay in the loop and sign up for the Wardiere newsletter:",
+    "emailPlaceholder": "Enter your email",
+    "subscribeAriaLabel": "Subscribe to newsletter"
+  },
+  "social": {
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok"
+  },
+  "navigation": {
+    "title": "Navigations",
+    "links": {
+      "home": "Home",
+      "destinations": "Destinations",
+      "tours": "Tours",
+      "stays": "Stays",
+      "blog": "Blog",
+      "contactUs": "Contact Us"
+    }
+  },
+  "support": {
+    "title": "Support",
+    "links": {
+      "helpCenter": "Help Center",
+      "myAccount": "My Hej Ceylon",
+      "myFavorites": "My Favorites",
+      "myTours": "My Tours",
+      "myProfile": "My Profile"
+    }
+  },
+  "quickLinks": {
+    "title": "Quick Links",
+    "links": {
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy",
+      "faq": "FAQ",
+      "gallery": "Gallery",
+      "about": "About Us"
+    }
+  },
+  "contact": {
+    "hotlineTitle": "Hotline",
+    "hotlineValue": "+94 71 160 2095",
+    "contactTitle": "Contact Us",
+    "contactValue": "info@elegantdecos.lk",
+    "locationTitle": "Location",
+    "locationValue": "New Puttalam Rd, Pandulagama, Anuradhapura"
+  },
+  "copyright": {
+    "text": "HejCeylon (PVT) Ltd. | All right reserved 2025",
+    "designByPrefix": "Design & Develop by",
+    "designByCompany": "Evon Technologies Software Solutions (PVT) Ltd."
+  }
+}

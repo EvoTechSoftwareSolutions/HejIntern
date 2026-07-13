@@ -1,0 +1,62 @@
+{
+  "brand": {
+    "name": "HejCeylon.com",
+    "logoAlt": "Hej Ceylon",
+    "description": "Hej Ceylon förverkligar dina drömevenemang med fantastisk dekoration, professionell planering och smidigt genomförande. Oavsett om det är ett bröllop, en födelsedag, ett företagsevent eller en särskild fest."
+  },
+  "newsletter": {
+    "title": "Håll dig uppdaterad — anmäl dig till Wardiere-nyhetsbrevet:",
+    "emailPlaceholder": "Ange din e-post",
+    "subscribeAriaLabel": "Prenumerera på nyhetsbrevet"
+  },
+  "social": {
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok"
+  },
+  "navigation": {
+    "title": "Navigationer",
+    "links": {
+      "home": "Hem",
+      "destinations": "Destinationer",
+      "tours": "Turer",
+      "stays": "Boenden",
+      "blog": "Blogg",
+      "contactUs": "Kontakta oss"
+    }
+  },
+  "support": {
+    "title": "Support",
+    "links": {
+      "helpCenter": "Hjälpcenter",
+      "myAccount": "Mitt Hej Ceylon",
+      "myFavorites": "Mina favoriter",
+      "myTours": "Mina turer",
+      "myProfile": "Min profil"
+    }
+  },
+  "quickLinks": {
+    "title": "Snabblänkar",
+    "links": {
+      "terms": "Villkor & Förutsättningar",
+      "privacy": "Integritetspolicy",
+      "faq": "Vanliga frågor",
+      "gallery": "Galleri",
+      "about": "Om oss"
+    }
+  },
+  "contact": {
+    "hotlineTitle": "Hotline",
+    "hotlineValue": "+94 71 160 2095",
+    "contactTitle": "Kontakta oss",
+    "contactValue": "info@elegantdecos.lk",
+    "locationTitle": "Plats",
+    "locationValue": "New Puttalam Rd, Pandulagama, Anuradhapura"
+  },
+  "copyright": {
+    "text": "HejCeylon (PVT) Ltd. | Alla rättigheter förbehållna 2025",
+    "designByPrefix": "Design & Utvecklad av",
+    "designByCompany": "Evon Technologies Software Solutions (PVT) Ltd."
+  }
+}

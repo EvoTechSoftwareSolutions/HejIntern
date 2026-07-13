@@ -1,12 +1,22 @@
 import { useTranslation } from 'react-i18next';
 import usa from '../assets/usa.png';
 import sweden from '../assets/sweden.svg';
-import { LANGUAGE_STORAGE_KEY } from '../i18n';
+import { LANGUAGE_STORAGE_KEY, type SupportedLanguage } from '../i18n';
 
-const LANGUAGES = [
+interface LanguageOption {
+  code: SupportedLanguage;
+  label: string;
+  flag: string;
+}
+
+const LANGUAGES: LanguageOption[] = [
   { code: 'en', label: 'English', flag: usa },
   { code: 'sv', label: 'Svenska', flag: sweden },
 ];
+
+interface LanguageSwitcherProps {
+  className?: string;
+}
 
 /**
  * LanguageSwitcher
@@ -22,11 +32,11 @@ const LANGUAGES = [
  *   <LanguageSwitcher />
  *   <LanguageSwitcher className="ml-4" />
  */
-const LanguageSwitcher = ({ className = '' }) => {
+const LanguageSwitcher = ({ className = '' }: LanguageSwitcherProps) => {
   const { i18n } = useTranslation();
-  const currentLang = i18n.language?.toLowerCase().startsWith('sv') ? 'sv' : 'en';
+  const currentLang: SupportedLanguage = i18n.language?.toLowerCase().startsWith('sv') ? 'sv' : 'en';
 
-  const handleChange = (code) => {
+  const handleChange = (code: SupportedLanguage) => {
     if (code === currentLang) return;
 
     i18n.changeLanguage(code);

@@ -8,7 +8,6 @@ export default function App() {
   return (
         <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
-        <Route path="sv" element={<HomeSV />} />
         <Route path="about" element={<About />} />
       </Route>
   );

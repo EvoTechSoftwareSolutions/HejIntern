@@ -1,40 +1,31 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, Heart, LogOut, Bell, X } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
-import usa from '../../assets/usa.png';
-import sweden from '../../assets/sweden.svg';
+import { useTranslation } from 'react-i18next';
 import logo from '../../assets/logo.png';
 import LanguageSwitcher from "../LanguageSwitcher";
 
+interface NavLink {
+  to: string;
+  label: string;
+}
+
 const Navbar = () => {
+  const { t } = useTranslation('navbar');
   const [isDropdownOpen, setIsDropdownOpen]   = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef  = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const location     = useLocation();
-  const isSwedish    = location.pathname.startsWith('/sv');
 
-  const navText = {
-    myAccount:    isSwedish ? 'Min Hej Ceylon'  : 'My Hej Ceylon',
-    myWishlist:   isSwedish ? 'Mina Önskade'    : 'My Wishlist',
-    logout:       isSwedish ? 'Logga ut'        : 'Logout',
-    home:         isSwedish ? 'HEM'             : 'HOME',
-    tours:        isSwedish ? 'RESOR'           : 'TOURS',
-    destinations: isSwedish ? 'DESTINATIONER'   : 'DESTINATIONS',
-    stays:        isSwedish ? 'VISTELSER'       : 'STAYS',
-    blog:         isSwedish ? 'BLOGG'           : 'BLOG',
-    contactUs:    isSwedish ? 'KONTAKTA OSS'    : 'CONTACT US',
-    gallery:      isSwedish ? 'GALLERI'         : 'GALLERY',
-  };
-
-  const navLinks = [
-    { to: '/',                                        label: navText.home         },
-    { to: isSwedish ? '/sv/tours'        : '/tours',        label: navText.tours        },
-    { to: isSwedish ? '/sv/destinations' : '/destinations', label: navText.destinations },
-    { to: isSwedish ? '/sv/stays'        : '/stays',        label: navText.stays        },
-    { to: isSwedish ? '/sv/blog'         : '/blog',         label: navText.blog         },
-    { to: isSwedish ? '/sv/contact'      : '/contact',      label: navText.contactUs    },
-    { to: isSwedish ? '/sv/gallery'      : '/gallery',      label: navText.gallery      },
+  const navLinks: NavLink[] = [
+    { to: '/',             label: t('nav.home') },
+    { to: '/tours',        label: t('nav.tours') },
+    { to: '/destinations', label: t('nav.destinations') },
+    { to: '/stays',        label: t('nav.stays') },
+    { to: '/blog',         label: t('nav.blog') },
+    { to: '/contact',      label: t('nav.contactUs') },
+    { to: '/gallery',      label: t('nav.gallery') },
   ];
 
   // Close account dropdown on outside click
@@ -79,7 +70,7 @@ const Navbar = () => {
 
   const isLinkActive = (to: string) =>
     location.pathname === to ||
-    (to !== '/' && location.pathname.startsWith(to.replace('/sv', '')));
+    (to !== '/' && location.pathname.startsWith(to));
 
   return (
     <header className="absolute top-0 left-0 w-full z-50 font-sans bg-gradient-to-b from-white via-white/80 to-transparent pb-8">
@@ -94,8 +85,8 @@ const Navbar = () => {
               className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              <span className="hidden xs:inline sm:inline">{navText.myAccount}</span>
-              <span className="inline xs:hidden sm:hidden">Account</span>
+              <span className="hidden xs:inline sm:inline">{t('account.myAccount')}</span>
+              <span className="inline xs:hidden sm:hidden">{t('account.shortLabel')}</span>
               <ChevronDown size={14} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
             </div>
 
@@ -106,7 +97,7 @@ const Navbar = () => {
                   className="w-full px-4 py-2 text-left text-sm text-dark hover:bg-secondary flex items-center gap-2 transition-colors"
                 >
                   <Heart size={16} />
-                  {navText.myWishlist}
+                  {t('account.myWishlist')}
                 </button>
                 <div className="border-t border-gray-200 my-1" />
                 <button
@@ -114,7 +105,7 @@ const Navbar = () => {
                   className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors"
                 >
                   <LogOut size={16} />
-                  {navText.logout}
+                  {t('account.logout')}
                 </button>
               </div>
             )}
@@ -143,7 +134,7 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center z-20 shrink-0">
-            <img src={logo} alt="Hej Ceylon" className="h-9 md:h-12 object-contain" />
+            <img src={logo} alt={t('aria.logoAlt')} className="h-9 md:h-12 object-contain" />
           </Link>
 
           {/* Desktop nav links */}
@@ -166,7 +157,7 @@ const Navbar = () => {
           {/* Mobile: hamburger / close button */}
           <div className="flex items-center z-20 md:hidden">
             <button
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={isMobileMenuOpen ? t('aria.closeMenu') : t('aria.openMenu')}
               onClick={() => setIsMobileMenuOpen((v) => !v)}
               className="text-[#003032] p-2 hover:bg-white/20 rounded-lg transition-colors"
             >
@@ -194,11 +185,11 @@ const Navbar = () => {
       >
         {/* Panel header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-[#E6F3F4]">
-          <img src={logo} alt="Hej Ceylon" className="h-8 object-contain" />
+          <img src={logo} alt={t('aria.logoAlt')} className="h-8 object-contain" />
           <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-[#003032] p-1.5 hover:bg-white/60 rounded-lg transition-colors"
-            aria-label="Close menu"
+            aria-label={t('aria.closeMenu')}
           >
             <X size={20} />
           </button>
@@ -224,48 +215,25 @@ const Navbar = () => {
         </nav>
 
         {/* Panel footer: account actions */}
-        <div className="border-t border-gray-00 px-4 py-4 space-y-2">
+        <div className="border-t border-gray-100 px-4 py-4 space-y-2">
           <button
             onClick={() => { handleWishlist(); setIsMobileMenuOpen(false); }}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-[10px] text-[#003032] hover:bg-gray-50 transition-colors text-[14px] font-medium"
           >
             <Heart size={18} className="text-[#01888E]" />
-            {navText.myWishlist}
+            {t('account.myWishlist')}
           </button>
           <button
             onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-[10px] text-red-600 hover:bg-red-50 transition-colors text-[14px] font-medium"
           >
             <LogOut size={18} />
-            {navText.logout}
+            {t('account.logout')}
           </button>
 
           {/* Language switcher */}
           <div className="flex items-center gap-3 px-4 pt-2">
-            <Link to="/" onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center">
-              <img
-                src={usa}
-                alt="English"
-                className={`w-[26px] h-[26px] object-cover rounded-full transition-all ${
-                  !isSwedish
-                    ? 'border-2 border-[#01888E] scale-105'
-                    : 'opacity-60 hover:opacity-100 border-2 border-transparent'
-                }`}
-              />
-            </Link>
-            <Link to="/sv" onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center">
-              <img
-                src={sweden}
-                alt="Swedish"
-                className={`w-[26px] h-[26px] object-cover rounded-full transition-all ${
-                  isSwedish
-                    ? 'border-2 border-[#01888E] scale-105'
-                    : 'opacity-60 hover:opacity-100 border-2 border-transparent'
-                }`}
-              />
-            </Link>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>

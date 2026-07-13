@@ -1,0 +1,22 @@
+{
+  "account": {
+    "myAccount": "Min Hej Ceylon",
+    "shortLabel": "Konto",
+    "myWishlist": "Mina Önskade",
+    "logout": "Logga ut"
+  },
+  "nav": {
+    "home": "HEM",
+    "tours": "RESOR",
+    "destinations": "DESTINATIONER",
+    "stays": "VISTELSER",
+    "blog": "BLOGG",
+    "contactUs": "KONTAKTA OSS",
+    "gallery": "GALLERI"
+  },
+  "aria": {
+    "openMenu": "Öppna meny",
+    "closeMenu": "Stäng meny",
+    "logoAlt": "Hej Ceylon"
+  }
+}

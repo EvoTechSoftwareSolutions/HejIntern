@@ -1,0 +1,22 @@
+{
+  "account": {
+    "myAccount": "My Hej Ceylon",
+    "shortLabel": "Account",
+    "myWishlist": "My Wishlist",
+    "logout": "Logout"
+  },
+  "nav": {
+    "home": "HOME",
+    "tours": "TOURS",
+    "destinations": "DESTINATIONS",
+    "stays": "STAYS",
+    "blog": "BLOG",
+    "contactUs": "CONTACT US",
+    "gallery": "GALLERY"
+  },
+  "aria": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "logoAlt": "Hej Ceylon"
+  }
+}
